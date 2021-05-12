@@ -1,4 +1,4 @@
-# BidmadSDK
+# BidmadSDK(v1.13.1)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
     - [Gradle](#Gradle)
@@ -449,7 +449,7 @@ Function|Description
 void onLoadAd()|Banner 광고가 Load 될 떄 이벤트가 발생합니다. 
 void onFailedAd()|Banner 광고 Load에 실패할 때 이벤트가 발생합니다. 
 void onClickedAd()|Banner 광고 Click시 이벤트가 발생합니다. 
-
+---
 #### *전면광고 Class Reference
 
 - BaseInterstitial
@@ -473,7 +473,7 @@ void onLoadAd()|Interstitial 광고가 Load 될 떄 이벤트가 발생합니다
 void onShowAd()|Interstitial 광고가 Show 될 때 이벤트가 발생합니다. 
 void onFailedAd()|Interstitial 광고 Load에 실패할 때 이벤트가 발생합니다. 
 void onClickedAd()|Interstitial 광고 Click시 이벤트가 발생합니다. 
-
+---
 #### *보상형광고 Class Reference
 
 - BaseReward
@@ -501,7 +501,7 @@ void onSkippedAd(String)|Reward 광고에서 Reward가 지급조건이 충족되
 void onOpenAd(String)|Reward 광고의 영상이 시작될 때 이벤트가 발생하며, ZoneId를 반환합니다.
 void onCloseAd(String)|Reward 광고가 종료될 때 이벤트가 발생하며, ZoneId를 반환합니다.
 void onClickedAd(String)|Reward 광고 Click시 이벤트가 발생하며, ZoneId를 반환합니다.
-
+---
 #### *네이티브광고 Class Reference
 
 - BaseNativeAd
@@ -525,7 +525,7 @@ void onSuccessHouseAd()|Deprecate된 이벤트입니다.
 void onSuccessAd()|Native 광고가 Load 될 때 이벤트가 발생합니다. 
 void onFailedAd()|Native 광고 Load에 실패할 때 이벤트가 발생합니다.
 void onClickedAd()|Native 광고 Click시 이벤트가 발생합니다. 
-
+---
 #### *오퍼월광고 Class Reference
 
 - BaseOfferwall
@@ -566,7 +566,7 @@ void onGetCurrencyBalanceSuccess(String, int)|Offerwall 광고로 지급된 재�
 void onGetCurrencyBalanceFail(String)|Offerwall 광고로 지급된 재화 조회 실패 시 이벤트가 발생합니다. Error Message을 반환합니다.
 void onSpendCurrencySuccess(String, int)|Offerwall 광고로 지급된 재화 소모 성공 시 이벤트가 발생합니다. 
 void onSpendCurrencyFail(String)|Offerwall 광고로 지급된 재화 소모 실패 시 이벤트가 발생합니다. Error Message을 반환합니다.
-
+---
 #### *Common Class Reference
 
 - Common

@@ -1,4 +1,4 @@
-# BidmadSDK
+# BidmadSDK(v1.13.1)
 ### Shortcuts
 1. [SDK Settings](#1-SDK-Settings)
     - [Gradle](#Gradle)
@@ -449,7 +449,7 @@ Function|Description
 void onLoadAd()|An event occurs when a banner ad is loaded. 
 void onFailedAd()|An event occurs when a banner ad loading fails. 
 void onClickedAd()|An event occurs when a banner ad is clicked.
-
+---
 #### *Interstitial Class Reference
 
 - BaseInterstitial
@@ -473,7 +473,7 @@ void onLoadAd()|An event occurs when an interstitial ad is loaded.
 void onShowAd()|An event occurs when an interstitial ad is shown. 
 void onFailedAd()|An event occurs when interstitial ad loading fails. 
 void onClickedAd()|An event occurs when a interstitial ad is clicked.
-
+---
 #### *Reward Class Reference
 
 - BaseReward
@@ -501,7 +501,7 @@ void onSkippedAd(String)|In the reward ad, an event occurs when the ad ends when
 void onOpenAd(String)|An event occurs when the video of the reward ad starts, and the ZoneId is returned.
 void onCloseAd(String)|An event occurs when the reward ad ends, and the ZoneId is returned..
 void onClickedAd(String)|An event occurs when a reward ad is clicked, and the ZoneId is returned.
-
+---
 #### *NativeAd Class Reference
 
 - BaseNativeAd
@@ -525,7 +525,7 @@ void onSuccessHouseAd()|Deprecate event.
 void onSuccessAd()|An event occurs when native ad is loaded. 
 void onFailedAd()|An event occurs when loading of native ads fails.
 void onClickedAd()|An event occurs when a native ad is clicked. 
-
+---
 #### *Offerwall Class Reference
 
 - BaseOfferwall
@@ -566,7 +566,7 @@ void onGetCurrencyBalanceSuccess(String, int)|An event occurs when the search fo
 void onGetCurrencyBalanceFail(String)|An event occurs when the inquiry of the Currency received by the Offerwall advertisement fails. Return Error Message.
 void onSpendCurrencySuccess(String, int)|An event occurs when the consumption of the Currency received by the Offerwall advertisement is successful. 
 void onSpendCurrencyFail(String)|An event occurs when the consumption of the Currency received by the Offerwall advertisement fails. Return Error Message.
-
+---
 #### *Common Class Reference
 
 - Common
@@ -577,7 +577,7 @@ String getSDKVersion()|Get SDK version information.
 void setDebugging(boolean)|When called with a true value, the log of the SDK is output.
 void setGgTestDeviceid()|Register with Google TEST device to receive test ads for Google ads.
 
-----
+---
 ### 4. Note
 
 - [GDPR Guide](https://github.com/bidmad/Bidmad-Android/wiki/Android-GDPR-Guide-%5BENG%5D)
