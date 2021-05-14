@@ -580,5 +580,5 @@ void setGgTestDeviceid()|Google TEST 기기로 등록하여 구글 광고에 대
 ----
 ### 4. 참고사항
 
-- [GDPR 가이드](https://github.com/bidmad/Bidmad-Unity/wiki/Unity-GDPR-Guide-%5BKOR%5D)
+- [GDPR 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Android-GDPR-Guide-%5BKOR%5D)
 
