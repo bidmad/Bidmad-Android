@@ -6,11 +6,14 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.adop.example.adopsample.AppOpen.AppOpenActivity;
+import com.adop.example.adopsample.AppOpen.AppOpenAdvancedActivity;
 import com.adop.example.adopsample.Banner.BannerActivity;
 import com.adop.example.adopsample.Interstitial.InterstitialActivity;
 import com.adop.example.adopsample.Native.NativeActivity;
 import com.adop.example.adopsample.Offerwall.OfferwallActivity;
 import com.adop.example.adopsample.Reward.RewardActivity;
+import com.adop.example.adopsample.RewardInterstitial.RewardInterstitialActivity;
 import com.adop.sdk.Common;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,6 +61,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, OfferwallActivity.class);
+                startActivity(i);
+            }
+        });
+
+        findViewById(R.id.goRewardInterstitialSample).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, RewardInterstitialActivity.class);
+                startActivity(i);
+            }
+        });
+
+        findViewById(R.id.goAppopenSample).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, AppOpenActivity.class);
+                startActivity(i);
+            }
+        });
+
+        findViewById(R.id.goAppopenAdvancedSample).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, AppOpenAdvancedActivity.class);
                 startActivity(i);
             }
         });

@@ -28,7 +28,7 @@ public class BannerActivity extends AppCompatActivity {
         mAdView.setAdInfo("YOUR ZONE ID"); //ADOP ZONE ID Setting
         mAdView.setAdViewListener(new AdViewListener() {
             @Override
-            public void onLoadAd() {
+            public void onLoadAd(String NetworkName) {
                 callbackStatus.append("onLoadAd() Called\n");
             }
 

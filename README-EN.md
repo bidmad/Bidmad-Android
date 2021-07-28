@@ -1,4 +1,4 @@
-# BidmadSDK(v1.13.2)
+# BidmadSDK(v1.14.1)
 ### Shortcuts
 1. [SDK Settings](#1-SDK-Settings)
     - [Gradle](#Gradle)
@@ -9,12 +9,16 @@
     - [Reward Ads](#Reward-Ads)
     - [Native Ads](#Native-Ads)
     - [Offerwall Ads](#Offerwall-Ads)
+    - [RewardInterstitial Ads](#RewardInterstitial-Ads)
+    - [AppOpen Ads](#AppOpen-Ads)
 3. [Class Reference](#3-Class-Reference)
     - [Banner Class Reference](#Banner-Class-Reference)
     - [Interstitial Class Reference](#Interstitial-Class-Reference)
     - [Reward Class Reference](#Reward-Class-Reference)
     - [NativeAd Class Reference](#NativeAd-Class-Reference)
     - [Offerwall Class Reference](#Offerwall-Class-Reference)
+    - [RewardInterstitial Class Reference](#RewardInterstitial-Class-Reference)
+    - [AppOpen Class Reference](#AppOpen-Class-Reference)
 4. [Note](#4-Note)
 5. [Download the latest sample project](https://github.com/bidmad/Bidmad-Android/archive/master.zip)
 ---
@@ -42,6 +46,8 @@ allprojects {
        } //Cauly
        maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //bidmad
        maven { url "https://sdk.tapjoy.com/" } //Tapjoy
+       maven {url "https://artifact.bytedance.com/repository/pangle"} //Pangle
+       maven {url "https://jitpack.io"} //Adpie
 
 }
 ```
@@ -50,7 +56,7 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:1.13.2'
+    implementation 'com.adop.sdk:bidmad-androidx:1.14.1'
 }
 ```
 4. Declare the options below in the android tag of the build.gradle file located in the project App-Level.
@@ -327,7 +333,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 #### *Offerwall Ads
 
-1. In order to request offerwall advertisement, mOfferwall constructor is called, and if a response is received with onInitSuccess, then load is called.
+1. In order to request offerwall advertisement, BaseOfferwall constructor is called, and if a response is received with onInitSuccess, then load is called.
 2. Call show to provide a list of offer wall advertisements. At this time, you need to check whether you have received an advertisement through isLoaded.
 3. In the case of offer wall advertisement, Currency are received according to whether the conditions for receive of Currency are met for advertisements provided in the list. The received Currency can be consumed through spendCurrency Function.
 (*The received Currency can be checked through getCurrencyBalance Function.)
@@ -425,6 +431,128 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
+#### *RewardInterstitial Ads
+
+1. To request RewardInterstitial advertisement, call the BaseRewardInterstitial constructor and call the load function after setting the ZoneId.
+2. Creates and calls Popup Class for expose RewardInterstitial advertisement. At this point, You should give the user enough time to read the instructions displayed in the popup and decide whether to watch the ad or not.
+3. Call show when the user wants to watch an ad.<br>
+
+*Interstitial compensatory advertisements should inform users in advance that advertisements will be exposed through popups, etc. You should provide an option for users not to see ads if they don't want to.
+```java
+BaseRewardInterstitial mRewardInterstitial;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_rewardinterstitial);
+
+    //Require
+    mRewardInterstitial = new BaseRewardInterstitial(this);
+    mRewardInterstitial.setAdInfo("YOUR ZONE ID"); //ADOP ZONE ID Setting
+    mRewardInterstitial.setRewardInterstitialListener(new RewardInterstitialListener() {
+        @Override
+        public void onLoadAd() {
+            //onLoadAd Callback
+        }
+
+        @Override
+        public void onShowAd() {
+            //onShowAd Callback
+            mRewardInterstitial.load(); //Ad Reload
+
+        }
+        @Override
+        public void onFailedAd() {
+            //onFailedAd Callback
+
+        }
+        @Override
+        public void onCloseAd() {
+            //onCloseAd Callback
+
+        }
+        @Override
+        public void onSkipAd() {
+            //onSkipAd Callback
+
+        }
+        @Override
+        public void onCompleteAd() {
+            //onCompleteAd Callback
+
+        }
+    });
+
+    mRewardInterstitial.load();
+
+    findViewById(R.id.popupCall).setOnClickListener(v -> {
+        alertMessage();
+    });
+}
+public void alertMessage(){   
+    AlertPopup ap = new AlertPopup(this, new AlertPopup.OnClickListener() {
+        @Override
+        public void OnNegativeButton() {
+
+        }
+
+        @Override
+        public void OnPositiveButton() {
+            if(mRewardInterstitial.isLoaded()){
+                mRewardInterstitial.show();
+            }
+        }
+    });
+    ap.show();
+}
+
+```
+
+#### *AppOpen Ads
+
+1. Call BaseAppOpenManager constructor to request AppOpenAd. At this time, set the ZoneId and set the advertisement Orientation option.
+2. When start is called, BaseAppOpenManager requests and displays advertisements when onStart occurs according to the lifecycle of the application..<br>
+
+*App open ads expose ads when the app state changes from background to foreground.<br>
+*If you want to change the ad call according to lifecycle, implement AppOpen Ad using BaseAppOpen.
+```java
+BaseAppOpenManager mAppOpen;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_appopen);
+
+    mAppOpen = new BaseAppOpenManager(this.getApplication(), "YOUR ZONE ID", BaseAppOpen.ORIENTATION_PORTRAIT);
+    mAppOpen.setAppOpenListener(new AppOpenListener() {
+        @Override
+        public void onLoadAd() {
+            //onLoadAd Callback
+            mAppOpen.adShow();
+        }
+        @Override
+        public void onShowAd() {
+            //onShowAd Callback
+        }
+        @Override
+        public void onFailedAd() {
+            //onFailedAd Callback
+        }
+        @Override
+        public void onCloseAd() {
+            //onCloseAd Callback
+        }
+        @Override
+        public void onExpired() {
+            //onExpired Callback
+            mAppOpen.adLoad();
+        }
+    });
+
+    mAppOpen.start();
+}
+```
+
 ### 3. Class Reference
 #### *Banner Class Reference
 
@@ -446,7 +574,7 @@ void onResume()|Resume Banner ads.
 
 Function|Description
 ---|---
-void onLoadAd()|An event occurs when a banner ad is loaded. 
+void onLoadAd(String networkName)|An event occurs when a banner ad is loaded. Returns the Ad NetworkName.
 void onFailedAd()|An event occurs when a banner ad loading fails. 
 void onClickedAd()|An event occurs when a banner ad is clicked.
 ---
@@ -494,7 +622,7 @@ void setChildDirected(boolean)|If AD Network (ex:Admob) supports an interface fo
 Function|Description
 ---|---
 void onLoadAd(String)|An event occurs when a reward ad is loaded, and the ZoneId is returned.
-void onShowAd(String)|An event occurs when a reward ad is shown, an event occurs, and the ZoneId is 반환합니다.
+void onShowAd(String)|An event occurs when a reward ad is shown, an event occurs, and the ZoneId is returned.
 void onFailedAd(String)|An event occurs when reward ad loading fails, and the ZoneId is returned.
 void onCompleteAd(String)|In the reward ad, when the reward condition is satisfied, an event occurs and the ZoneId is returned.
 void onSkippedAd(String)|In the reward ad, an event occurs when the ad ends when the reward condition is not satisfied and the ZoneId is returned.
@@ -566,6 +694,82 @@ void onGetCurrencyBalanceSuccess(String, int)|An event occurs when the search fo
 void onGetCurrencyBalanceFail(String)|An event occurs when the inquiry of the Currency received by the Offerwall advertisement fails. Return Error Message.
 void onSpendCurrencySuccess(String, int)|An event occurs when the consumption of the Currency received by the Offerwall advertisement is successful. 
 void onSpendCurrencyFail(String)|An event occurs when the consumption of the Currency received by the Offerwall advertisement fails. Return Error Message.
+---
+#### *RewardInterstitial Class Reference
+
+- BaseRewardInterstitial
+
+Function|Description
+---|---
+BaseRewardInterstitial(Activity activity)|BaseRewardInterstitial constructor.
+void setAdInfo(String)|Set RewardInterstitial Ad ZoneId.
+void setRewardInterstitialListener(RewardInterstitialListener)|Set up listener to receive event callbacks for RewardInterstitial ads.
+void load()|Request RewardInterstitial Ads.
+void show()|Display the loaded RewardInterstitial advertisement on the screen. 
+boolean isLoaded()|Check whether RewardInterstitial ads are loaded.
+void setMute()|Set Mute for RewardInterstitial ads. This option only works with some Ad Networks.
+void setChildDirected(boolean)|If AD Network (ex:Admob) supports an interface for COPPA, it passes a value to the interface.
+
+- RewardInterstitialListener
+
+Function|Description
+---|---
+void onLoadAd()|Event occurs when the RewardInterstitial ad is loaded.
+void onShowAd()|Event occurs when the RewardInterstitial ad is shown.
+void onFailedAd()|Event occurs when the RewardInterstitial ad is fails.
+void onCompleteAd()|Event occurs when the reward payment conditions are met in the RewardInterstitial ad.
+void onSkippedAd()|Event occurs when the RewardInterstitial ad ends without the reward payment conditions being met.
+void onCloseAd()|Event occurs when the RewardInterstitial ad ends.
+---
+#### *AppOpen Class Reference
+
+- BaseAppOpenManager
+
+Function|Description
+---|---
+BaseAppOpenManager(Application, String, int)|BaseAppOpenManager constructor. Set AppOpenAd ZoneId and Orientation.
+void setAppOpenListener(AppOpenListener)|Set up a listener to receive event callbacks for AppOpen ads.
+void setAppOpenLifecycleListener(AppOpenLifecycleListener)|Set up a listener to receive event callbacks for the Lifecycle.
+void start()|Register a LifecycleObserver to request and expose AppOpen ads according to the Lifecycle.
+void end()|Delete the registered LifecycleObserver.
+void adLoad()|Request an AppOpen ad.
+boolean isAdLoaded()|Check whether AppOpen ads are loaded.
+void adShow(boolean)|Display the loaded AppOpen advertisement on the screen. 
+
+- BaseAppOpen
+
+Function|Description
+---|---
+BaseAppOpen(Activity)|BaseAppOpen constructor.
+void setAdInfo(String)|Set AppOpen Ad ZoneId.
+void setOrientation(int)|Set AppOpen Ad Orientation.
+void setAppOpenListener(AppOpenListener)|Set up a listener to receive event callbacks for AppOpen ads.
+void load()|Request AppOpen Ads.
+void show()|Display the loaded AppOpen advertisement on the screen. 
+boolean isLoaded()|AppOpen to check whether the ad is loaded.
+
+- AppOpenListener
+
+Function|Description
+---|---
+void onLoadAd()|Event occurs when the RewardInterstitial ad is loaded.
+void onShowAd()|Event occurs when the RewardInterstitial ad is shown.
+void onFailedAd()|Event occurs when the RewardInterstitial ad is fails.
+void onCloseAd()|Event occurs when the RewardInterstitial ad ends.
+void onExpired()|Event occurs when a show is call after 3 hours or more have elapsed after loading the AppOpen ad.
+
+- AppOpenLifecycleListener
+
+Function|Description
+---|---
+void onActivityForGround()|The event is fired when onActivityForGround of Application.ActivityLifecycleCallbacks is called. 
+void onActivityCreated(Activity, Bundle)|The event is fired when onActivityCreated of Application.ActivityLifecycleCallbacks is called.
+void onActivityStarted(Activity)|The event is fired when onActivityStarted of Application.ActivityLifecycleCallbacks is called. 
+void onActivityResumed(Activity)|The event is fired when onActivityResumed of Application.ActivityLifecycleCallbacks is called. 
+void onActivityPaused(Activity)|The event is fired when onActivityPaused of Application.ActivityLifecycleCallbacks is called. 
+void onActivityStopped(Activity)|The event is fired when onActivityStopped of Application.ActivityLifecycleCallbacks is called. 
+void onActivitySaveInstanceState(Activity, Bundle)|The event is fired when onActivitySaveInstanceState of Application.ActivityLifecycleCallbacks is called. 
+void onActivityDestroyed(Activity)|The event is fired when onActivityDestroyed of Application.ActivityLifecycleCallbacks is called. 
 ---
 #### *Common Class Reference
 
