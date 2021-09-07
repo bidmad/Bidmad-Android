@@ -1,4 +1,4 @@
-# BidmadSDK(v1.14.1)
+# BidmadSDK(v1.14.2)
 ### Shortcuts
 1. [SDK Settings](#1-SDK-Settings)
     - [Gradle](#Gradle)
@@ -56,7 +56,7 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:1.14.1'
+    implementation 'com.adop.sdk:bidmad-androidx:1.14.2'
 }
 ```
 4. Declare the options below in the android tag of the build.gradle file located in the project App-Level.

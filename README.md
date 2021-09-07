@@ -1,4 +1,4 @@
-# BidmadSDK(v1.14.1)
+# BidmadSDK(v1.14.2)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
     - [Gradle](#Gradle)
@@ -57,7 +57,7 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:1.14.1'
+    implementation 'com.adop.sdk:bidmad-androidx:1.14.2'
 }
 ```
 4. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
