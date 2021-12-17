@@ -1,21 +1,19 @@
 package com.adop.example.adopsample.Offerwall;
 
+import ad.helper.openbidding.offerwall.BidmadOfferwallAd;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.adop.example.adopsample.R;
-import com.adop.sdk.offerwall.BaseOfferwall;
 import com.adop.sdk.offerwall.OfferwallAdListener;
 import com.adop.sdk.offerwall.OfferwallCurrencyListener;
 import com.adop.sdk.offerwall.OfferwallInitListener;
 
 public class OfferwallActivity extends AppCompatActivity {
 
-    BaseOfferwall mOfferwall;
+    BidmadOfferwallAd mOfferwall;
     TextView callbackStatus;
     TextView balanceText;
 
@@ -28,7 +26,7 @@ public class OfferwallActivity extends AppCompatActivity {
         balanceText = findViewById(R.id.currencyBalance);
 
         //Require
-        mOfferwall = new BaseOfferwall(this, "YOUR ZONE ID", new OfferwallInitListener() {
+        mOfferwall = new BidmadOfferwallAd(this, "YOUR ZONE ID", new OfferwallInitListener() {
             @Override
             public void onInitSuccess() {
                 callbackLog("onInitSuccess() Called");
@@ -92,8 +90,8 @@ public class OfferwallActivity extends AppCompatActivity {
 
         //Option(Use when needed)
 //        mOfferwall.setChildDirected(true); //COPPA
+//        mOfferwall.setCUID("YOUR ENCRYPTED CUID"); //Encrypt the identifier and send it to Bidmad.
 
-//        mOfferwall.load();
 
         findViewById(R.id.loadOfferwall).setOnClickListener(v -> {
             if(mOfferwall.isSDKInit()){

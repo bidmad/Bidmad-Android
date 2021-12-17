@@ -1,19 +1,17 @@
 package com.adop.example.adopsample.Native;
 
+import ad.helper.openbidding.nativead.BidmadNativeAd;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.adop.example.adopsample.R;
-import com.adop.sdk.nativead.BaseNativeAd;
-import com.adop.sdk.nativead.CustomNativeAdLayout;
 import com.adop.sdk.nativead.NativeListener;
 
 public class NativeActivity extends AppCompatActivity {
 
-    CustomNativeAdLayout layoutNative;
-    BaseNativeAd nativeAd;
+    FrameLayout layoutNative;
+    BidmadNativeAd nativeAd;
     TextView callbackStatus;
 
     @Override
@@ -22,21 +20,26 @@ public class NativeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_native);
 
         callbackStatus = findViewById(R.id.nativeCallbackStatus);
+        layoutNative = findViewById(R.id.native_ad_container);
 
         //Require
-        nativeAd = new BaseNativeAd(this);
-        nativeAd.setAdInfo("YOUR ZONE ID"); //ADOP ZONE ID Setting
-        layoutNative = findViewById(R.id.native_ad_container);
-        nativeAd.setNativeAdContainer(layoutNative, R.layout.newslist_native_item_ad);
-        nativeAd.setNativeAdListener(new NativeListener() {
-            @Override
-            public void onSuccessHouseAd() {
-                callbackStatus.append("onSuccessHouseAd() Called\n");
-            }
+        nativeAd = new BidmadNativeAd(this, "YOUR ZONE ID");
 
+        nativeAd.setViewForInteraction(
+                R.layout.native_large_ad,
+                R.id.mediaView,
+                R.id.img_icon,
+                R.id.txt_body,
+                R.id.txt_title,
+                R.id.adCallToActionButton
+        );
+
+        nativeAd.setNativeListener(new NativeListener() {
             @Override
-            public void onSuccessAd() {
-                callbackStatus.append("onSuccessAd() Called\n");
+            public void onLoadAd() {
+                layoutNative.removeAllViews();
+                layoutNative.addView(nativeAd.getNativeLayout());
+                callbackStatus.append("onLoadAd() Called\n");
             }
 
             @Override
@@ -45,27 +48,15 @@ public class NativeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onClickedAd(){
-                callbackStatus.append("onClickedAd() Called\n");
+            public void onClickAd(){
+                callbackStatus.append("onClickAd() Called\n");
             }
         });
 
-        nativeAd.registerViewForInteraction(
-                R.id.mediaView_common,
-                R.id.mediaView,
-                R.id.img_icon_common,
-                R.id.img_icon,
-                R.id.txt_body,
-                R.id.txt_title,
-                R.id.adCallToActionButton,
-                R.id.adChoicesContainer,
-                R.id.img_icon_privacy);
-
         //Option HouseAd Setting(Use when needed)
 //        nativeAd.setChildDirected(true); //COPPA
+//        nativeAd.setCUID("YOUR ENCRYPTED CUID"); //Encrypt the identifier and send it to Bidmad.
 
         nativeAd.load();
-
-        layoutNative.addView(nativeAd);
     }
 }

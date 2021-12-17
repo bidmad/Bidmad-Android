@@ -1,17 +1,15 @@
 package com.adop.example.adopsample.Reward;
 
+import ad.helper.openbidding.reward.BidmadRewardAd;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.adop.example.adopsample.R;
-import com.adop.sdk.reward.BaseReward;
 import com.adop.sdk.reward.RewardListener;
 
 public class RewardActivity extends AppCompatActivity {
 
-    BaseReward mReward;
+    BidmadRewardAd mReward;
     TextView callbackStatus;
 
     @Override
@@ -22,8 +20,7 @@ public class RewardActivity extends AppCompatActivity {
         callbackStatus = findViewById(R.id.rewardCallbackStatus);
 
         //Require
-        mReward = new BaseReward(this);
-        mReward.setAdInfo("YOUR ZONE ID"); //ADOP ZONE ID Setting
+        mReward = new BidmadRewardAd(this,"YOUR ZONE ID");
         mReward.setRewardListener(new RewardListener() {
             public void onLoadAd(String zoneId) {
                 callbackStatus.append("onLoadAd() Called\n");
@@ -68,7 +65,7 @@ public class RewardActivity extends AppCompatActivity {
 
         //Option(Use when needed)
 //        mReward.setChildDirected(true); //COPPA
-
+//        mReward.setCUID("YOUR ENCRYPTED CUID"); //Encrypt the identifier and send it to Bidmad.
 //        mReward.setMute(true); //Only some networks are supported
 
         mReward.load();

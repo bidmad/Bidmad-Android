@@ -1,17 +1,15 @@
 package com.adop.example.adopsample.Interstitial;
 
+import ad.helper.openbidding.interstitial.BidmadInterstitialAd;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.adop.example.adopsample.R;
-import com.adop.sdk.interstitial.BaseInterstitial;
 import com.adop.sdk.interstitial.InterstitialListener;
 
 public class InterstitialActivity extends AppCompatActivity {
 
-    BaseInterstitial mInterstitial;
+    BidmadInterstitialAd mInterstitial;
     TextView callbackStatus;
 
     @Override
@@ -22,8 +20,7 @@ public class InterstitialActivity extends AppCompatActivity {
         callbackStatus = findViewById(R.id.interstitialCallbackStatus);
 
         //Require
-        mInterstitial = new BaseInterstitial(this);
-        mInterstitial.setAdInfo("YOUR ZONE ID");//ADOP ZONE ID Setting
+        mInterstitial = new BidmadInterstitialAd(this, "YOUR ZONE ID");
         mInterstitial.setInterstitialListener(new InterstitialListener() {
             @Override
             public void onLoadAd() {
@@ -49,6 +46,7 @@ public class InterstitialActivity extends AppCompatActivity {
 
         //Option(Use when needed)
 //        mInterstitial.setChildDirected(true); //COPPA
+//        mInterstitial.setCUID("YOUR ENCRYPTED CUID"); //Encrypt the identifier and send it to Bidmad.
 
         mInterstitial.load();
 

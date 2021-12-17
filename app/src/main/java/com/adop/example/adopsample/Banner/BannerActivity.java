@@ -1,19 +1,17 @@
 package com.adop.example.adopsample.Banner;
 
+import ad.helper.openbidding.adview.BidmadBannerAd;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import com.adop.example.adopsample.R;
 import com.adop.sdk.adview.AdViewListener;
-import com.adop.sdk.adview.BaseAdView;
 
 public class BannerActivity extends AppCompatActivity {
 
     ConstraintLayout layout;
-    BaseAdView mAdView;
+    BidmadBannerAd mAdView;
     TextView callbackStatus;
 
     @Override
@@ -24,8 +22,7 @@ public class BannerActivity extends AppCompatActivity {
         callbackStatus = findViewById(R.id.bannerCallbackStatus);
 
         //Require
-        mAdView = new BaseAdView(this);
-        mAdView.setAdInfo("YOUR ZONE ID"); //ADOP ZONE ID Setting
+        mAdView = new BidmadBannerAd(this, "YOUR ZONE ID");
         mAdView.setAdViewListener(new AdViewListener() {
             @Override
             public void onLoadAd(String NetworkName) {
@@ -45,12 +42,13 @@ public class BannerActivity extends AppCompatActivity {
 
         //Option(Use when needed)
 //        mAdView.setChildDirected(true); //COPPA
-
 //        mAdView.setInterval(120); //Refresh Interval 60~120s
+//        mAdView.setCUID("YOUR ENCRYPTED CUID"); //Encrypt the identifier and send it to Bidmad.
 
         mAdView.load(); //Banner Ad Load
+
         layout = findViewById(R.id.bannerLayout);
-        layout.addView(mAdView); //attach Banner
+        layout.addView(mAdView.getView()); //attach Banner
     }
 
     @Override

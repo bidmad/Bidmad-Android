@@ -1,4 +1,4 @@
-# BidmadSDK(v1.14.2)
+# BidmadSDK(v2.0.0.0)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
     - [Gradle](#Gradle)
@@ -52,15 +52,18 @@ allprojects {
 
 }
 ```
-3. 프로젝트 App-Level에 위치한 build.gradle 파일의 dependencies에 SDK 선언합니다.
+2. 프로젝트 App-Level에 위치한 build.gradle 파일의 dependencies에 SDK 선언합니다.
 
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:1.14.2'
+    implementation 'com.adop.sdk:bidmad-androidx:2.0.0.0'
+    implementation 'ad.helper.openbidding:admob-obh:2.0.0.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.0.0.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.0.0.0'
 }
 ```
-4. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
+3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
 
 ```java
 android {
@@ -105,8 +108,19 @@ android {
 <uses-permission android:name="android.permission.WAKE_LOCK" />
 <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 ```
+3. Android 12버전을 Target하는 경우 [AD_ID 권한 추가 선언 가이드](https://github.com/bidmad/Bidmad-Android/wiki/AD_ID-Permission-Guide%5BKOR%5D)를 확인바랍니다.
 
 ### 2. 광고 추가하기
+
+#### *BidmadSDK 초기화 하기
+
+- 앱 시작 시 initializeSdk()를 호출합니다.
+- initializeSdk를 호출하지 않는 경우, SDK 자체적으로 수행하기 때문에 초회 광고 로딩이 늦어질 수 있습니다.
+```
+    BidmadCommon.initializeSdk()
+```
+- 전면 또는 보상형 광고를 사용하시는 경우에는 원활한 광고 노출을 위해 initializeSdk() 호출 대신
+아래 전면 / 보상형 광고 가이드에 따라 앱 시작 시점에서 광고를 Load 하시고 원하시는 시점에 Show하시기 바랍니다.
 
 #### *배너광고 추가하기
 
@@ -120,11 +134,11 @@ android {
 ...
 ```
 
-2. 배너 광고를 요청하기 위해 BaseAdView를 생성, ZoneId 세팅 후 load 함수를 호출합니다.
-3. 배너 광고를 노출하기 위해 BaseAdView를 위에서 생성한 View에 추가합니다.
+2. 배너 광고를 요청하기 위해 BidmadBannerAd를 생성, ZoneId 세팅 후 load 함수를 호출합니다.
+3. 배너 광고를 노출하기 위해 BidmadBannerAd를 위에서 생성한 View에 추가합니다.
 ```java
 ConstraintLayout layout;
-BaseAdView mAdView;
+BidmadBannerAd mAdView;
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -132,11 +146,10 @@ protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_banner);
 
     //Require
-    mAdView = new BaseAdView(this);
-    mAdView.setAdInfo("YOUR ZONE ID"); //ADOP ZONE ID Setting
+    mAdView = new BidmadBannerAd(this,"YOUR ZONE ID");
     mAdView.setAdViewListener(new AdViewListener() {
         @Override
-        public void onLoadAd() {
+        public void onLoadAd(String NetworkName) {
             //onLoad Callback
         }
 
@@ -155,16 +168,16 @@ protected void onCreate(Bundle savedInstanceState) {
     mAdView.load(); //Banner Ad Load
 
     layout = findViewById(R.id.bannerLayout);
-    layout.addView(mAdView); //attach Banner
+    layout.addView(mAdView.getView()); //attach Banner
 }
 ```
 
 #### *전면광고 추가하기
 
-1. 전면광고를 요청하기 위해 BaseInterstitial를 생성, ZoneId 세팅 후 load 함수를 호출합니다.
+1. 전면광고를 요청하기 위해 BidmadInterstitialAd를 생성, ZoneId 세팅 후 load 함수를 호출합니다.
 2. 전면광고를 노출하기 위해 show를 호출합니다. 이때, isLoaded를 통해 광고를 수신하였는지 체크해야 합니다.
 ```java
-BaseInterstitial mInterstitial;
+BidmadInterstitialAd mInterstitial;
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -172,8 +185,7 @@ protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_interstitial);
 
     //Require
-    mInterstitial = new BaseInterstitial(this);
-    mInterstitial.setAdInfo("YOUR ZONE ID");//ADOP ZONE ID Setting
+    mInterstitial = new BidmadInterstitialAd(this,"YOUR ZONE ID");
     mInterstitial.setInterstitialListener(new InterstitialListener() {
         @Override
         public void onLoadAd() {
@@ -210,10 +222,10 @@ protected void onCreate(Bundle savedInstanceState) {
 
 #### *보상형광고 추가하기
 
-1. 보상형광고를 요청하기 위해 BaseReward를 생성, ZoneId 세팅 후 load 함수를 호출합니다.
+1. 보상형광고를 요청하기 위해 BidmadRewardAd를 생성, ZoneId 세팅 후 load 함수를 호출합니다.
 2. 보상형광고를 노출하기 위해 show를 호출합니다. 이때, isLoaded를 통해 광고를 수신하였는지 체크해야 합니다.
 ```java
-BaseReward mReward;
+BidmadRewardAd mReward;
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -221,8 +233,7 @@ protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_reward);
 
     //Require
-    mReward = new BaseReward(this);
-    mReward.setAdInfo("YOUR ZONE ID"); //ADOP ZONE ID Setting
+    mReward = new BidmadRewardAd(this,"YOUR ZONE ID");
     mReward.setRewardListener(new RewardListener() {
         public void onLoadAd(String zoneId) {
             //onLoad Callback
@@ -279,67 +290,61 @@ protected void onCreate(Bundle savedInstanceState) {
 #### *네이티브광고 추가하기
 
 1. [네이티브 광고 레이아웃 구성 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Native-Ad-Layout-Setting-Guide%5BKOR%5D)에 따라 레이아웃을 구성합니다. 
-2. 네이티브 광고를 요청하기 위해 BaseNativeAd를 생성, setNativeAdContainer와 registerViewForInteraction를 통해 구성한 레이아웃을 셋팅하고 load 함수를 호출합니다.
-3. 네이티브 광고를 노출하기 위해 BaseNativeAd를 위에서 생성한 View에 추가합니다.
+2. 네이티브 광고를 요청하기 위해 BidmadNativeAd를 생성, registerViewForInteraction를 통해 구성한 레이아웃을 셋팅하고 load 함수를 호출합니다.
+3. 네이티브 광고를 노출하기 위해 BidmadNativeAd getNativeLayout()를 통해 생성한 Layout에 View를 추가합니다.
 ```java
-    CustomNativeAdLayout layoutNative;
-    BaseNativeAd nativeAd;
+BidmadNativeAd nativeAd;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_native);
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_native);
 
-        //Require
-        nativeAd = new BaseNativeAd(this);
-        nativeAd.setAdInfo("YOUR ZONE ID"); //ADOP ZONE ID Setting
-        layoutNative = findViewById(R.id.native_ad_container);
-        nativeAd.setNativeAdContainer(layoutNative, R.layout.newslist_native_item_ad);
-        nativeAd.setNativeAdListener(new NativeListener() {
-            @Override
-            public void onSuccessHouseAd() {
-                //onSuccessHouseAd Callback
-            }
+    layoutNative = findViewById(R.id.native_ad_container);
 
-            @Override
-            public void onSuccessAd() {
-                //onSuccessAd Callback
-            }
+    //Require
+    nativeAd = new BidmadNativeAd(this, "YOUR ZONE ID");
 
-            @Override
-            public void onFailedAd() {
-                //onFailedAd Callback
-            }
+    nativeAd.setViewForInteraction(
+            R.layout.native_large_ad,
+            R.id.mediaView,
+            R.id.img_icon,
+            R.id.txt_body,
+            R.id.txt_title,
+            R.id.adCallToActionButton
+    );
 
-            @Override
-            public void onClickedAd(){
-                //onClickedAd Callback
-            }
-        });
+    nativeAd.setNativeListener(new NativeListener() {
+        @Override
+        public void onLoadAd() {
+            layoutNative.removeAllViews();
+            layoutNative.addView(nativeAd.getNativeLayout());
+            callbackStatus.append("onLoadAd() Called\n");
+        }
 
-        nativeAd.registerViewForInteraction(
-                R.id.mediaView_common,
-                R.id.mediaView,
-                R.id.img_icon_common,
-                R.id.img_icon,
-                R.id.txt_body,
-                R.id.txt_title,
-                R.id.adCallToActionButton,
-                R.id.adChoicesContainer,
-                R.id.img_icon_privacy);
+        @Override
+        public void onFailedAd() {
+            callbackStatus.append("onFailedAd() Called\n");
+        }
 
-        nativeAd.load();
-        layoutNative.addView(nativeAd);
+        @Override
+        public void onClickAd(){
+            callbackStatus.append("onClickAd() Called\n");
+        }
+    });
+
+    nativeAd.load();
+}
 ```
 
 #### *오퍼월광고 추가하기
 
-1. 오퍼월광고를 요청하기 위해 BaseOfferwall 생성자를 호출하고 onInitSuccess로 응답을 받았다면, 이어서 load를 호출합니다.
+1. 오퍼월광고를 요청하기 위해 BidmadOfferwallAd 생성자를 호출하고 onInitSuccess로 응답을 받았다면, 이어서 load를 호출합니다.
 2. 오퍼월광고를 목록을 제공하기 위해 show를 호출합니다. 이때, isLoaded를 통해 광고를 수신하였는지 체크해야 합니다.
 3. 오퍼월광고의 경우 목록에서 제공되는 광고에 대해 재화 지급 조건 충족 여부에 따라 재화가 지급됩니다. 지급된 재화는 spendCurrency를 통해 소비할 수 있습니다.
 (*지급된 재화는 getCurrencyBalance를 통해 확인할 수 있습니다.)
 ```java
-BaseOfferwall mOfferwall;
+BidmadOfferwallAd mOfferwall;
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -347,7 +352,7 @@ protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_offerwall);
 
     //Require
-    mOfferwall = new BaseOfferwall(this, "YOUR ZONE ID", new OfferwallInitListener() {
+    mOfferwall = new BidmadOfferwallAd(this, "YOUR ZONE ID", new OfferwallInitListener() {
         @Override
         public void onInitSuccess() {
             //onInitSuccess Callback
@@ -434,13 +439,13 @@ protected void onCreate(Bundle savedInstanceState) {
 
 #### *전면보상형광고 추가하기
 
-1. 전면보상형광고 요청하기 위해 BaseRewardInterstitial 생성자를 호출하고 ZoneId 세팅 후 load 함수를 호출합니다.
+1. 전면보상형광고 요청하기 위해 BidmadRewardInterstitialAd 생성자를 호출하고 ZoneId 세팅 후 load 함수를 호출합니다.
 2. 전면보상형광고를 노출하기 위해 Popup Class를 생성, 호출합니다. 이때 Popup에는 사용자가 Popup에 표시된 안내문을 읽고 광고를 시청할 것인지 아닌지 결정할 충분한 시간이 주어져야 합니다.
 3. 사용자가 광고를 시청하고자 하는 경우 show를 호출합니다.<br>
 
 *전면보상형광고는 사용자에게 노출 되기 전 Popup 등을 통해 광고가 노출될 것임을 사전에 안내해야하며, 사용자가 원치 않을 경우 광고를 보지 않을 수 있도록 옵션을 제공해야 합니다.
 ```java
-BaseRewardInterstitial mRewardInterstitial;
+BidmadRewardInterstitialAd mRewardInterstitial;
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -448,8 +453,7 @@ protected void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_rewardinterstitial);
 
     //Require
-    mRewardInterstitial = new BaseRewardInterstitial(this);
-    mRewardInterstitial.setAdInfo("YOUR ZONE ID"); //ADOP ZONE ID Setting
+    mRewardInterstitial = new BidmadRewardInterstitialAd(this, "YOUR ZONE ID");
     mRewardInterstitial.setRewardInterstitialListener(new RewardInterstitialListener() {
         @Override
         public void onLoadAd() {
@@ -511,58 +515,63 @@ public void alertMessage(){
 
 #### *앱오픈광고 추가하기
 
-1. 앱오픈광고 요청하기 위해 BaseAppOpenManager 생성자를 호출합니다. 이때 ZoneId를 셋팅하고 광고 Orientation option을 설정합니다.
-2. start를 호출하면 BaseAppOpenManager가 Application의 Lifecycle에 따라 onStart 발생 시 광고를 요청하고 노출합니다.<br>
+1. 앱오픈광고 요청하기 위해 BidmadAppOpenAd 생성자를 호출합니다. 이때 ZoneId를 셋팅하고 광고 Orientation option을 설정합니다.
+2. start를 호출하면 BidmadAppOpenAd가 Application의 Lifecycle에 따라 onStart 발생 시 광고를 요청하고 노출합니다.<br>
 
 *앱 오픈 광고는 앱 상태가 백그라운드에서 포그라운드로 변경될 때 광고를 노출합니다.<br>
-*Lifecycle에 따른 광고 호출을 변경하고자 하는 경우 BaseAppOpen을 사용해 앱오픈 광고를 구현 바랍니다.
+*Lifecycle에 따른 광고 호출을 변경하고자 하는 경우 BidmadAppOpenAd을 사용해 앱오픈 광고를 구현 바랍니다.
 ```java
-BaseAppOpenManager mAppOpen;
+BidmadAppOpenAd mAppOpen;
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_appopen);
 
-    mAppOpen = new BaseAppOpenManager(this.getApplication(), "YOUR ZONE ID", BaseAppOpen.ORIENTATION_PORTRAIT);
+    mAppOpen = new BidmadAppOpenAd(this.getApplication(), "YOUR ZONE ID", BidmadAppOpenAd.ORIENTATION_PORTRAIT);
     mAppOpen.setAppOpenListener(new AppOpenListener() {
         @Override
         public void onLoadAd() {
-            //onLoadAd Callback
+            callbackStatus.append("onLoadAd() Called\n");
             mAppOpen.adShow();
         }
         @Override
         public void onShowAd() {
-            //onShowAd Callback
+            callbackStatus.append("onShowAd() Called\n");
         }
         @Override
         public void onFailedAd() {
-            //onFailedAd Callback
+            callbackStatus.append("onFailedAd() Called\n");
         }
         @Override
         public void onCloseAd() {
-            //onCloseAd Callback
+            callbackStatus.append("onCloseAd() Called\n");
         }
         @Override
         public void onExpired() {
-            //onExpired Callback
+            callbackStatus.append("onExpired() Called\n");
             mAppOpen.adLoad();
         }
     });
 
     mAppOpen.start();
 }
+
+@Override
+public void onBackPressed() {
+    super.onBackPressed();
+    mAppOpen.end();
+}
 ```
 
 ### 3. Class Reference
 #### *배너광고 Class Reference
 
-- BaseAdView
+- BidmadBannerAd
 
 Function|Description
 ---|---
-BaseAdView(Activity)|BaseAdView 생성자입니다.
-void setAdInfo(String)|Banner 광고 ZoneId를 설정합니다.
+BidmadBannerAd(Activity, String)|BidmadBannerAd 생성자입니다. ZoneId를 같이 세팅합니다.
 void setAdViewListener(AdViewListener)|Banner 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void setInterval(int)| Banner 광고 Refresh Interval을 설정합니다.(60s~120s)
 void load()|Banner 광고를 요청합니다. 설정된 Interval마다 광고를 재요청 합니다.
@@ -570,6 +579,7 @@ void onceLoad()|Banner 광고를 요청합니다. 설정된 Interval에 관계�
 void setChildDirected(boolean)|AD Network(ex:Admob)에서 COPPA에 대한 인터페이스를 지원한다면, 해당 인터페이스에 값을 전달 합니다.
 void onPause()|Banner 광고를 제거합니다.
 void onResume()|Banner 광고를 재요청합니다.
+void setCUID()|사용자 고유 식별자를 등록합니다.
 
 - AdViewListener
 
@@ -581,42 +591,42 @@ void onClickedAd()|Banner 광고 Click시 이벤트가 발생합니다.
 ---
 #### *전면광고 Class Reference
 
-- BaseInterstitial
+- BidmadInterstitialAd
 
 Function|Description
 ---|---
-BaseInterstitial(Activity)|BaseInterstitial 생성자입니다.
-void setAdInfo(String)|Interstitial 광고 ZoneId를 설정합니다.
+BidmadInterstitialAd(Activity, String)|BidmadInterstitialAd 생성자입니다. ZoneId를 같이 세팅합니다.
 void setInterstitialListener(InterstitialListener)|Interstitial 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void load()|Interstitial 광고를 요청합니다.
 void show()|Load된 Interstitial 광고를 화면에 노출합니다. 
 boolean isLoaded()|Interstitial 광고의 Load 여부를 확인합니다.
 void setMute()|동영상 Interstitial 광고에 대한 Mute 설정을 수행합니다. 이 옵션은 일부 Ad Network에서만 동작합니다.
 void setChildDirected(boolean)|AD Network(ex:Admob)에서 COPPA에 대한 인터페이스를 지원한다면, 해당 인터페이스에 값을 전달 합니다.
+void setCUID()|사용자 고유 식별자를 등록합니다.
 
 - InterstitialListener
 
 Function|Description
 ---|---
-void onLoadAd()|Interstitial 광고가 Load 될 떄 이벤트가 발생합니다. 
+void onLoadAd(String NetworkName)|Interstitial 광고가 Load 될 떄 이벤트가 발생합니다. 로드된 Ad Network Name을 반환합니다. 
 void onShowAd()|Interstitial 광고가 Show 될 때 이벤트가 발생합니다. 
 void onFailedAd()|Interstitial 광고 Load에 실패할 때 이벤트가 발생합니다. 
 void onClickedAd()|Interstitial 광고 Click시 이벤트가 발생합니다. 
 ---
 #### *보상형광고 Class Reference
 
-- BaseReward
+- BidmadRewardAd
 
 Function|Description
 ---|---
-BaseReward(Activity)|BaseReward 생성자입니다.
-void setAdInfo(String)|Reward 광고 ZoneId를 설정합니다.
+BidmadRewardAd(Activity, String)|BidmadRewardAd 생성자입니다. ZoneId를 같이 세팅합니다.
 void setRewardListener(RewardListener)|Reward 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void load()|Reward 광고를 요청합니다.
 void show()|Load된 Reward 광고를 화면에 노출합니다. 
 boolean isLoaded()|Reward 광고의 Load 여부를 확인합니다.
 void setMute()|Reward 광고에 대한 Mute 설정을 수행합니다. 이 옵션은 일부 Ad Network에서만 동작합니다.
 void setChildDirected(boolean)|AD Network(ex:Admob)에서 COPPA에 대한 인터페이스를 지원한다면, 해당 인터페이스에 값을 전달 합니다.
+void setCUID()|사용자 고유 식별자를 등록합니다.
 
 - RewardListener
 
@@ -633,18 +643,18 @@ void onClickedAd(String)|Reward 광고 Click시 이벤트가 발생하며, ZoneI
 ---
 #### *네이티브광고 Class Reference
 
-- BaseNativeAd
+- BidmadNativeAd
 
 Function|Description
 ---|---
-BaseNativeAd(Activity)|BaseNativeAd 생성자입니다.
-void setAdInfo(String)|Native 광고 ZoneId를 설정합니다.
+BidmadNativeAd(Activity, String)|BidmadNativeAd 생성자입니다. ZoneId를 같이 세팅합니다.
 void setNativeListener(NativeListener)|Native 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
-void setNativeAdContainer(CustomNativeAdLayout, Int)| Native 광고를 노출 시킬 Layout(CustomNativeAdLayout)과 광고 이미지/텍스트/버튼 등을 구성하는 Layout을 설정합니다.
-void registerViewForInteraction(Int, Int, Int, Int, Int, Int, Int, Int, Int)|setNativeAdContainer에서 등록한 Native 광고를 구성하는 Layout에 대한 세부 요소를 등록합니다.
+void registerViewForInteraction(Int, Int, Int, Int, Int, Int)|Native 광고를 구성하는 Layout에 대한 세부 요소를 등록합니다.
 void load()|Native 광고를 요청합니다.
+FrameLayout getNativeLayout()|NativeAd 레이아웃을 가져옵니다.
 void setMute()|Native 광고에 대한 Mute 설정을 수행합니다. 이 옵션은 일부 Ad Network에서만 동작합니다.
 void setChildDirected(boolean)|AD Network(ex:Admob)에서 COPPA에 대한 인터페이스를 지원한다면, 해당 인터페이스에 값을 전달 합니다.
+void setCUID()|사용자 고유 식별자를 등록합니다.
 
 - NativeListener
 
@@ -657,12 +667,12 @@ void onClickedAd()|Native 광고 Click시 이벤트가 발생합니다.
 ---
 #### *오퍼월광고 Class Reference
 
-- BaseOfferwall
+- BidmadOfferwallAd
 
 Function|Description
 ---|---
-BaseOfferwall(Activity activity, String zoneId, OfferwallInitListener listener)|BaseOfferwall 생성자입니다. 오퍼월광고 ZoneId와 Init에 대한 이벤트 수신을 위한 Listener를 같이 셋팅합니다.
-void isSDKInit()|BaseOfferwall에 대한 Initialize 여부를 확인합니다.
+BidmadOfferwallAd(Activity activity, String zoneId, OfferwallInitListener listener)|BidmadOfferwallAd 생성자입니다. 오퍼월광고 ZoneId와 Init에 대한 이벤트 수신을 위한 Listener를 같이 셋팅합니다.
+void isSDKInit()|BidmadOfferwallAd에 대한 Initialize 여부를 확인합니다.
 void setOfferwallAdListener(OfferwallAdListener)|Offerwall 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void setOfferwallCurrencyListener(OfferwallCurrencyListener)|Offerwall광고로 지급된 재화에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void load()|Offerwall 광고를 요청합니다.
@@ -670,13 +680,14 @@ void show()|Load된 Offerwall 광고를 화면에 노출합니다.
 boolean isLoaded()|Offerwall 광고의 Load 여부를 확인합니다.
 int getCurrencyBalance()|Offerwall 광고로 지급된 재화를 확인합니다.
 void spendCurrency(int)|Offerwall 광고로 지급된 재화를 소모합니다.
+void setCUID()|사용자 고유 식별자를 등록합니다.
 
 - OfferwallInitListener
 
 Function|Description
 ---|---
-void onInitSuccess()|BaseOfferwall 생성자 호출 시 수행하는 Initialize 작업이 성공 할 떄 이벤트가 발생합니다. 
-void onInitFail(String)|BaseOfferwall 생성자 호출 시 수행하는 Initialize 작업이 실패 할 떄 이벤트가 발생합니다. Error Message을 반환합니다.
+void onInitSuccess()|BidmadOfferwallAd 생성자 호출 시 수행하는 Initialize 작업이 성공 할 떄 이벤트가 발생합니다. 
+void onInitFail(String)|BidmadOfferwallAd 생성자 호출 시 수행하는 Initialize 작업이 실패 할 떄 이벤트가 발생합니다. Error Message을 반환합니다.
 
 - OfferwallAdListener
 
@@ -698,18 +709,18 @@ void onSpendCurrencyFail(String)|Offerwall 광고로 지급된 재화 소모 실
 ---
 #### *전면보상형광고 Class Reference
 
-- BaseRewardInterstitial
+- BidmadRewardInterstitialAd
 
 Function|Description
 ---|---
-BaseRewardInterstitial(Activity activity)|BaseRewardInterstitial 생성자입니다.
-void setAdInfo(String)|RewardInterstitial 광고 ZoneId를 설정합니다.
+BidmadRewardInterstitialAd(Activity activity, String)|BidmadRewardInterstitialAd 생성자입니다. ZoneId를 같이 셋팅합니다.
 void setRewardInterstitialListener(RewardInterstitialListener)|RewardInterstitial 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void load()|RewardInterstitial 광고를 요청합니다.
 void show()|Load된 RewardInterstitial 광고를 화면에 노출합니다. 
 boolean isLoaded()|RewardInterstitial 광고의 Load 여부를 확인합니다.
 void setMute()|RewardInterstitial 광고에 대한 Mute 설정을 수행합니다. 이 옵션은 일부 Ad Network에서만 동작합니다.
 void setChildDirected(boolean)|AD Network(ex:Admob)에서 COPPA에 대한 인터페이스를 지원한다면, 해당 인터페이스에 값을 전달 합니다.
+void setCUID()|사용자 고유 식별자를 등록합니다.
 
 - RewardInterstitialListener
 
@@ -724,11 +735,11 @@ void onCloseAd()|RewardInterstitial 광고가 종료될 때 이벤트가 발생�
 ---
 #### *앱오픈광고 Class Reference
 
-- BaseAppOpenManager
+- BidmadAppOpenAd
 
 Function|Description
 ---|---
-BaseAppOpenManager(Application, String, int)|BaseAppOpenManager 생성자입니다. 앱오픈광고 ZoneId와 Orientation을 같이 셋팅합니다.
+BidmadAppOpenAd(Application, String, int)|BidmadAppOpenAd 생성자입니다. 앱오픈광고 ZoneId와 Orientation을 같이 셋팅합니다.
 void setAppOpenListener(AppOpenListener)|AppOpen 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void setAppOpenLifecycleListener(AppOpenLifecycleListener)|Lifecycle에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void start()|LifecycleObserver를 등록하여 Lifecycle에 따라 AppOpen 광고를 요청하고 노출시킵니다.
@@ -736,18 +747,7 @@ void end()|등록한 LifecycleObserver를 제거합니다.
 void adLoad()|AppOpen 광고를 요청합니다.
 boolean isAdLoaded()|AppOpen 광고의 Load 여부를 확인합니다.
 void adShow(boolean)|Load된 AppOpen 광고를 화면에 노출합니다. 
-
-- BaseAppOpen
-
-Function|Description
----|---
-BaseAppOpen(Activity)|BaseAppOpen 생성자입니다.
-void setAdInfo(String)|AppOpen 광고 ZoneId를 설정합니다.
-void setOrientation(int)|AppOpen 광고 Orientation을 설정합니다.
-void setAppOpenListener(AppOpenListener)|AppOpen 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
-void load()|AppOpen 광고를 요청합니다.
-void show()|Load된 AppOpen 광고를 화면에 노출합니다. 
-boolean isLoaded()|AppOpen를 광고의 Load 여부를 확인합니다.
+void setCUID()|사용자 고유 식별자를 등록합니다.
 
 - AppOpenListener
 
@@ -772,18 +772,20 @@ void onActivityStopped(Activity)|Application.ActivityLifecycleCallbacks의 onAct
 void onActivitySaveInstanceState(Activity, Bundle)|Application.ActivityLifecycleCallbacks의 onActivitySaveInstanceState가 호출되면 이벤트가 발생합니다. 
 void onActivityDestroyed(Activity)|Application.ActivityLifecycleCallbacks의 onActivityDestroyed가 호출되면 이벤트가 발생합니다. 
 ---
-#### *Common Class Reference
+#### *BidmadCommon Class Reference
 
-- Common
+- BidmadCommon
 
 Function|Description
 ---|---
 String getSDKVersion()|SDK의 버전 정보를 얻습니다.
 void setDebugging(boolean)|True값으로 호출 시 SDK의 로그를 출력합니다.
 void setGgTestDeviceid()|Google TEST 기기로 등록하여 구글 광고에 대한 테스트 광고를 수신합니다.
+String getGgTestDeviceid()|setGgTestDeviceid로 등록한 기기 ID를 가져옵니다.
+void initializeSdk(Activity)|BidmadSDK 초기화 작업을 수행합니다.
 
 ----
 ### 4. 참고사항
 
 - [GDPR 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Android-GDPR-Guide-%5BKOR%5D)
-
+- [v2.0.0.0 API 변경 내역](https://github.com/bidmad/Bidmad-Android/wiki/v2.0.0.0-API-Migration-Guide%5BKOR%5D)

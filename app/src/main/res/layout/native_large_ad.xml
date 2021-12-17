@@ -17,14 +17,8 @@
 			android:layout_height="200dp"
 			android:layout_centerVertical="true">
 
-			<com.adop.sdk.nativead.CustomNativeImageView
-				android:id="@+id/mediaView"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"/>
-
 			<ImageView
-				android:layout_alignParentTop="true"
-				android:id="@+id/mediaView_common"
+				android:id="@+id/mediaView"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"/>
 
@@ -41,17 +35,14 @@
 				android:layout_centerVertical="true"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp">
-				<com.adop.sdk.nativead.CustomNativeIconView
-					android:id="@+id/img_icon"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"/>
 				<ImageView
-					android:id="@+id/img_icon_common"
+					android:id="@+id/img_icon"
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"/>
 
 
 			</FrameLayout>
+
 			<Button
 				android:id="@+id/adCallToActionButton"
 				android:layout_width="50dp"
@@ -64,16 +55,6 @@
 				android:text=""
 				android:textColor="@android:color/white"
 				android:textSize="11dp" />
-
-            <ImageView
-                android:visibility="gone"
-                android:id="@+id/img_icon_privacy"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:padding="10dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"/>
 
 			<TextView
 				android:id="@+id/txt_title"
@@ -100,19 +81,6 @@
 				android:textColor="#777777"
 				android:textSize="12dp" />
 
-
 		</RelativeLayout>
-
 	</RelativeLayout>
-	<LinearLayout
-		android:id="@+id/adChoicesContainer"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal">
-
-	</LinearLayout>
-
-
-	<!-- 페이스북 AdChoices 아이콘 (페이스북 광고 호출시 필수 요소) -->
-
 </FrameLayout>

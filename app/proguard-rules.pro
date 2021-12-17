@@ -32,13 +32,18 @@
 -dontshrink
 -keepattributes InnerClasse
 
--keep class com.adop.sdk.defined.** { public protected *;}
--keep class com.adop.sdk.arpm.** { public protected *;}
--keep class com.adop.sdk.label.** { public protected *;}
--keep class com.adop.sdk.adview.** { public protected *;}
--keep class com.adop.sdk.interstitial.** { public protected *;}
--keep class com.adop.sdk.nativead.** { public protected *;}
--keep class com.adop.sdk.reward.** { public protected *;}
+-keep class com.adop.sdk.** { *; }
+-keep class ad.helper.openbidding.** { *; }
+-keepnames class * implements java.io.Serializable
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    !static !transient <fields>;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
 
 -dontwarn com.mobfox.sdk.**
 -dontwarn com.skplanet.tad.**

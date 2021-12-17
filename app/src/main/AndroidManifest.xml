@@ -21,12 +21,13 @@
         </activity>
         <activity android:name="com.adop.example.adopsample.Banner.BannerActivity"/>
         <activity android:name="com.adop.example.adopsample.Native.NativeActivity"/>
+        <activity android:name="com.adop.example.adopsample.Native.NativeCardListActivity"/>
+        <activity android:name="com.adop.example.adopsample.Native.NativeSmallCardListActivity"/>
         <activity android:name="com.adop.example.adopsample.Interstitial.InterstitialActivity"/>
         <activity android:name="com.adop.example.adopsample.Reward.RewardActivity"/>
         <activity android:name="com.adop.example.adopsample.Offerwall.OfferwallActivity"/>
         <activity android:name="com.adop.example.adopsample.RewardInterstitial.RewardInterstitialActivity"/>
         <activity android:name="com.adop.example.adopsample.AppOpen.AppOpenActivity"/>
-        <activity android:name="com.adop.example.adopsample.AppOpen.AppOpenAdvancedActivity"/>
         <!-- AdMob Mediation Activity-->
         <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
         <!-- AdMob Mediation Activity-->
