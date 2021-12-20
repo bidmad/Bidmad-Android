@@ -79,6 +79,22 @@ android {
 }
 ```
 
+4. 프로젝트에서 Proguard를 적용하고 있다면 아래의 룰을 추가하세요.
+```cpp
+-keep class com.adop.sdk.** { *; }
+-keep class ad.helper.openbidding.** { *; }
+-keepnames class * implements java.io.Serializable
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    !static !transient <fields>;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+```
+
 *Bidmad는 AndroidX 라이브러리를 사용합니다. AndroidX 프로젝트가 아니라면 AndroidX로 마이그레이션 바랍니다.
 
 #### *AndroidManifest.xml
