@@ -1,4 +1,4 @@
-# BidmadSDK(v2.0.0.0)
+# BidmadSDK(v2.1.0.0)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
     - [Gradle](#Gradle)
@@ -37,7 +37,7 @@ allprojects {
        google()
        jcenter()
        mavenCentral()
-       maven { url 'http://devrepo.kakao.com:8088/nexus/content/groups/public/' } //Adift
+       maven { url "http://devrepo.kakao.com:8088/nexus/content/groups/public/" } //Adift
        maven {
           url "s3://repo.cauly.net/releases"
           credentials(AwsCredentials) {
@@ -49,7 +49,6 @@ allprojects {
        maven {url "https://sdk.tapjoy.com/" } //Tapjoy
        maven {url "https://artifact.bytedance.com/repository/pangle"} //Pangle
        maven {url "https://jitpack.io"} //Adpie
-
 }
 ```
 2. 프로젝트 App-Level에 위치한 build.gradle 파일의 dependencies에 SDK 선언합니다.
@@ -57,10 +56,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:2.0.0.0'
-    implementation 'ad.helper.openbidding:admob-obh:2.0.0.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.0.0.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.0.0.0'
+    implementation 'com.adop.sdk:bidmad-androidx:2.1.0.0'
+    implementation 'ad.helper.openbidding:admob-obh:2.1.0.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.1.0.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.1.0.0'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
@@ -619,6 +618,7 @@ boolean isLoaded()|Interstitial 광고의 Load 여부를 확인합니다.
 void setMute()|동영상 Interstitial 광고에 대한 Mute 설정을 수행합니다. 이 옵션은 일부 Ad Network에서만 동작합니다.
 void setChildDirected(boolean)|AD Network(ex:Admob)에서 COPPA에 대한 인터페이스를 지원한다면, 해당 인터페이스에 값을 전달 합니다.
 void setCUID()|사용자 고유 식별자를 등록합니다.
+static void setAutoReload(boolean)|광고 노출 시 자동으로 다음 광고를 요청합니다. 이 기능은 광고 Fail이 발생하면 중단됩니다. Default 값은 True입니다.
 
 - InterstitialListener
 
@@ -643,6 +643,7 @@ boolean isLoaded()|Reward 광고의 Load 여부를 확인합니다.
 void setMute()|Reward 광고에 대한 Mute 설정을 수행합니다. 이 옵션은 일부 Ad Network에서만 동작합니다.
 void setChildDirected(boolean)|AD Network(ex:Admob)에서 COPPA에 대한 인터페이스를 지원한다면, 해당 인터페이스에 값을 전달 합니다.
 void setCUID()|사용자 고유 식별자를 등록합니다.
+static void setAutoReload(boolean)|광고 노출 시 자동으로 다음 광고를 요청합니다. 이 기능은 광고 Fail이 발생하면 중단됩니다. Default 값은 True입니다.
 
 - RewardListener
 
@@ -737,6 +738,7 @@ boolean isLoaded()|RewardInterstitial 광고의 Load 여부를 확인합니다.
 void setMute()|RewardInterstitial 광고에 대한 Mute 설정을 수행합니다. 이 옵션은 일부 Ad Network에서만 동작합니다.
 void setChildDirected(boolean)|AD Network(ex:Admob)에서 COPPA에 대한 인터페이스를 지원한다면, 해당 인터페이스에 값을 전달 합니다.
 void setCUID()|사용자 고유 식별자를 등록합니다.
+static void setAutoReload(boolean)|광고 노출 시 자동으로 다음 광고를 요청합니다. 이 기능은 광고 Fail이 발생하면 중단됩니다. Default 값은 True입니다.
 
 - RewardInterstitialListener
 

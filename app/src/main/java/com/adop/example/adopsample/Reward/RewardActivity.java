@@ -19,8 +19,9 @@ public class RewardActivity extends AppCompatActivity {
 
         callbackStatus = findViewById(R.id.rewardCallbackStatus);
 
+//        BidmadRewardAd.setAutoReload(false);
         //Require
-        mReward = new BidmadRewardAd(this,"YOUR ZONE ID");
+        mReward = new BidmadRewardAd(this,"7d9a2c9e-5755-4022-85f1-6d4fc79e4418");
         mReward.setRewardListener(new RewardListener() {
             public void onLoadAd(String zoneId) {
                 callbackStatus.append("onLoadAd() Called\n");
@@ -29,7 +30,6 @@ public class RewardActivity extends AppCompatActivity {
             @Override
             public void onShowAd(String zoneId) {
                 callbackStatus.append("onShowAd() Called\n");
-                mReward.load(); //Ad Reload
             }
 
             @Override

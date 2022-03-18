@@ -19,8 +19,9 @@ public class InterstitialActivity extends AppCompatActivity {
 
         callbackStatus = findViewById(R.id.interstitialCallbackStatus);
 
+//        BidmadInterstitialAd.setAutoReload(false);
         //Require
-        mInterstitial = new BidmadInterstitialAd(this, "YOUR ZONE ID");
+        mInterstitial = new BidmadInterstitialAd(this, "e9acd7fc-a962-40e4-aaad-9feab1b4f821");
         mInterstitial.setInterstitialListener(new InterstitialListener() {
             @Override
             public void onLoadAd() {
@@ -30,7 +31,6 @@ public class InterstitialActivity extends AppCompatActivity {
             @Override
             public void onShowAd() {
                 callbackStatus.append("onShowAd() Called\n");
-                mInterstitial.load(); //Ad Reload
             }
 
             @Override

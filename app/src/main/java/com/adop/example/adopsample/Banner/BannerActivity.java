@@ -22,7 +22,7 @@ public class BannerActivity extends AppCompatActivity {
         callbackStatus = findViewById(R.id.bannerCallbackStatus);
 
         //Require
-        mAdView = new BidmadBannerAd(this, "YOUR ZONE ID");
+        mAdView = new BidmadBannerAd(this, "944fe870-fa3a-4d1b-9cc2-38e50b2aed43");
         mAdView.setAdViewListener(new AdViewListener() {
             @Override
             public void onLoadAd(String NetworkName) {

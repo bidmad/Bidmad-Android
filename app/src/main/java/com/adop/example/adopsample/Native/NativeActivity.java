@@ -23,7 +23,7 @@ public class NativeActivity extends AppCompatActivity {
         layoutNative = findViewById(R.id.native_ad_container);
 
         //Require
-        nativeAd = new BidmadNativeAd(this, "YOUR ZONE ID");
+        nativeAd = new BidmadNativeAd(this, "2d04afb5-99e9-4739-9970-2303da2be24c");
 
         nativeAd.setViewForInteraction(
                 R.layout.native_large_ad,

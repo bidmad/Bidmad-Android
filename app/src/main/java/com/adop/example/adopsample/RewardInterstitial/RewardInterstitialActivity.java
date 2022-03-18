@@ -19,8 +19,9 @@ public class RewardInterstitialActivity extends AppCompatActivity {
 
         callbackStatus = findViewById(R.id.rewardInterstitialCallbackStatus);
 
+//        BidmadRewardInterstitialAd.setAutoReload(false);
         //Require
-        mRewardInterstitial = new BidmadRewardInterstitialAd(this, "YOUR ZONE ID");
+        mRewardInterstitial = new BidmadRewardInterstitialAd(this, "bcea5bf7-4082-4691-9401-aeb062edfcb0");
         mRewardInterstitial.setRewardInterstitialListener(new RewardInterstitialListener() {
             @Override
             public void onLoadAd() {
@@ -30,8 +31,6 @@ public class RewardInterstitialActivity extends AppCompatActivity {
             @Override
             public void onShowAd() {
                 callbackStatus.append("onShowAd() Called\n");
-                mRewardInterstitial.load(); //Ad Reload
-
             }
             @Override
             public void onFailedAd() {

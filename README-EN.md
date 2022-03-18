@@ -1,4 +1,4 @@
-# BidmadSDK(v2.0.0.0)
+# BidmadSDK(v2.1.0.0)
 ### Shortcuts
 1. [SDK Settings](#1-SDK-Settings)
     - [Gradle](#Gradle)
@@ -36,7 +36,7 @@ allprojects {
        ...
        google()
        jcenter()
-       maven { url 'http://devrepo.kakao.com:8088/nexus/content/groups/public/' } //Adift
+       maven { url "http://devrepo.kakao.com:8088/nexus/content/groups/public/" } //Adift
        maven {
           url "s3://repo.cauly.net/releases"
           credentials(AwsCredentials) {
@@ -48,7 +48,6 @@ allprojects {
        maven {url "https://sdk.tapjoy.com/" } //Tapjoy
        maven {url "https://artifact.bytedance.com/repository/pangle"} //Pangle
        maven {url "https://jitpack.io"} //Adpie
-
 }
 ```
 2. Declares SDK in dependencies of build.gradle file located in project App-Level.
@@ -56,10 +55,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:2.0.0.0'
-    implementation 'ad.helper.openbidding:admob-obh:2.0.0.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.0.0.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.0.0.0'
+    implementation 'com.adop.sdk:bidmad-androidx:2.1.0.0'
+    implementation 'ad.helper.openbidding:admob-obh:2.1.0.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.1.0.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.1.0.0'
 }
 ```
 3. Declare the options below in the android tag of the build.gradle file located in the project App-Level.
@@ -618,6 +617,7 @@ boolean isLoaded()|Check whether interstitial ad is loaded or not.
 void setMute()|Mute setup for video interstitial ads. This option only works on some Ad Networks.
 void setChildDirected(boolean)|If AD Network (ex:Admob) supports an interface for COPPA, it passes a value to the interface.
 void setCUID()|Register customer unique identifier.
+static void setAutoReload(boolean)|Automatically request the next ad when an ad is Show. This feature will be discontinued when an ad Fail occurs. Default value is True.
 
 - InterstitialListener
 
@@ -642,6 +642,7 @@ boolean isLoaded()|Checks whether the reward ad is loaded or not.
 void setMute()|Perform Mute setting for reward ad. This option only works on some Ad Networks.
 void setChildDirected(boolean)|If AD Network (ex:Admob) supports an interface for COPPA, it passes a value to the interface.
 void setCUID()|Register customer unique identifier.
+static void setAutoReload(boolean)|Automatically request the next ad when an ad is Show. This feature will be discontinued when an ad Fail occurs. Default value is True.
 
 - RewardListener
 
@@ -736,6 +737,7 @@ boolean isLoaded()|Check whether RewardInterstitial ads are loaded.
 void setMute()|Set Mute for RewardInterstitial ads. This option only works with some Ad Networks.
 void setChildDirected(boolean)|If AD Network (ex:Admob) supports an interface for COPPA, it passes a value to the interface.
 void setCUID()|Register customer unique identifier.
+static void setAutoReload(boolean)|Automatically request the next ad when an ad is Show. This feature will be discontinued when an ad Fail occurs. Default value is True.
 
 - RewardInterstitialListener
 
