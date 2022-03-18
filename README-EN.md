@@ -36,6 +36,7 @@ allprojects {
        ...
        google()
        jcenter()
+       mavenCentral()
        maven { url "http://devrepo.kakao.com:8088/nexus/content/groups/public/" } //Adift
        maven {
           url "s3://repo.cauly.net/releases"
