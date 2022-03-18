@@ -210,7 +210,6 @@ protected void onCreate(Bundle savedInstanceState) {
         @Override
         public void onShowAd() {
             //onShowAd Callback
-            mInterstitial.load(); //Ad Reload
         }
 
         @Override
@@ -257,7 +256,6 @@ protected void onCreate(Bundle savedInstanceState) {
         @Override
         public void onShowAd(String zoneId) {
             //onShowAd Callback
-            mReward.load(); //Ad Reload
         }
 
         @Override
@@ -478,8 +476,6 @@ protected void onCreate(Bundle savedInstanceState) {
         @Override
         public void onShowAd() {
             //onShowAd Callback
-            mRewardInterstitial.load(); //Ad Reload
-
         }
         @Override
         public void onFailedAd() {
