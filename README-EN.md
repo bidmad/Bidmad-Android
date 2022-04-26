@@ -1,4 +1,4 @@
-# BidmadSDK(v2.1.0.0)
+# BidmadSDK(v2.4.0.0)
 ### Shortcuts
 1. [SDK Settings](#1-SDK-Settings)
     - [Gradle](#Gradle)
