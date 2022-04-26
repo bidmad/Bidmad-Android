@@ -37,7 +37,7 @@ allprojects {
        google()
        jcenter()
        mavenCentral()
-       maven { url "http://devrepo.kakao.com:8088/nexus/content/groups/public/" } //Adift
+       maven { url "https://devrepo.kakao.com/nexus/content/groups/public/" } //Adift
        maven {
           url "s3://repo.cauly.net/releases"
           credentials(AwsCredentials) {
@@ -45,10 +45,12 @@ allprojects {
               secretKey "SGOr65MOJeKBUFxeVNZ4ogITUKvcltWqEApC41JL"
           }
        } //Cauly
-       maven {url "https://bidmad-sdk.s3.amazonaws.com/"} //bidmad
-       maven {url "https://sdk.tapjoy.com/" } //Tapjoy
-       maven {url "https://artifact.bytedance.com/repository/pangle"} //Pangle
-       maven {url "https://jitpack.io"} //Adpie
+       maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //bidmad
+       maven { url "https://sdk.tapjoy.com/" } //Tapjoy
+       maven { url "https://artifact.bytedance.com/repository/pangle" } //Pangle
+       maven { url "https://jitpack.io" } //Adpie
+       maven { url "https://android-sdk.is.com/" } //ironsource
+       maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
 }
 ```
 2. 프로젝트 App-Level에 위치한 build.gradle 파일의 dependencies에 SDK 선언합니다.
@@ -56,10 +58,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:2.1.0.0'
-    implementation 'ad.helper.openbidding:admob-obh:2.1.0.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.1.0.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.1.0.0'
+    implementation 'com.adop.sdk:bidmad-androidx:2.4.0.0'
+    implementation 'ad.helper.openbidding:admob-obh:2.4.0.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.4.0.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.4.0.1'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
@@ -92,6 +94,27 @@ android {
     java.lang.Object writeReplace();
     java.lang.Object readResolve();
 }
+
+# Tapjoy
+-keep class com.tapjoy.** { *; }
+-keep class com.moat.** { *; }
+-keepattributes JavascriptInterface
+-keepattributes *Annotation*
+-keep class * extends java.util.ListResourceBundle {
+protected Object[][] getContents();
+}
+-keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable {
+public static final *** NULL;
+}
+-keepnames @com.google.android.gms.common.annotation.KeepName class *
+-keepclassmembernames class * {
+@com.google.android.gms.common.annotation.KeepName *;
+}
+-keepnames class * implements android.os.Parcelable {
+public static final ** CREATOR;
+}
+-keep class com.google.android.gms.ads.identifier.** { *; }
+-dontwarn com.tapjoy.**
 ```
 
 *Bidmad는 AndroidX 라이브러리를 사용합니다. AndroidX 프로젝트가 아니라면 AndroidX로 마이그레이션 바랍니다.
