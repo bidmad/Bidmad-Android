@@ -39,8 +39,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.appcompat:appcompat:1.2.0"
 
-    implementation 'com.adop.sdk:bidmad-androidx:2.4.0.0'
-    implementation 'ad.helper.openbidding:admob-obh:2.4.0.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.4.0.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.4.0.1'
+    implementation 'com.adop.sdk:bidmad-androidx:2.5.0.0'
+    implementation 'ad.helper.openbidding:admob-obh:2.5.0.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.5.0.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.5.0.0'
 }
