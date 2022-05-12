@@ -61,6 +61,7 @@ dependencies {
     implementation 'ad.helper.openbidding:admob-obh:2.5.0.0'
     implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.5.0.0'
     implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.5.0.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.

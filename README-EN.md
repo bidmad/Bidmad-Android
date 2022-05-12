@@ -61,6 +61,7 @@ dependencies {
     implementation 'ad.helper.openbidding:admob-obh:2.5.0.0'
     implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.5.0.0'
     implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.5.0.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }
 ```
 3. Declare the options below in the android tag of the build.gradle file located in the project App-Level.

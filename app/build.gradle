@@ -43,4 +43,5 @@ dependencies {
     implementation 'ad.helper.openbidding:admob-obh:2.5.0.0'
     implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.5.0.0'
     implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.5.0.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }
