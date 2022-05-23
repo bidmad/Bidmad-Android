@@ -25,7 +25,7 @@
 ### 1. SDK Settings
 #### *Minimum requirements for using the SDK
 - Gradle Plugin 3.5.4 or higher
-- minSdkVersion 19 or higher
+- minSdkVersion 21 or higher
 
 #### *Gradle
 1. Declares the repository in the build.gradle file located at the top-level of the project.

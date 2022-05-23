@@ -25,7 +25,7 @@
 ### 1. SDK 세팅
 #### *SDK 사용을 위한 기본 요건
 - Gradle Plugin 3.5.4 이상
-- minSdkVersion 19 이상
+- minSdkVersion 21 이상
 
 #### *Gradle
 1. 프로젝트 Top-Level에 위치한 build.gradle 파일 내에 저장소 선언합니다.
