@@ -1,4 +1,4 @@
-# BidmadSDK(v2.5.0.0)
+# BidmadSDK(v2.5.0.1)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
     - [Gradle](#Gradle)
@@ -57,10 +57,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:2.5.0.0'
-    implementation 'ad.helper.openbidding:admob-obh:2.5.0.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.5.0.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.5.0.0'
+    implementation 'com.adop.sdk:bidmad-androidx:2.5.0.1'
+    implementation 'ad.helper.openbidding:admob-obh:2.5.0.1'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.5.0.1'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.5.1.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }
 ```
