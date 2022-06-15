@@ -1,4 +1,4 @@
-# BidmadSDK(v2.5.0.1)
+# BidmadSDK(v2.6.0.0)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
     - [Gradle](#Gradle)
@@ -38,13 +38,6 @@ allprojects {
        jcenter()
        mavenCentral()
        maven { url "https://devrepo.kakao.com/nexus/content/groups/public/" } //Adift
-       maven {
-          url "s3://repo.cauly.net/releases"
-          credentials(AwsCredentials) {
-              accessKey "AKIAWRZUK5MFKYVSUOLB"
-              secretKey "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"
-          }
-       } //Cauly
        maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //bidmad
        maven { url "https://sdk.tapjoy.com/" } //Tapjoy
        maven { url "https://artifact.bytedance.com/repository/pangle" } //Pangle
@@ -57,11 +50,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:2.5.0.1'
-    implementation 'ad.helper.openbidding:admob-obh:2.5.0.1'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.5.0.1'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.5.1.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation 'com.adop.sdk:bidmad-androidx:2.6.0.0'
+    implementation 'ad.helper.openbidding:admob-obh:2.6.0.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.6.0.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.6.0.0'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
@@ -84,6 +76,8 @@ android {
 ```cpp
 -keep class com.adop.sdk.** { *; }
 -keep class ad.helper.openbidding.** { *; }
+-keep class com.adop.adapter.fc.** { *; }
+-keep class com.adop.adapter.fnc.** { *; }
 -keepnames class * implements java.io.Serializable
 -keepclassmembers class * implements java.io.Serializable {
     static final long serialVersionUID;
@@ -94,6 +88,13 @@ android {
     java.lang.Object writeReplace();
     java.lang.Object readResolve();
 }
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+
+# Pangle
+-keep class com.bytedance.sdk.** { *; }
+-keep class com.bykv.vk.openvk.component.video.api.** { *; }
 
 # Tapjoy
 -keep class com.tapjoy.** { *; }
