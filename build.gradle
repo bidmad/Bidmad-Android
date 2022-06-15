@@ -22,13 +22,6 @@ allprojects {
             dirs 'libs'
         }
         maven { url "https://devrepo.kakao.com/nexus/content/groups/public/" } //Adift
-        maven {
-            url "s3://repo.cauly.net/releases"
-            credentials(AwsCredentials) {
-                accessKey "AKIAWRZUK5MFKYVSUOLB"
-                secretKey "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"
-            }
-        } //Cauly
         maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //bidmad
         maven { url "https://sdk.tapjoy.com/" } //Tapjoy
         maven { url "https://artifact.bytedance.com/repository/pangle" } //Pangle
