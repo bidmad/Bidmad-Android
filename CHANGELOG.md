@@ -1,3 +1,8 @@
+# Version 2.7.0.0
+#### Changes
+- Ad Network SDK Update(Admob / UnityAds / AdColony / Applovin / Pangle / Fyber / Tapjoy / Facebook / Ironsource / Vungle)
+- Fix Bugs
+
 # Version 2.6.0.0
 #### Changes
 - Improve banner / rewardInterstitial / nativeAd related functions

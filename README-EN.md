@@ -1,4 +1,4 @@
-# BidmadSDK(v2.6.0.0)
+# BidmadSDK(v2.7.0.0)
 ### Shortcuts
 1. [SDK Settings](#1-SDK-Settings)
     - [Gradle](#Gradle)
@@ -50,10 +50,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:2.6.0.0'
-    implementation 'ad.helper.openbidding:admob-obh:2.6.0.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.6.0.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.6.0.0'
+    implementation 'com.adop.sdk:bidmad-androidx:2.7.0.0'
+    implementation 'ad.helper.openbidding:admob-obh:2.7.0.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.7.0.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.7.0.0'
 }
 ```
 3. Declare the options below in the android tag of the build.gradle file located in the project App-Level.
