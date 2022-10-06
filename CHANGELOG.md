@@ -1,3 +1,8 @@
+# Version 2.8.0.0
+#### Changes
+- Support Ad Network for header bidding
+- Fix Bugs
+
 # Version 2.7.0.0
 #### Changes
 - Ad Network SDK Update(Admob / UnityAds / AdColony / Applovin / Pangle / Fyber / Tapjoy / Facebook / Ironsource / Vungle)
