@@ -1,4 +1,4 @@
-# BidmadSDK(v2.8.0.0)
+# BidmadSDK(v2.9.0.0)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
     - [Gradle](#Gradle)
@@ -42,6 +42,7 @@ allprojects {
        maven { url "https://artifact.bytedance.com/repository/pangle" } //Pangle
        maven { url "https://jitpack.io" } //Adpie
        maven { url "https://android-sdk.is.com/" } //ironsource
+       maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
 }
 ```
 2. 프로젝트 App-Level에 위치한 build.gradle 파일의 dependencies에 SDK 선언합니다.
@@ -49,10 +50,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:2.8.0.0'
-    implementation 'ad.helper.openbidding:admob-obh:2.8.0.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.8.0.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.8.0.0'
+    implementation 'com.adop.sdk:bidmad-androidx:2.9.0.0'
+    implementation 'ad.helper.openbidding:admob-obh:2.9.0.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.9.0.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.9.0.0'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.

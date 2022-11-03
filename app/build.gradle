@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 31
+    buildToolsVersion "31.0.0"
     defaultConfig {
         applicationId "com.adop.example.adopsample"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -39,8 +39,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.appcompat:appcompat:1.2.0"
 
-    implementation 'com.adop.sdk:bidmad-androidx:2.8.0.0'
-    implementation 'ad.helper.openbidding:admob-obh:2.8.0.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.8.0.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.8.0.0'
+    implementation 'com.adop.sdk:bidmad-androidx:2.9.0.0'
+    implementation 'ad.helper.openbidding:admob-obh:2.9.0.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.9.0.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.9.0.0'
 }

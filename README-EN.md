@@ -1,4 +1,4 @@
-# BidmadSDK(v2.8.0.0)
+# BidmadSDK(v2.9.0.0)
 ### Shortcuts
 1. [SDK Settings](#1-SDK-Settings)
     - [Gradle](#Gradle)
@@ -42,6 +42,7 @@ allprojects {
        maven { url "https://artifact.bytedance.com/repository/pangle" } //Pangle
        maven { url "https://jitpack.io" } //Adpie
        maven { url "https://android-sdk.is.com/" } //ironsource
+       maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
 }
 ```
 2. Declares SDK in dependencies of build.gradle file located in project App-Level.
@@ -49,10 +50,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:2.8.0.0'
-    implementation 'ad.helper.openbidding:admob-obh:2.8.0.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.8.0.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.8.0.0'
+    implementation 'com.adop.sdk:bidmad-androidx:2.9.0.0'
+    implementation 'ad.helper.openbidding:admob-obh:2.9.0.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.9.0.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.9.0.0'
 }
 ```
 3. Declare the options below in the android tag of the build.gradle file located in the project App-Level.

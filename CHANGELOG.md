@@ -1,3 +1,10 @@
+# Version 2.9.0.0
+#### Changes
+- Support for SSC of Pangle Network
+- Add Pubmatic Ad Network
+- Temporary suspension of Prebid(Header Bidding) Network support due to Depndency Library issue
+- Fix Bugs
+
 # Version 2.8.0.0
 #### Changes
 - Support Ad Network for header bidding

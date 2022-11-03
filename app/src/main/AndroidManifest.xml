@@ -10,12 +10,11 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
 
-        <!-- 28 타켓 이상 일때 반드시 넣자!!! -->
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
-        <activity android:name="com.adop.example.adopsample.MainActivity">
+        <activity android:name="com.adop.example.adopsample.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
