@@ -1,24 +1,25 @@
-# BidmadSDK(v2.9.0.0)
+# BidmadSDK(v3.0.0)
 ### Shortcuts
+
 1. [SDK Settings](#1-SDK-Settings)
-    - [Gradle](#Gradle)
-    - [AndroidManifest.xml](#AndroidManifest.xml)
+   - [Gradle](#Gradle)
+   - [AndroidManifest.xml](#AndroidManifest.xml)
 2. [How to use](#2-How-to-use)
-    - [Banner Ads](#Banner-Ads)
-    - [Interstitial Ads](#Interstitial-Ads)
-    - [Reward Ads](#Reward-Ads)
-    - [Native Ads](#Native-Ads)
-    - [Offerwall Ads](#Offerwall-Ads)
-    - [RewardInterstitial Ads](#RewardInterstitial-Ads)
-    - [AppOpen Ads](#AppOpen-Ads)
+   - [Banner Ads](#Banner-Ads)
+   - [Interstitial Ads](#Interstitial-Ads)
+   - [Reward Ads](#Reward-Ads)
+   - [Native Ads](#Native-Ads)
+   - [Offerwall Ads](#Offerwall-Ads)
+   - [RewardInterstitial Ads](#RewardInterstitial-Ads)
+   - [AppOpen Ads](#AppOpen-Ads)
 3. [Class Reference](#3-Class-Reference)
-    - [Banner Class Reference](#Banner-Class-Reference)
-    - [Interstitial Class Reference](#Interstitial-Class-Reference)
-    - [Reward Class Reference](#Reward-Class-Reference)
-    - [NativeAd Class Reference](#NativeAd-Class-Reference)
-    - [Offerwall Class Reference](#Offerwall-Class-Reference)
-    - [RewardInterstitial Class Reference](#RewardInterstitial-Class-Reference)
-    - [AppOpen Class Reference](#AppOpen-Class-Reference)
+   - [Banner Class Reference](#Banner-Class-Reference)
+   - [Interstitial Class Reference](#Interstitial-Class-Reference)
+   - [Reward Class Reference](#Reward-Class-Reference)
+   - [NativeAd Class Reference](#NativeAd-Class-Reference)
+   - [Offerwall Class Reference](#Offerwall-Class-Reference)
+   - [RewardInterstitial Class Reference](#RewardInterstitial-Class-Reference)
+   - [AppOpen Class Reference](#AppOpen-Class-Reference)
 4. [Note](#4-Note)
 5. [Download the latest sample project](https://github.com/bidmad/Bidmad-Android/archive/master.zip)
 ---
@@ -45,18 +46,18 @@ allprojects {
        maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
 }
 ```
-2. Declares SDK in dependencies of build.gradle file located in project App-Level.
+2. Declares SDK in the build.gradle file located in the project App-Level.
 
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:2.9.0.0'
-    implementation 'ad.helper.openbidding:admob-obh:2.9.0.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.9.0.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.9.0.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.0.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.0.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.0.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.0.0'
 }
 ```
-3. Declare the options below in the android tag of the build.gradle file located in the project App-Level.
+3. Declare the option below in the android tag of the build.gradle file located in the project App-Level.
 
 ```java
 android {
@@ -72,7 +73,7 @@ android {
 }
 ```
 
-4. If you are using Proguard, add the rule below.
+4. If you are applying Proguard in your project, add the rules below.
 ```cpp
 -keep class com.adop.sdk.** { *; }
 -keep class ad.helper.openbidding.** { *; }
@@ -118,12 +119,13 @@ public static final ** CREATOR;
 -dontwarn com.tapjoy.**
 ```
 
-*Bidmad uses the AndroidX library. If it is not an AndroidX project, please migrate to AndroidX.
+*Bidmad uses the AndroidX library. If it's not an AndroidX project, please migrate to AndroidX.
 
 #### *AndroidManifest.xml
 
-1. Declare the following code in the application tag of AndroidManifest.xml in the project.<br>
- *Please check the value of com.google.android.gms.ads.APPLICATION_ID on the Admob dashboard.
+1. Declare the code below in the application tag of AndroidManifest.xml in the project([Guide](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D))<br>
+   *Check the value of com.google.android.gms.ads.APPLICATION_ID on the admob dashboard.
+   *Check the value of com.adop.sdk.AppKey at Account Management > My Information > Details after login to Insight.
 
 ```xml
 <application
@@ -135,10 +137,11 @@ public static final ** CREATOR;
    <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
    <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing" android:value="false" />
    <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="APPLICATION_ID"/>
+   <meta-data android:name="com.adop.sdk.APP_KEY" android:value="INSERT_YOUR_APPKEY"/>
    ...
 </application>
 ```
-2. Declare permission in AndroidManifest.xml in project.
+2. Declare permission on AndroidManifest.xml in the project.
 
 ```xml
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -147,7 +150,7 @@ public static final ** CREATOR;
 <uses-permission android:name="android.permission.WAKE_LOCK" />
 <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 ```
-3. If targeting Android 12 version, please check [AD_ID Permission Guide](https://github.com/bidmad/Bidmad-Android/wiki/AD_ID-Permission-Guide%5BENG%5D).
+3. If targeting Android 12 version, please check [AD_ID Declaration Guide] at https://github.com/bidmad/Bidmad-Android/wiki/AD_ID-Permission-Guide%5BKOR%5D).
 
 ### 2. How to use
 
@@ -160,6 +163,7 @@ public static final ** CREATOR;
 ```
 - When using interstitial or rewarded ads, instead of calling initializeSdk() for smooth ad Show
   According to the interstitial/rewarded advertisement guide below, load the advertisement at the start of the app and show it at the desired time.
+- When you login to Insight and  save the Preload check, Account > My Info > DETAIL INFORMATION interstitial or rewarded ads  is preloaded at initialization.
 
 #### *Banner Ads
 
@@ -188,13 +192,13 @@ protected void onCreate(Bundle savedInstanceState) {
     mAdView = new BidmadBannerAd(this,"YOUR ZONE ID");
     mAdView.setAdViewListener(new AdViewListener() {
         @Override
-        public void onLoadAd(String NetworkName) {
+        public void onLoadAd() {
             //onLoad Callback
         }
 
         @Override
-        public void onFailedAd() {
-            //onFailedAd Callback
+        public void onLoadFailAd(BMAdError error) {
+            //onLoadFailAd Callback
         }
 
         @Override
@@ -214,7 +218,7 @@ protected void onCreate(Bundle savedInstanceState) {
 #### *Interstitial Ads
 
 1. To request interstitial ad, create BidmadInterstitialAd, set ZoneId and call load function.
-2. Call show to expose the interstitial ad. At this time, you need to check whether you have received an advertisement through isLoaded.
+2. Call show to expose Interstitial advertisement. At this time, you need to check whether you have received an advertisement through isLoaded.
 ```java
 BidmadInterstitialAd mInterstitial;
 
@@ -237,8 +241,8 @@ protected void onCreate(Bundle savedInstanceState) {
         }
 
         @Override
-        public void onFailedAd() {
-           //onFailedAd Callback
+        public void onLoadFailAd(BMAdError error) {
+           //onLoadFailAd Callback
         }
 
         @Override
@@ -251,9 +255,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
     //Ad Show Event Setting
     findViewById(R.id.showIntersitial).setOnClickListener(v -> {
-        if(mInterstitial.isLoaded()){
-            mInterstitial.show();
-        }
+          mInterstitial.show();
     });
 }
 ```
@@ -273,43 +275,38 @@ protected void onCreate(Bundle savedInstanceState) {
     //Require
     mReward = new BidmadRewardAd(this,"YOUR ZONE ID");
     mReward.setRewardListener(new RewardListener() {
-        public void onLoadAd(String zoneId) {
+        public void onLoadAd() {
             //onLoad Callback
         }
 
         @Override
-        public void onShowAd(String zoneId) {
+        public void onShowAd() {
             //onShowAd Callback
         }
 
         @Override
-        public void onFailedAd(String zoneId) {
-            //onFailedAd Callback
+        public void onLoadFailAd(BMAdError error) {
+            //onLoadFailAd Callback
         }
 
         @Override
-        public void onCompleteAd(String zoneId) {
+        public void onCompleteAd() {
             //onCompleteAd Callback
         }
 
         @Override
-        public void onOpenAd(String zoneId) {
-            //onOpenAd Callback
-        }
-
-        @Override
-        public void onCloseAd(String zoneId) {
+        public void onCloseAd() {
             //onCloseAd Callback
         }
 
         @Override
-        public void onClickAd(String zoneId) {
+        public void onClickAd() {
             //onClickAd Callback
         }
 
         @Override
-        public void onSkippedAd(String zoneId) {
-            //onSkippedAd Callback
+        public void onSkipAd() {
+            //onSkipAd Callback
         }
     });
 
@@ -317,9 +314,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
     //Ad Show Event Setting
     findViewById(R.id.showReward).setOnClickListener(v -> {
-        if(mReward.isLoaded()){
-            mReward.show();
-        }
+         mReward.show();
     });
 }
 ```
@@ -356,195 +351,24 @@ protected void onCreate(Bundle savedInstanceState) {
         public void onLoadAd() {
             layoutNative.removeAllViews();
             layoutNative.addView(nativeAd.getNativeLayout());
-            callbackStatus.append("onLoadAd() Called\n");
+            //onLoadAd Callback
         }
 
         @Override
-        public void onFailedAd() {
-            callbackStatus.append("onFailedAd() Called\n");
+        public void onLoadFailAd(BMAdError error) {
+            callbackStatus.append("onLoadFailAd() Called\n");
+            //onLoadFailAd Callback
         }
 
         @Override
         public void onClickAd(){
             callbackStatus.append("onClickAd() Called\n");
+            //onClickAd Callback
         }
     });
 
     nativeAd.load();
 }
-```
-
-#### *Offerwall Ads
-
-1. In order to request offerwall advertisement, BidmadOfferwallAd constructor is called, and if a response is received with onInitSuccess, then load is called.
-2. Call show to provide a list of offer wall advertisements. At this time, you need to check whether you have received an advertisement through isLoaded.
-3. In the case of offer wall advertisement, Currency are received according to whether the conditions for receive of Currency are met for advertisements provided in the list. The received Currency can be consumed through spendCurrency Function.
-(*The received Currency can be checked through getCurrencyBalance Function.)
-```java
-BidmadOfferwallAd mOfferwall;
-
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_offerwall);
-
-    //Require
-    mOfferwall = new BidmadOfferwallAd(this, "YOUR ZONE ID", new OfferwallInitListener() {
-        @Override
-        public void onInitSuccess() {
-            //onInitSuccess Callback
-        }
-
-        @Override
-        public void onInitFail(String error) {
-            //onInitFail Callback
-        }
-    });
-
-    mOfferwall.setOfferwallAdListener(new OfferwallAdListener() {
-        @Override
-        public void onLoadAd() {
-            //onLoadAd Callback
-        }
-
-        @Override
-        public void onShowAd() {
-            //onShowAd Callback
-        }
-
-        @Override
-        public void onFailedAd() {
-            //onFailedAd Callback
-        }
-
-        @Override
-        public void onCloseAd() {
-            //onCloseAd Callback
-        }
-    });
-
-    mOfferwall.setOfferwallCurrencyListener(new OfferwallCurrencyListener() {
-        @Override
-        public void onGetCurrencyBalanceSuccess(String currencyName, int balance) {
-            //onGetCurrencyBalanceSuccess Callback
-        }
-
-        @Override
-        public void onGetCurrencyBalanceFail(String error) {
-            //onGetCurrencyBalanceFail Callback
-        }
-
-        @Override
-        public void onSpendCurrencySuccess(String currencyName, int balance) {
-            //onSpendCurrencySuccess Callback
-        }
-
-        @Override
-        public void onSpendCurrencyFail(String error) {
-             //onSpendCurrencyFail Callback
-        }
-    });
-
-    findViewById(R.id.loadOfferwall).setOnClickListener(v -> {
-        if(mOfferwall.isSDKInit()){
-            mOfferwall.load();
-        }
-    });
-
-    findViewById(R.id.showOfferwall).setOnClickListener(v -> {
-        if(mOfferwall.isLoaded()){
-            mOfferwall.show();
-        }else{
-            Log.d("", "Ad Not Load");
-        }
-    });
-
-    findViewById(R.id.getCurrencyBalance).setOnClickListener(v -> {
-        mOfferwall.getCurrencyBalance();
-    });
-
-    findViewById(R.id.spendCurrency).setOnClickListener(v -> {
-        ...
-        if(amount > 0){
-            mOfferwall.spendCurrency(amount);
-        }else{
-            Log.d("","Please enter an amount greater than 0.");
-        }
-    });
-}
-```
-
-#### *RewardInterstitial Ads
-
-1. To request RewardInterstitial advertisement, call the BidmadRewardInterstitialAd constructor and call the load function after setting the ZoneId.
-2. Creates and calls Popup Class for expose RewardInterstitial advertisement. At this point, You should give the user enough time to read the instructions displayed in the popup and decide whether to watch the ad or not.
-3. Call show when the user wants to watch an ad.<br>
-
-*Interstitial compensatory advertisements should inform users in advance that advertisements will be exposed through popups, etc. You should provide an option for users not to see ads if they don't want to.
-```java
-BidmadRewardInterstitialAd mRewardInterstitial;
-
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_rewardinterstitial);
-
-    //Require
-    mRewardInterstitial = new BidmadRewardInterstitialAd(this, "YOUR ZONE ID");
-    mRewardInterstitial.setRewardInterstitialListener(new RewardInterstitialListener() {
-        @Override
-        public void onLoadAd() {
-            //onLoadAd Callback
-        }
-        @Override
-        public void onShowAd() {
-            //onShowAd Callback
-        }
-        @Override
-        public void onFailedAd() {
-            //onFailedAd Callback
-
-        }
-        @Override
-        public void onCloseAd() {
-            //onCloseAd Callback
-
-        }
-        @Override
-        public void onSkipAd() {
-            //onSkipAd Callback
-
-        }
-        @Override
-        public void onCompleteAd() {
-            //onCompleteAd Callback
-
-        }
-    });
-
-    mRewardInterstitial.load();
-
-    findViewById(R.id.popupCall).setOnClickListener(v -> {
-        alertMessage();
-    });
-}
-public void alertMessage(){   
-    AlertPopup ap = new AlertPopup(this, new AlertPopup.OnClickListener() {
-        @Override
-        public void OnNegativeButton() {
-
-        }
-
-        @Override
-        public void OnPositiveButton() {
-            if(mRewardInterstitial.isLoaded()){
-                mRewardInterstitial.show();
-            }
-        }
-    });
-    ap.show();
-}
-
 ```
 
 #### *AppOpen Ads
@@ -566,24 +390,24 @@ protected void onCreate(Bundle savedInstanceState) {
     mAppOpen.setAppOpenListener(new AppOpenListener() {
         @Override
         public void onLoadAd() {
-            callbackStatus.append("onLoadAd() Called\n");
+            //onLoadAd Callback
             mAppOpen.adShow();
         }
         @Override
         public void onShowAd() {
-            callbackStatus.append("onShowAd() Called\n");
+	        //onShowAd Callback
         }
         @Override
-        public void onFailedAd() {
-            callbackStatus.append("onFailedAd() Called\n");
+        public void onLoadFailAd(BMAdError error) {
+	        //onLoadFailAd Callback
         }
         @Override
         public void onCloseAd() {
-            callbackStatus.append("onCloseAd() Called\n");
+            //onCloseAd Callback
         }
         @Override
-        public void onExpired() {
-            callbackStatus.append("onExpired() Called\n");
+        public void onCloseAd() {
+            //onCloseAd Callback
             mAppOpen.adLoad();
         }
     });
@@ -610,18 +434,16 @@ void setAdViewListener(AdViewListener)|Set listener to receive event callbacks f
 void setInterval(int)| Set the banner ad refresh interval.(60s~120s)
 void load()|Request a Banner ad. Re-requests the advertisement every set interval.
 void onceLoad()|Request a Banner ad. Regardless of the set interval, only one request.
-void setChildDirected(boolean)|If AD Network (ex:Admob) supports an interface for COPPA, it passes a value to the interface.
 void onPause()|Pause Banner ads.
 void onResume()|Resume Banner ads.
-void setCUID()|Register customer unique identifier.
 
 - AdViewListener
 
 Function|Description
 ---|---
-void onLoadAd(String networkName)|An event occurs when a banner ad is loaded. Returns the Ad NetworkName.
-void onFailedAd()|An event occurs when a banner ad loading fails. 
-void onClickedAd()|An event occurs when a banner ad is clicked.
+void onLoadAd()|An event occurs when a banner ad is loaded.
+void onLoadFailAd(BMAdError error)|An event occurs when a banner ad loading fails. You can check the error code and message with BMAError.
+void onClickAd()|An event occurs when a banner ad is clicked.
 ---
 #### *Interstitial Class Reference
 
@@ -632,21 +454,18 @@ Function|Description
 BidmadInterstitialAd(Activity, String)|BidmadInterstitialAd constructor. Set ZoneId together.
 void setInterstitialListener(InterstitialListener)|Set listener to receive event callbacks for interstitial ad.
 void load()|Request an interstitial ad.
-void show()|The loaded interstitial ad is displayed on the screen. 
+void show()|The loaded interstitial ad is displayed on the screen.
 boolean isLoaded()|Check whether interstitial ad is loaded or not.
-void setMute()|Mute setup for video interstitial ads. This option only works on some Ad Networks.
-void setChildDirected(boolean)|If AD Network (ex:Admob) supports an interface for COPPA, it passes a value to the interface.
-void setCUID()|Register customer unique identifier.
 static void setAutoReload(boolean)|Automatically request the next ad when an ad is Show. This feature will be discontinued when an ad Fail occurs. Default value is True.
 
 - InterstitialListener
 
 Function|Description
 ---|---
-void onLoadAd()|An event occurs when an interstitial ad is loaded. 
-void onShowAd()|An event occurs when an interstitial ad is shown. 
-void onFailedAd()|An event occurs when interstitial ad loading fails. 
-void onClickedAd()|An event occurs when a interstitial ad is clicked.
+void onLoadAd()|An event occurs when an interstitial ad is loaded.
+void onShowAd()|An event occurs when an interstitial ad is shown.
+void onLoadFailAd(BMAdError error)|An event occurs when interstitial ad loading fails. You can check the error code and message with BMAError.
+void onCloseAd()|An event occurs when a interstitial ad is Closed.
 ---
 #### *Reward Class Reference
 
@@ -657,25 +476,21 @@ Function|Description
 BidmadRewardAd(Activity, String)|BidmadRewardAd constructor. Set ZoneId together.
 void setRewardListener(RewardListener)|Set listener to receive event callbacks for reward ad.
 void load()|Request a reward ad.
-void show()|The loaded reward ad is displayed on the screen. 
+void show()|The loaded reward ad is displayed on the screen.
 boolean isLoaded()|Checks whether the reward ad is loaded or not.
-void setMute()|Perform Mute setting for reward ad. This option only works on some Ad Networks.
-void setChildDirected(boolean)|If AD Network (ex:Admob) supports an interface for COPPA, it passes a value to the interface.
-void setCUID()|Register customer unique identifier.
 static void setAutoReload(boolean)|Automatically request the next ad when an ad is Show. This feature will be discontinued when an ad Fail occurs. Default value is True.
 
 - RewardListener
 
 Function|Description
 ---|---
-void onLoadAd(String)|An event occurs when a reward ad is loaded, and the ZoneId is returned.
-void onShowAd(String)|An event occurs when a reward ad is shown, an event occurs, and the ZoneId is returned.
-void onFailedAd(String)|An event occurs when reward ad loading fails, and the ZoneId is returned.
-void onCompleteAd(String)|In the reward ad, when the reward condition is satisfied, an event occurs and the ZoneId is returned.
-void onSkippedAd(String)|In the reward ad, an event occurs when the ad ends when the reward condition is not satisfied and the ZoneId is returned.
-void onOpenAd(String)|An event occurs when the video of the reward ad starts, and the ZoneId is returned.
-void onCloseAd(String)|An event occurs when the reward ad ends, and the ZoneId is returned..
-void onClickedAd(String)|An event occurs when a reward ad is clicked, and the ZoneId is returned.
+void onLoadAd()|An event occurs when a reward ad is loaded.
+void onShowAd()|An event occurs when a reward ad is shown.
+void onLoadFailAd(BMAdError error)|An event occurs when reward ad loading fails, You can check the error code and message with BMAError.
+void onCompleteAd()|In the reward ad, when the reward condition is satisfied.
+void onSkipAd()|In the reward ad, an event occurs when the ad ends when the reward condition is not satisfied.
+void onCloseAd()|An event occurs when the reward ad ends.
+void onClickAd()|An event occurs when a reward ad is clicked
 ---
 #### *NativeAd Class Reference
 
@@ -688,89 +503,17 @@ void setNativeListener(NativeListener)|Set listener to receive event callbacks f
 void registerViewForInteraction(Int, Int, Int, Int, Int, Int)|Register detailed elements for Layout composing native advertisement.
 void load()|Request Native Ad.
 FrameLayout getNativeLayout()|Get the NativeAd layout.
-void setMute()|Perform Mute setting for native advertisement. This option only works on some Ad Networks.
-void setChildDirected(boolean)|If AD Network (ex:Admob) supports an interface for COPPA, it passes a value to the interface.
-void setCUID()|Register customer unique identifier.
 
 - NativeListener
 
 Function|Description
 ---|---
-void onSuccessHouseAd()|Deprecate event.
-void onSuccessAd()|An event occurs when native ad is loaded. 
-void onFailedAd()|An event occurs when loading of native ads fails.
-void onClickedAd()|An event occurs when a native ad is clicked. 
+void onLoadAd()|An event occurs when native ad is loaded.
+void onLoadFailAd(BMAdError error)|NAn event occurs when loading of native ads fails. You can check the error code and message with BMAError.
+void onClickAd()|An event occurs when a native ad is clicked.
 ---
-#### *Offerwall Class Reference
 
-- BidmadOfferwallAd
-
-Function|Description
----|---
-BidmadOfferwallAd(Activity activity, String zoneId, OfferwallInitListener listener)|BidmadOfferwallAd constructor. Set the offerwall ad ZoneId and Listener to receive events for Init together.
-void isSDKInit()|Check whether BidmadOfferwallAd ad is initialize or not
-void setOfferwallAdListener(OfferwallAdListener)|Set listener to receive event callbacks for Offerwall ad.
-void setOfferwallCurrencyListener(OfferwallCurrencyListener)|Set listener so that you can receive event callbacks for received Currency as offerwall ad.
-void load()|Request Offerwall ad.
-void show()|The loaded Offerwall ad is displayed on the screen. 
-boolean isLoaded()|Checks whether Offerwall ad is loaded or not.
-int getCurrencyBalance()|Check the Currency received by the Offerwall ads.
-void spendCurrency(int)|Spends the Currency received by the Offerwall ads.
-void setCUID()|Register customer unique identifier.
-
-- OfferwallInitListener
-
-Function|Description
----|---
-void onInitSuccess()|An event occurs when the Initialize operation performed when the BidmadOfferwallAd constructor is called is successful. 
-void onInitFail(String)|An event occurs when the Initialize operation performed when the BidmadOfferwallAd constructor is called fails. Return Error Message.
-
-- OfferwallAdListener
-
-Function|Description
----|---
-void onLoadAd()|An event occurs when Offerwall ad is loaded. 
-void onShowAd()|When an Offerwall ad is shown, an event occurs and the ZoneId is returned.
-void onFailedAd()|An event occurs when Offerwall ad load fails. 
-void onCloseAd()|An event occurs when Offerwall ad ends. 
-
-- OfferwallCurrencyListener
-
-Function|Description
----|---
-void onGetCurrencyBalanceSuccess(String, int)|An event occurs when the search for currency received through the Offerwall advertisement is successful. 
-void onGetCurrencyBalanceFail(String)|An event occurs when the inquiry of the Currency received by the Offerwall advertisement fails. Return Error Message.
-void onSpendCurrencySuccess(String, int)|An event occurs when the consumption of the Currency received by the Offerwall advertisement is successful. 
-void onSpendCurrencyFail(String)|An event occurs when the consumption of the Currency received by the Offerwall advertisement fails. Return Error Message.
----
-#### *RewardInterstitial Class Reference
-
-- BidmadRewardInterstitialAd
-
-Function|Description
----|---
-BidmadRewardInterstitialAd(Activity activity, String)|BidmadRewardInterstitialAd constructor. Set ZoneId together.
-void setRewardInterstitialListener(RewardInterstitialListener)|Set up listener to receive event callbacks for RewardInterstitial ads.
-void load()|Request RewardInterstitial Ads.
-void show()|Display the loaded RewardInterstitial advertisement on the screen. 
-boolean isLoaded()|Check whether RewardInterstitial ads are loaded.
-void setMute()|Set Mute for RewardInterstitial ads. This option only works with some Ad Networks.
-void setChildDirected(boolean)|If AD Network (ex:Admob) supports an interface for COPPA, it passes a value to the interface.
-void setCUID()|Register customer unique identifier.
-static void setAutoReload(boolean)|Automatically request the next ad when an ad is Show. This feature will be discontinued when an ad Fail occurs. Default value is True.
-
-- RewardInterstitialListener
-
-Function|Description
----|---
-void onLoadAd()|Event occurs when the RewardInterstitial ad is loaded.
-void onShowAd()|Event occurs when the RewardInterstitial ad is shown.
-void onFailedAd()|Event occurs when the RewardInterstitial ad is fails.
-void onCompleteAd()|Event occurs when the reward payment conditions are met in the RewardInterstitial ad.
-void onSkippedAd()|Event occurs when the RewardInterstitial ad ends without the reward payment conditions being met.
-void onCloseAd()|Event occurs when the RewardInterstitial ad ends.
----
-#### *AppOpen Class Reference
+#### *앱오픈광고 Class Reference
 
 - BidmadAppOpenAd
 
@@ -783,31 +526,29 @@ void start()|Register a LifecycleObserver to request and expose AppOpen ads acco
 void end()|Delete the registered LifecycleObserver.
 void adLoad()|Request an AppOpen ad.
 boolean isAdLoaded()|Check whether AppOpen ads are loaded.
-void adShow(boolean)|Display the loaded AppOpen advertisement on the screen. 
-void setCUID()|Register customer unique identifier.
-
+void adShow()|Display the loaded AppOpen advertisement on the screen.
 - AppOpenListener
 
 Function|Description
 ---|---
-void onLoadAd()|Event occurs when the RewardInterstitial ad is loaded.
-void onShowAd()|Event occurs when the RewardInterstitial ad is shown.
-void onFailedAd()|Event occurs when the RewardInterstitial ad is fails.
-void onCloseAd()|Event occurs when the RewardInterstitial ad ends.
-void onExpired()|Event occurs when a show is call after 3 hours or more have elapsed after loading the AppOpen ad.
+void onLoadAd()|Event occurs when the AppOpen ad is loaded.
+void onShowAd()|Event occurs when the AppOpen ad is shown.
+void onLoadFailAd(BMAdError error)|Event occurs when the AppOpen ad is fails. You can check the error code and message with BMAError.
+void onCloseAd()|Event occurs when the AppOpen ad is fails.
+void onExpireAd()|Event occurs when a show is call after 3 hours or more have elapsed after loading the AppOpen ad.
 
 - AppOpenLifecycleListener
 
 Function|Description
 ---|---
-void onActivityForGround()|The event is fired when onActivityForGround of Application.ActivityLifecycleCallbacks is called. 
+void onActivityForGround()|The event is fired when onActivityForGround of Application.ActivityLifecycleCallbacks is called.
 void onActivityCreated(Activity, Bundle)|The event is fired when onActivityCreated of Application.ActivityLifecycleCallbacks is called.
-void onActivityStarted(Activity)|The event is fired when onActivityStarted of Application.ActivityLifecycleCallbacks is called. 
-void onActivityResumed(Activity)|The event is fired when onActivityResumed of Application.ActivityLifecycleCallbacks is called. 
-void onActivityPaused(Activity)|The event is fired when onActivityPaused of Application.ActivityLifecycleCallbacks is called. 
-void onActivityStopped(Activity)|The event is fired when onActivityStopped of Application.ActivityLifecycleCallbacks is called. 
-void onActivitySaveInstanceState(Activity, Bundle)|The event is fired when onActivitySaveInstanceState of Application.ActivityLifecycleCallbacks is called. 
-void onActivityDestroyed(Activity)|The event is fired when onActivityDestroyed of Application.ActivityLifecycleCallbacks is called. 
+void onActivityStarted(Activity)|The event is fired when onActivityStarted of Application.ActivityLifecycleCallbacks is called.
+void onActivityResumed(Activity)|The event is fired when onActivityResumed of Application.ActivityLifecycleCallbacks is called.
+void onActivityPaused(Activity)|The event is fired when onActivityPaused of Application.ActivityLifecycleCallbacks is called.
+void onActivityStopped(Activity)|The event is fired when onActivityStopped of Application.ActivityLifecycleCallbacks is called.
+void onActivitySaveInstanceState(Activity, Bundle)|The event is fired when onActivitySaveInstanceState of Application.ActivityLifecycleCallbacks is called.
+void onActivityDestroyed(Activity)|The event is fired when onActivityDestroyed of Application.ActivityLifecycleCallbacks is called.
 ---
 #### *BidmadCommon Class Reference
 
@@ -819,11 +560,28 @@ String getSDKVersion()|Get SDK version information.
 void setDebugging(boolean)|When called with a true value, the log of the SDK is output.
 void setGgTestDeviceid()|Register with Google TEST device to receive test ads for Google ads.
 String getGgTestDeviceid()|Get the device ID registered with setGgTestDeviceid.
-void initializeSdk(Activity)|Perform BidmadSDK initialization..
+void initializeSdk(Activity, String)|Perform BidmadSDK initialization. Set the AppKey.
+void initializeSdk(Activity)|Perform BidmadSDK initialization. Set by the AppKey in AndroidManifest.xml.
 
----
+#### *AdOption Class Reference
+
+- AdOption
+
+Function|Description
+---|---
+static AdOption getInstance()|Returns a common AdOption.
+boolean isUseMute()|광고 음소거 설정여부를 가져옵니다.
+void setUseMute(boolean)|Gets whether advertisements are muted.
+boolean isChildDirected()|Return whether COPPA is applied.
+void setChildDirected(boolean)|Sets whether COPPA is applied.
+String getCuid()|Return the value that identifies the User.
+void setCuid(boolean)|Sets the value that identifies the User.
+boolean getUseServerSideCallback()|Verify that Server Side Callback is enabled.
+void setUseServerSideCallback(boolean)|Sets whether Server Side Callback is enabled.
+
+----
 ### 4. Note
 
 - [GDPR Guide](https://github.com/bidmad/Bidmad-Android/wiki/Android-GDPR-Guide-%5BENG%5D)
-- [v2.0.0.0 API Changes](https://github.com/bidmad/Bidmad-Android/wiki/v2.0.0.0-API-Migration-Guide%5BKOR%5D)
+- [v3.0.0 API Changes](https://github.com/bidmad/Bidmad-Android/wiki/BidmadSDK-3.0.0-API-Migration-Guide-(ENG))
 

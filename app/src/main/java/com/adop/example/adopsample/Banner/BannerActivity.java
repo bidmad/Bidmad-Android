@@ -6,6 +6,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import com.adop.example.adopsample.R;
+import com.adop.sdk.BMAdError;
 import com.adop.sdk.adview.AdViewListener;
 
 public class BannerActivity extends AppCompatActivity {
@@ -24,14 +25,15 @@ public class BannerActivity extends AppCompatActivity {
         //Require
         mAdView = new BidmadBannerAd(this, "944fe870-fa3a-4d1b-9cc2-38e50b2aed43");
         mAdView.setAdViewListener(new AdViewListener() {
+
             @Override
-            public void onLoadAd(String NetworkName) {
+            public void onLoadAd() {
                 callbackStatus.append("onLoadAd() Called\n");
             }
 
             @Override
-            public void onFailedAd() {
-                callbackStatus.append("onFailedAd() Called\n");
+            public void onLoadFailAd(BMAdError bmAdError) {
+                callbackStatus.append("onLoadFailAd() Called\n");
             }
 
             @Override

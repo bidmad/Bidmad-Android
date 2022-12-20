@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import com.adop.example.adopsample.R;
+import com.adop.sdk.BMAdError;
 import com.adop.sdk.appopen.AppOpenListener;
 import org.jetbrains.annotations.NotNull;
 
@@ -40,17 +41,20 @@ public class AppOpenActivity extends Activity {
             public void onShowAd() {
                 callbackStatus.append("onShowAd() Called\n");
             }
+
             @Override
-            public void onFailedAd() {
-                callbackStatus.append("onFailedAd() Called\n");
+            public void onLoadFailAd(BMAdError bmAdError) {
+                callbackStatus.append("onLoadFailAd() Called\n");
             }
+
             @Override
             public void onCloseAd() {
                 callbackStatus.append("onCloseAd() Called\n");
             }
+
             @Override
-            public void onExpired() {
-                callbackStatus.append("onExpired() Called\n");
+            public void onExpireAd() {
+                callbackStatus.append("onExpireAd() Called\n");
                 mAppOpen.adLoad();
             }
         });

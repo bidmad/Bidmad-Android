@@ -6,6 +6,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.adop.example.adopsample.R;
+import com.adop.sdk.BMAdError;
 import com.adop.sdk.nativead.NativeListener;
 
 public class NativeActivity extends AppCompatActivity {
@@ -43,9 +44,10 @@ public class NativeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailedAd() {
-                callbackStatus.append("onFailedAd() Called\n");
+            public void onLoadFailAd(BMAdError bmAdError) {
+                callbackStatus.append("onLoadFailAd() Called\n");
             }
+
 
             @Override
             public void onClickAd(){

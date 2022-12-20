@@ -4,7 +4,11 @@ import ad.helper.openbidding.reward.BidmadRewardAd;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.adop.adapter.fc.reward.RewardAdColony;
+import com.adop.adapter.fnc.reward.RewardPubMatic;
 import com.adop.example.adopsample.R;
+import com.adop.sdk.BMAdError;
 import com.adop.sdk.reward.RewardListener;
 
 public class RewardActivity extends AppCompatActivity {
@@ -23,46 +27,44 @@ public class RewardActivity extends AppCompatActivity {
         //Require
         mReward = new BidmadRewardAd(this,"7d9a2c9e-5755-4022-85f1-6d4fc79e4418");
         mReward.setRewardListener(new RewardListener() {
-            public void onLoadAd(String zoneId) {
+            @Override
+            public void onLoadAd() {
                 callbackStatus.append("onLoadAd() Called\n");
             }
 
             @Override
-            public void onShowAd(String zoneId) {
+            public void onShowAd() {
                 callbackStatus.append("onShowAd() Called\n");
             }
 
             @Override
-            public void onFailedAd(String zoneId) {
-                callbackStatus.append("onFailedAd() Called\n");
+            public void onLoadFailAd(BMAdError bmAdError) {
+                callbackStatus.append("onLoadFailAd() Called\n");
             }
 
             @Override
-            public void onCompleteAd(String zoneId) {
+            public void onCompleteAd() {
                 callbackStatus.append("onCompleteAd() Called\n");
             }
 
             @Override
-            public void onOpenAd(String zoneId) {
-                callbackStatus.append("onOpenAd() Called\n");
-            }
-
-            @Override
-            public void onCloseAd(String zoneId) {
+            public void onCloseAd() {
                 callbackStatus.append("onCloseAd() Called\n");
             }
 
             @Override
-            public void onClickAd(String zoneId) {
-                callbackStatus.append("onClickAd() Called\n");
+            public void onClickAd() {
+                callbackStatus.append("onSkippedAd() Called\n");
             }
 
             @Override
-            public void onSkippedAd(String zoneId) {
-                callbackStatus.append("onSkippedAd() Called\n");
-            }
-        });
+            public void onSkipAd() {
 
+            }
+
+
+        });
+        
         //Option(Use when needed)
 //        mReward.setChildDirected(true); //COPPA
 //        mReward.setCUID("YOUR ENCRYPTED CUID"); //Encrypt the identifier and send it to Bidmad.
@@ -71,9 +73,7 @@ public class RewardActivity extends AppCompatActivity {
         mReward.load();
 
         findViewById(R.id.showReward).setOnClickListener(v -> {
-            if(mReward.isLoaded()){
-                mReward.show();
-            }
+            mReward.show();
         });
     }
 }

@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.adop.example.adopsample.R;
+import com.adop.sdk.BMAdError;
 import com.adop.sdk.nativead.NativeListener;
 import java.util.ArrayList;
 
@@ -97,8 +98,8 @@ public class NativeCardListActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailedAd() {
-                    Log.d(LOG_TAG, "onFailedAd() Called\n");
+                public void onLoadFailAd(BMAdError bmAdError) {
+                    Log.d(LOG_TAG, "onLoadFailAd() Called\n");
                     isLoadedCall = false;
                 }
 

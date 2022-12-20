@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.adop.example.adopsample.R;
+import com.adop.sdk.BMAdError;
 import com.adop.sdk.interstitial.InterstitialListener;
 
 public class InterstitialActivity extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class InterstitialActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailedAd() {
+            public void onLoadFailAd(BMAdError bmAdError) {
                 callbackStatus.append("onFailedAd() Called\n");
             }
 
@@ -51,9 +52,7 @@ public class InterstitialActivity extends AppCompatActivity {
         mInterstitial.load();
 
         findViewById(R.id.showIntersitial).setOnClickListener(v -> {
-            if(mInterstitial.isLoaded()){
-                mInterstitial.show();
-            }
+            mInterstitial.show();
         });
     }
 }

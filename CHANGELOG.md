@@ -1,3 +1,9 @@
+# Version 3.0.0
+#### Changes
+- User interface changes such as initializeSdk, adoption, and callbacks
+- BidmadOfferwall, RewardInterstitial Removed as no longer supported.
+- Fix Bugs
+
 # Version 2.9.0.0
 #### Changes
 - Support for SSC of Pangle Network
