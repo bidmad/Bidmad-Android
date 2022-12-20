@@ -156,12 +156,10 @@ public static final ** CREATOR;
 #### *BidmadSDK 초기화 하기
 
 - 앱 시작 시 initializeSdk()를 호출합니다.
-- initializeSdk를 호출하지 않는 경우, SDK 자체적으로 수행하기 때문에 초회 광고 로딩이 늦어질 수 있습니다.
+- initializeSdk를 호출하지 않는 경우 광고를 로드할 수 없습니다.
 ```
-    BidmadCommon.initializeSdk()
+    BidmadCommon.initializeSdk(activity)
 ```
-- 전면 또는 보상형 광고를 사용하시는 경우에는 원활한 광고 노출을 위해 initializeSdk() 호출 대신
-  아래 전면 / 보상형 광고 가이드에 따라 앱 시작 시점에서 광고를 Load 하시고 원하시는 시점에 Show하시기 바랍니다.
 -  Insight 로그인 후 계정관리 > 나의 정보 > 상세 정보 에서 프리로드 사용여부를 체크 및 저장 하면 초기화 시 전면/보상형 광고를 Load 합니다.
 
 #### *배너광고 추가하기

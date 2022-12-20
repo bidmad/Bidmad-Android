@@ -156,13 +156,11 @@ public static final ** CREATOR;
 
 #### *Initializing BidmadSDK
 
-- Call initializeSdk() at app startup.
-- If initializeSdk is not called, the loading of the initial ad may be delayed because the SDK itself does it.
+- Call initializeSdk at app startup.
+- If initializeSdk is not called, You can't ad load.
 ```
-    BidmadCommon.initializeSdk()
+    BidmadCommon.initializeSdk(activity)
 ```
-- When using interstitial or rewarded ads, instead of calling initializeSdk() for smooth ad Show
-  According to the interstitial/rewarded advertisement guide below, load the advertisement at the start of the app and show it at the desired time.
 - When you login to Insight and  save the Preload check, Account > My Info > DETAIL INFORMATION interstitial or rewarded ads  is preloaded at initialization.
 
 #### *Banner Ads
