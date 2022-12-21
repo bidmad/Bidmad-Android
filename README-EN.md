@@ -128,14 +128,8 @@ public static final ** CREATOR;
    *Check the value of com.adop.sdk.AppKey at Account Management > My Information > Details after login to Insight.
 
 ```xml
-<application
-   android:usesCleartextTraffic="true"
+<application>
    ...
->
-   ...
-   <uses-library android:name="org.apache.http.legacy" android:required="false" />
-   <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
-   <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing" android:value="false" />
    <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="APPLICATION_ID"/>
    <meta-data android:name="com.adop.sdk.APP_KEY" android:value="INSERT_YOUR_APPKEY"/>
    ...

@@ -127,14 +127,8 @@ public static final ** CREATOR;
    *com.adop.sdk.AppKey의 value는 Insight 로그인 후 계정관리 > 나의 정보 > 상세 정보 에서 확인 바랍니다.
 
 ```xml
-<application
-   android:usesCleartextTraffic="true"
+<application>
    ...
->
-   ...
-   <uses-library android:name="org.apache.http.legacy" android:required="false" />
-   <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
-   <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing" android:value="false" />
    <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="APPLICATION_ID"/>
    <meta-data android:name="com.adop.sdk.APP_KEY" android:value="INSERT_YOUR_APPKEY"/>
    ...
