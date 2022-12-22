@@ -51,7 +51,7 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:3.0.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.0.1'
     implementation 'ad.helper.openbidding:admob-obh:3.0.0'
     implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.0.0'
     implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.0.0'
@@ -128,7 +128,8 @@ public static final ** CREATOR;
    *Check the value of com.adop.sdk.AppKey at Account Management > My Information > Details after login to Insight.
 
 ```xml
-<application>
+<application
+   android:usesCleartextTraffic="true">
    ...
    <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="APPLICATION_ID"/>
    <meta-data android:name="com.adop.sdk.APP_KEY" android:value="INSERT_YOUR_APPKEY"/>
