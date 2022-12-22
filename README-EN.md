@@ -125,7 +125,7 @@ public static final ** CREATOR;
 
 1. Declare the code below in the application tag of AndroidManifest.xml in the project([Guide](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D))<br>
    *Check the value of com.google.android.gms.ads.APPLICATION_ID on the admob dashboard.
-   *Check the value of com.adop.sdk.AppKey at Account Management > My Information > Details after login to Insight.
+   *Check the value of com.adop.sdk.APP_KEY at Account Management > My Information > Details after login to Insight.
 
 ```xml
 <application
