@@ -1,3 +1,7 @@
+# Version 3.0.1
+#### Changes
+- Fix banner bugs
+
 # Version 3.0.0
 #### Changes
 - User interface changes such as initializeSdk, adoption, and callbacks
