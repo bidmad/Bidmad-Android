@@ -50,10 +50,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:3.0.1'
-    implementation 'ad.helper.openbidding:admob-obh:3.0.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.0.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.0.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.1.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.1.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.1.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.1.0'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
