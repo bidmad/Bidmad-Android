@@ -50,7 +50,7 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:3.0.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.0.1'
     implementation 'ad.helper.openbidding:admob-obh:3.0.0'
     implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.0.0'
     implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.0.0'
@@ -124,10 +124,11 @@ public static final ** CREATOR;
 
 1. 프로젝트 내 AndroidManifest.xml의 application 태그 안에 아래 코드를 선언합니다([가이드](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BKR%5D))<br>
    *com.google.android.gms.ads.APPLICATION_ID의 value는 Admob 대시보드에서 확인 바랍니다.
-   *com.adop.sdk.AppKey의 value는 Insight 로그인 후 계정관리 > 나의 정보 > 상세 정보 에서 확인 바랍니다.
+   *com.adop.sdk.APP_KEY의 value는 Insight 로그인 후 계정관리 > 나의 정보 > 상세 정보 에서 확인 바랍니다.
 
 ```xml
-<application>
+<application
+   android:usesCleartextTraffic="true">
    ...
    <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="APPLICATION_ID"/>
    <meta-data android:name="com.adop.sdk.APP_KEY" android:value="INSERT_YOUR_APPKEY"/>
