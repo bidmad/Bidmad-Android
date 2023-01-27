@@ -1,3 +1,7 @@
+# Version 3.2.1
+#### Changes
+- Fix new atom network bug
+
 # Version 3.2.0
 #### Changes
 - Support Flutter NativeAd
