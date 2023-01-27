@@ -51,10 +51,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:3.1.0'
-    implementation 'ad.helper.openbidding:admob-obh:3.1.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.1.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.1.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.2.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.2.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.2.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.2.0'
 }
 ```
 3. Declare the option below in the android tag of the build.gradle file located in the project App-Level.
@@ -92,6 +92,9 @@ android {
 -keepclassmembers class * {
     @android.webkit.JavascriptInterface <methods>;
 }
+
+#prebid
+-keep class com.adop.prebid.** {*;}
 
 # Pangle
 -keep class com.bytedance.sdk.** { *; }
