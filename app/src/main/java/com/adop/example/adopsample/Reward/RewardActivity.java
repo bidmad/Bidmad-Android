@@ -54,12 +54,12 @@ public class RewardActivity extends AppCompatActivity {
 
             @Override
             public void onClickAd() {
-                callbackStatus.append("onSkippedAd() Called\n");
+                callbackStatus.append("onClickAd() Called\n");
             }
 
             @Override
             public void onSkipAd() {
-
+                callbackStatus.append("onSkippedAd() Called\n");
             }
 
 

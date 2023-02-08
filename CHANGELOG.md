@@ -1,6 +1,10 @@
+# Version 3.3.0
+#### Changes
+- Support Ad Network Coupang
+
 # Version 3.2.1
 #### Changes
-- Fix new atom network bug
+- Fix atom network bug
 
 # Version 3.2.0
 #### Changes
