@@ -52,9 +52,9 @@ allprojects {
 dependencies {
     ...
     implementation 'com.adop.sdk:bidmad-androidx:3.3.0'
-    implementation 'ad.helper.openbidding:admob-obh:3.3.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.3.1'
     implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.3.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.3.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.3.2'
 }
 ```
 3. Declare the option below in the android tag of the build.gradle file located in the project App-Level.
