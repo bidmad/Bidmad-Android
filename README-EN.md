@@ -9,16 +9,12 @@
    - [Interstitial Ads](#Interstitial-Ads)
    - [Reward Ads](#Reward-Ads)
    - [Native Ads](#Native-Ads)
-   - [Offerwall Ads](#Offerwall-Ads)
-   - [RewardInterstitial Ads](#RewardInterstitial-Ads)
    - [AppOpen Ads](#AppOpen-Ads)
 3. [Class Reference](#3-Class-Reference)
    - [Banner Class Reference](#Banner-Class-Reference)
    - [Interstitial Class Reference](#Interstitial-Class-Reference)
    - [Reward Class Reference](#Reward-Class-Reference)
    - [NativeAd Class Reference](#NativeAd-Class-Reference)
-   - [Offerwall Class Reference](#Offerwall-Class-Reference)
-   - [RewardInterstitial Class Reference](#RewardInterstitial-Class-Reference)
    - [AppOpen Class Reference](#AppOpen-Class-Reference)
 4. [Note](#4-Note)
 5. [Download the latest sample project](https://github.com/bidmad/Bidmad-Android/archive/master.zip)
@@ -571,7 +567,7 @@ void setUseMute(boolean)|Gets whether advertisements are muted.
 boolean isChildDirected()|Return whether COPPA is applied.
 void setChildDirected(boolean)|Sets whether COPPA is applied.
 String getCuid()|Return the value that identifies the User.
-void setCuid(boolean)|Sets the value that identifies the User.
+void setCuid(String)|Sets the value that identifies the User.
 boolean getUseServerSideCallback()|Verify that Server Side Callback is enabled.
 void setUseServerSideCallback(boolean)|Sets whether Server Side Callback is enabled.
 

@@ -8,16 +8,12 @@
    - [전면광고 추가하기](#전면광고-추가하기)
    - [보상형광고 추가하기](#보상형광고-추가하기)
    - [네이티브광고 추가하기](#네이티브광고-추가하기)
-   - [오퍼월광고 추가하기](#오퍼월광고-추가하기)
-   - [전면보상형광고 추가하기](#전면보상형광고-추가하기)
    - [앱오픈광고 추가하기](#앱오픈광고-추가하기)
 3. [Class Reference](#3-Class-Reference)
    - [배너광고 Class Reference](#배너광고-Class-Reference)
    - [전면광고 Class Reference](#전면광고-Class-Reference)
    - [보상형광고 Class Reference](#보상형광고-Class-Reference)
    - [네이티브광고 Class Reference](#네이티브광고-Class-Reference)
-   - [오퍼월광고 Class Reference](#오퍼월광고-Class-Reference)
-   - [전면보상형광고 Class Reference](#전면보상형광고-Class-Reference)
    - [앱오픈광고 Class Reference](#앱오픈광고-Class-Reference)
 4. [참고사항](#4-참고사항)
 5. [최신 샘플 프로젝트 다운로드](https://github.com/bidmad/Bidmad-Android/archive/master.zip)
@@ -571,7 +567,7 @@ void setUseMute(boolean)|True 값으로 호출 시 광고 음소거가 설정됩
 boolean isChildDirected()|COPPA 적용 여부를 확인합니다.
 void setChildDirected(boolean)|COPPA 적용 여부를 설정합니다.
 String getCuid()|User를 식별하는 ID 값을 확인합니다.
-void setCuid(boolean)|User를 식별하는 ID 값을 설정합니다.
+void setCuid(String)|User를 식별하는 ID 값을 설정합니다.
 boolean getUseServerSideCallback()|Server Side Callback 사용 여부를 확인합니다.
 void setUseServerSideCallback(boolean)|Server Side Callback 사용 여부를 설정합니다.
 
