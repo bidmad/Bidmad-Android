@@ -1,3 +1,8 @@
+# Version 3.4.0
+#### Changes
+- Support Ad Network NasMedia
+- Improve Monitoring related functions
+
 # Version 3.3.0
 #### Changes
 - Support Ad Network Coupang
