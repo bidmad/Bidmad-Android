@@ -1,3 +1,8 @@
+# Version 3.5.0
+#### Changes
+- Update Monitoring related functions 
+- Fix bugs
+
 # Version 3.4.0
 #### Changes
 - Support Ad Network NasMedia
