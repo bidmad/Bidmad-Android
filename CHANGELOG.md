@@ -1,3 +1,10 @@
+# Version 3.6.0
+#### Changes
+- Ad Network SDK Remove(AdMixer / InMobi / PreBid / Tapjoy)
+- Ad Network SDK Update(Admob / UnityAds / AdColony / Applovin / Pangle / Fyber / Facebook / Ironsource / Vungle / AdPie / Adfit / PubMatic)
+- Add Initialize Callback Listener
+- Add Banner Reposition Functions with Unity Platform
+
 # Version 3.5.0
 #### Changes
 - Update Monitoring related functions 
