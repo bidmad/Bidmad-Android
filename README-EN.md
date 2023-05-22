@@ -1,4 +1,4 @@
-# BidmadSDK(v3.5.0)
+# BidmadSDK(v3.6.0)
 ### Shortcuts
 
 1. [SDK Settings](#1-SDK-Settings)
@@ -47,10 +47,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:3.5.0'
-    implementation 'ad.helper.openbidding:admob-obh:3.5.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.5.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.5.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.6.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.6.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.6.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.6.0'
 }
 ```
 3. Declare the option below in the android tag of the build.gradle file located in the project App-Level.
@@ -88,9 +88,6 @@ android {
 -keepclassmembers class * {
     @android.webkit.JavascriptInterface <methods>;
 }
-
-#prebid
--keep class com.adop.prebid.** {*;}
 
 # Pangle
 -keep class com.bytedance.sdk.** { *; }
@@ -152,8 +149,17 @@ public static final ** CREATOR;
 
 - Call initializeSdk at app startup.
 - If initializeSdk is not called, You can't ad load.
+- The initialization status can be checked using the initialize callback.
 ```
     BidmadCommon.initializeSdk(activity)
+        /** with initialize Callback
+      BidmadCommon.initializeSdk(this, new BidmadInitializeListener() {
+         @Override
+         public void onInitialized(boolean isComplete) {
+         }
+      });
+   */  
+   
 ```
 - When you login to Insight and  save the Preload check, Account > My Info > DETAIL INFORMATION interstitial or rewarded ads  is preloaded at initialization.
 
@@ -554,6 +560,8 @@ void setGgTestDeviceid()|Register with Google TEST device to receive test ads fo
 String getGgTestDeviceid()|Get the device ID registered with setGgTestDeviceid.
 void initializeSdk(Activity, String)|Perform BidmadSDK initialization. Set the AppKey.
 void initializeSdk(Activity)|Perform BidmadSDK initialization. Set by the AppKey in AndroidManifest.xml.
+void initializeSdk(Activity, String, BidmadInitializeListener)|Perform BidmadSDK initialization. Set the AppKey. BidmadInitializeListener conveys the initialization status.
+void initializeSdk(Activity, BidmadInitializeListener)|Perform BidmadSDK initialization. Set by the AppKey in AndroidManifest.xml. BidmadInitializeListener conveys the initialization status.
 
 #### *AdOption Class Reference
 

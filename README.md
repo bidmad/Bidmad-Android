@@ -1,4 +1,4 @@
-# BidmadSDK(v3.5.0)
+# BidmadSDK(v3.6.0)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
    - [Gradle](#Gradle)
@@ -46,10 +46,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:3.5.0'
-    implementation 'ad.helper.openbidding:admob-obh:3.5.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.5.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.5.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.6.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.6.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.6.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.6.0'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
@@ -87,9 +87,6 @@ android {
 -keepclassmembers class * {
     @android.webkit.JavascriptInterface <methods>;
 }
-
-#prebid
--keep class com.adop.prebid.** {*;}
 
 # Pangle
 -keep class com.bytedance.sdk.** { *; }
@@ -151,8 +148,17 @@ public static final ** CREATOR;
 
 - 앱 시작 시 initializeSdk()를 호출합니다.
 - initializeSdk를 호출하지 않는 경우 광고를 로드할 수 없습니다.
+- initiaize Callback을 사용하여 초기화 여부를 확인할 수 있습니다. 
 ```
-    BidmadCommon.initializeSdk(activity)
+    BidmadCommon.initializeSdk(activity);
+    /** with initialize Callback
+      BidmadCommon.initializeSdk(this, new BidmadInitializeListener() {
+         @Override
+         public void onInitialized(boolean isComplete) {
+         }
+      });
+   */  
+    
 ```
 -  Insight 로그인 후 계정관리 > 나의 정보 > 상세 정보 에서 프리로드 사용여부를 체크 및 저장 하면 초기화 시 전면/보상형 광고를 Load 합니다.
 
@@ -554,6 +560,8 @@ void setGgTestDeviceid()|Google TEST 기기로 등록하여 구글 광고에 대
 String getGgTestDeviceid()|setGgTestDeviceid로 등록한 기기 ID를 가져옵니다.
 void initializeSdk(Activity, String)|BidmadSDK 초기화 작업을 수행합니다. AppKey를 설정합니다.
 void initializeSdk(Activity)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppKey를 설정합니다.
+void initializeSdk(Activity, String, BidmadInitializeListener)|BidmadSDK 초기화 작업을 수행합니다. BidmadInitializeListener을 통해 초기화 여부를 전달 받습니다.
+void initializeSdk(Activity, BidmadInitializeListener)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppKey를 설정합니다. BidmadInitializeListener을 통해 초기화 여부를 전달 받습니다.
 
 #### *AdOption Class Reference
 

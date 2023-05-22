@@ -16,9 +16,6 @@
     @android.webkit.JavascriptInterface <methods>;
 }
 
-#prebid
--keep class com.adop.prebid.** {*;}
-
 # Pangle
 -keep class com.bytedance.sdk.** { *; }
 -keep class com.bykv.vk.openvk.component.video.api.** { *; }
