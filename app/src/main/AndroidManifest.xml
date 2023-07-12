@@ -31,6 +31,7 @@
         <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing"
             android:value="false" />
         <meta-data android:name="com.adop.sdk.APP_KEY" android:value="6933aab2-7f78-11ed-a117-026864a21938"/>
+        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3940256099942544~3347511713"/>
     </application>
 
     <!-- AdMob Mediation Permission-->

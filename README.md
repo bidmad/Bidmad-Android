@@ -1,4 +1,4 @@
-# BidmadSDK(v3.6.0)
+# BidmadSDK(v3.7.0)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
    - [Gradle](#Gradle)
@@ -46,10 +46,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:3.6.0'
-    implementation 'ad.helper.openbidding:admob-obh:3.6.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.6.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.6.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.7.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.7.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.7.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.7.0'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
@@ -148,7 +148,7 @@ public static final ** CREATOR;
 
 - 앱 시작 시 initializeSdk()를 호출합니다.
 - initializeSdk를 호출하지 않는 경우 광고를 로드할 수 없습니다.
-- initiaize Callback을 사용하여 초기화 여부를 확인할 수 있습니다. 
+- initiaize Callback을 사용하여 초기화 여부를 확인할 수 있습니다.
 ```
     BidmadCommon.initializeSdk(activity);
     /** with initialize Callback
@@ -548,6 +548,7 @@ void onActivityStopped(Activity)|Application.ActivityLifecycleCallbacks의 onAct
 void onActivitySaveInstanceState(Activity, Bundle)|Application.ActivityLifecycleCallbacks의 onActivitySaveInstanceState가 호출되면 이벤트가 발생합니다.
 void onActivityDestroyed(Activity)|Application.ActivityLifecycleCallbacks의 onActivityDestroyed가 호출되면 이벤트가 발생합니다.
 ---
+
 #### *BidmadCommon Class Reference
 
 - BidmadCommon
@@ -562,6 +563,7 @@ void initializeSdk(Activity, String)|BidmadSDK 초기화 작업을 수행합니�
 void initializeSdk(Activity)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppKey를 설정합니다.
 void initializeSdk(Activity, String, BidmadInitializeListener)|BidmadSDK 초기화 작업을 수행합니다. BidmadInitializeListener을 통해 초기화 여부를 전달 받습니다.
 void initializeSdk(Activity, BidmadInitializeListener)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppKey를 설정합니다. BidmadInitializeListener을 통해 초기화 여부를 전달 받습니다.
+---
 
 #### *AdOption Class Reference
 
@@ -578,10 +580,22 @@ String getCuid()|User를 식별하는 ID 값을 확인합니다.
 void setCuid(String)|User를 식별하는 ID 값을 설정합니다.
 boolean getUseServerSideCallback()|Server Side Callback 사용 여부를 확인합니다.
 void setUseServerSideCallback(boolean)|Server Side Callback 사용 여부를 설정합니다.
-
 ----
-### 4. 참고사항
 
+#### *AdFreeInformation Class Reference
+
+- AdFreeInformation
+
+Function|Description
+---|---
+static AdFreeInformation getInstance()| 프리광고에 대한 정보를 얻습니다.
+int getAdFreeStatus | 광고 상태를 확인합니다.
+void setOnAdFreeListener(AdFreeEventListener) |AdFreeEventListener으로 광고 상태변경 정보를 받기위해 listener를 설정합니다.
+interface AdFreeEventListener |AdFreeEventListener를 통해 광고 상태 정보를 전달 받습니다.
+----
+
+### 4. 참고사항
 - [GDPR 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Android-GDPR-Guide-%5BKOR%5D)
+- [쿠팡 네트워크 광고 차단 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Android-Coupang-Network-Ad-Block-Guide%5BKOR%5D)
 - [v3.0.0 API 변경 내역](https://github.com/bidmad/Bidmad-Android/wiki/BidmadSDK-3.0.0-API-Migration-Guide)
 

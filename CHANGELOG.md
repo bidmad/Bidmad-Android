@@ -1,3 +1,8 @@
+# Version 3.7.0
+#### Changes
+- Support Coupang Ad Network Banner / NativeAd
+- Support Ad Block callback by Coupang Ad Network
+
 # Version 3.6.0
 #### Changes
 - Ad Network SDK Remove(AdMixer / InMobi / PreBid / Tapjoy)
@@ -7,7 +12,7 @@
 
 # Version 3.5.0
 #### Changes
-- Update Monitoring related functions 
+- Update Monitoring related functions
 - Fix bugs
 
 # Version 3.4.0
@@ -87,7 +92,7 @@
 
 # Version 2.2.0.0
 #### Changes
-- Add ironsource / applovin MAX / inmobi / vungle network 
+- Add ironsource / applovin MAX / inmobi / vungle network
 - Add tapjoy interstitial / reward
 
 # Version 2.1.0.0
@@ -122,7 +127,7 @@
 # Version 1.14.0
 #### Changes
 - Add rewardInterstitial
-- Add pangle network 
+- Add pangle network
 - Add adColony / unityAds reward SSC
 - Improve appopen related functions
 - Improve admob banner related functions

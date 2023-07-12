@@ -1,4 +1,4 @@
-# BidmadSDK(v3.6.0)
+# BidmadSDK(v3.7.0)
 ### Shortcuts
 
 1. [SDK Settings](#1-SDK-Settings)
@@ -47,10 +47,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:3.6.0'
-    implementation 'ad.helper.openbidding:admob-obh:3.6.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.6.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.6.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.7.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.7.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.7.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.7.0'
 }
 ```
 3. Declare the option below in the android tag of the build.gradle file located in the project App-Level.
@@ -443,6 +443,7 @@ void onLoadAd()|An event occurs when a banner ad is loaded.
 void onLoadFailAd(BMAdError error)|An event occurs when a banner ad loading fails. You can check the error code and message with BMAError.
 void onClickAd()|An event occurs when a banner ad is clicked.
 ---
+
 #### *Interstitial Class Reference
 
 - BidmadInterstitialAd
@@ -465,6 +466,7 @@ void onShowAd()|An event occurs when an interstitial ad is shown.
 void onLoadFailAd(BMAdError error)|An event occurs when interstitial ad loading fails. You can check the error code and message with BMAError.
 void onCloseAd()|An event occurs when a interstitial ad is Closed.
 ---
+
 #### *Reward Class Reference
 
 - BidmadRewardAd
@@ -490,6 +492,7 @@ void onSkipAd()|In the reward ad, an event occurs when the ad ends when the rewa
 void onCloseAd()|An event occurs when the reward ad ends.
 void onClickAd()|An event occurs when a reward ad is clicked
 ---
+
 #### *NativeAd Class Reference
 
 - BidmadNativeAd
@@ -548,6 +551,7 @@ void onActivityStopped(Activity)|The event is fired when onActivityStopped of Ap
 void onActivitySaveInstanceState(Activity, Bundle)|The event is fired when onActivitySaveInstanceState of Application.ActivityLifecycleCallbacks is called.
 void onActivityDestroyed(Activity)|The event is fired when onActivityDestroyed of Application.ActivityLifecycleCallbacks is called.
 ---
+
 #### *BidmadCommon Class Reference
 
 - BidmadCommon
@@ -562,6 +566,7 @@ void initializeSdk(Activity, String)|Perform BidmadSDK initialization. Set the A
 void initializeSdk(Activity)|Perform BidmadSDK initialization. Set by the AppKey in AndroidManifest.xml.
 void initializeSdk(Activity, String, BidmadInitializeListener)|Perform BidmadSDK initialization. Set the AppKey. BidmadInitializeListener conveys the initialization status.
 void initializeSdk(Activity, BidmadInitializeListener)|Perform BidmadSDK initialization. Set by the AppKey in AndroidManifest.xml. BidmadInitializeListener conveys the initialization status.
+---
 
 #### *AdOption Class Reference
 
@@ -570,7 +575,7 @@ void initializeSdk(Activity, BidmadInitializeListener)|Perform BidmadSDK initial
 Function|Description
 ---|---
 static AdOption getInstance()|Returns a common AdOption.
-boolean isUseMute()|광고 음소거 설정여부를 가져옵니다.
+boolean isUseMute()|Gets whether to mute ads.
 void setUseMute(boolean)|Gets whether advertisements are muted.
 boolean isChildDirected()|Return whether COPPA is applied.
 void setChildDirected(boolean)|Sets whether COPPA is applied.
@@ -578,10 +583,22 @@ String getCuid()|Return the value that identifies the User.
 void setCuid(String)|Sets the value that identifies the User.
 boolean getUseServerSideCallback()|Verify that Server Side Callback is enabled.
 void setUseServerSideCallback(boolean)|Sets whether Server Side Callback is enabled.
-
 ----
-### 4. Note
 
+#### *AdFreeInformation Class Reference
+
+- AdFreeInformation
+
+Function|Description
+---|---
+static AdFreeInformation getInstance()| Get information about Free Ad
+int getAdFreeStatus | The Ad status check.
+void setOnAdFreeListener(AdFreeEventListener) |AdFreeEventListener sets a listener to receive information about ad status changes.
+interface AdFreeEventListener |AdFreeEventListener receives advertisement status information.
+---
+
+### 4. Note
 - [GDPR Guide](https://github.com/bidmad/Bidmad-Android/wiki/Android-GDPR-Guide-%5BENG%5D)
+- [Coupang Network Ad Block Guide] (https://github.com/bidmad/Bidmad-Android/wiki/Android-Coupang-Network-Ad-Block-Guide%5BENG%5D)
 - [v3.0.0 API Changes](https://github.com/bidmad/Bidmad-Android/wiki/BidmadSDK-3.0.0-API-Migration-Guide-(ENG))
 
