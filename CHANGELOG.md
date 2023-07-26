@@ -1,3 +1,7 @@
+# Version 3.7.1
+#### Changes
+- Fix Coupang Ad Network bug
+
 # Version 3.7.0
 #### Changes
 - Support Coupang Ad Network Banner / NativeAd

@@ -599,6 +599,5 @@ interface AdFreeEventListener |AdFreeEventListener receives advertisement status
 
 ### 4. Note
 - [GDPR Guide](https://github.com/bidmad/Bidmad-Android/wiki/Android-GDPR-Guide-%5BENG%5D)
-- [Coupang Network Ad Block Guide] (https://github.com/bidmad/Bidmad-Android/wiki/Android-Coupang-Network-Ad-Block-Guide%5BENG%5D)
 - [v3.0.0 API Changes](https://github.com/bidmad/Bidmad-Android/wiki/BidmadSDK-3.0.0-API-Migration-Guide-(ENG))
-
+- [Coupang Network Ad Block Guide] (https://github.com/bidmad/Bidmad-Android/wiki/Android-Coupang-Network-Ad-Block-Guide%5BENG%5D)

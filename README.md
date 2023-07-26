@@ -46,8 +46,8 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:3.7.0'
-    implementation 'ad.helper.openbidding:admob-obh:3.7.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.7.1'
+    implementation 'ad.helper.openbidding:admob-obh:3.7.1'
     implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.7.0'
     implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.7.0'
 }
@@ -596,6 +596,5 @@ interface AdFreeEventListener |AdFreeEventListener를 통해 광고 상태 정�
 
 ### 4. 참고사항
 - [GDPR 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Android-GDPR-Guide-%5BKOR%5D)
-- [쿠팡 네트워크 광고 차단 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Android-Coupang-Network-Ad-Block-Guide%5BKOR%5D)
 - [v3.0.0 API 변경 내역](https://github.com/bidmad/Bidmad-Android/wiki/BidmadSDK-3.0.0-API-Migration-Guide)
-
+- [쿠팡 네트워크 광고 차단 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Android-Coupang-Network-Ad-Block-Guide%5BKOR%5D)
