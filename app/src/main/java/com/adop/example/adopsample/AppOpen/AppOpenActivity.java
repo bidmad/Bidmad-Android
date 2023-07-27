@@ -30,7 +30,7 @@ public class AppOpenActivity extends Activity {
 
         callbackStatus = findViewById(R.id.appopenCallbackStatus);
 
-        mAppOpen = new BidmadAppOpenAd(this.getApplication(), "33906f96-dae8-4790-8ce4-d1f287ba00b2", BidmadAppOpenAd.ORIENTATION_PORTRAIT);
+        mAppOpen = new BidmadAppOpenAd(this.getApplication(), "551e3867-c15b-4e7e-9f63-071cddaaa083", BidmadAppOpenAd.ORIENTATION_PORTRAIT);
         mAppOpen.setAppOpenListener(new AppOpenListener() {
             @Override
             public void onLoadAd() {
