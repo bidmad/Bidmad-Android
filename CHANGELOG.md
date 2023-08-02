@@ -1,6 +1,6 @@
 # Version 3.7.1
 #### Changes
-- Fix Coupang Ad Network bug
+- Fix bug Coupang Ad Network Orientation(Interstitial/Reward)
 
 # Version 3.7.0
 #### Changes
