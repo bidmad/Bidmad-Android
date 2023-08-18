@@ -1,4 +1,4 @@
-# BidmadSDK(v3.7.1)
+# BidmadSDK(v3.8.0)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
    - [Gradle](#Gradle)
