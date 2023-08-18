@@ -1,3 +1,8 @@
+# Version 3.8.0
+#### Changes
+- Ad Network SDK Update(Admob / Applovin / Pangle / Fyber)
+- Fix Pangle network SSC Deprecated code
+
 # Version 3.7.1
 #### Changes
 - Fix bug Coupang Ad Network Orientation(Interstitial/Reward)

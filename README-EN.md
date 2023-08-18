@@ -47,10 +47,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:3.7.0'
-    implementation 'ad.helper.openbidding:admob-obh:3.7.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.7.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.7.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.8.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.8.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.8.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.8.0'
 }
 ```
 3. Declare the option below in the android tag of the build.gradle file located in the project App-Level.
@@ -563,9 +563,13 @@ void setDebugging(boolean)|When called with a true value, the log of the SDK is 
 void setGgTestDeviceid()|Register with Google TEST device to receive test ads for Google ads.
 String getGgTestDeviceid()|Get the device ID registered with setGgTestDeviceid.
 void initializeSdk(Activity, String)|Perform BidmadSDK initialization. Set the AppKey.
+void initializeSdk(Context, String)|Perform BidmadSDK initialization. Set the AppKey.
 void initializeSdk(Activity)|Perform BidmadSDK initialization. Set by the AppKey in AndroidManifest.xml.
+void initializeSdk(Context)|Perform BidmadSDK initialization. Set by the AppKey in AndroidManifest.xml.
 void initializeSdk(Activity, String, BidmadInitializeListener)|Perform BidmadSDK initialization. Set the AppKey. BidmadInitializeListener conveys the initialization status.
+void initializeSdk(Context, String, BidmadInitializeListener)|Perform BidmadSDK initialization. Set the AppKey. BidmadInitializeListener conveys the initialization status.
 void initializeSdk(Activity, BidmadInitializeListener)|Perform BidmadSDK initialization. Set by the AppKey in AndroidManifest.xml. BidmadInitializeListener conveys the initialization status.
+void initializeSdk(Context, BidmadInitializeListener)|Perform BidmadSDK initialization. Set by the AppKey in AndroidManifest.xml. BidmadInitializeListener conveys the initialization status.
 ---
 
 #### *AdOption Class Reference

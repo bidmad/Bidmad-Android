@@ -46,10 +46,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:3.7.1'
-    implementation 'ad.helper.openbidding:admob-obh:3.7.1'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.7.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.7.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.8.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.8.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.8.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.8.0'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
@@ -560,9 +560,13 @@ void setDebugging(boolean)|True값으로 호출 시 SDK의 로그를 출력합�
 void setGgTestDeviceid()|Google TEST 기기로 등록하여 구글 광고에 대한 테스트 광고를 수신합니다.
 String getGgTestDeviceid()|setGgTestDeviceid로 등록한 기기 ID를 가져옵니다.
 void initializeSdk(Activity, String)|BidmadSDK 초기화 작업을 수행합니다. AppKey를 설정합니다.
+void initializeSdk(Context, String)|BidmadSDK 초기화 작업을 수행합니다. AppKey를 설정합니다.
 void initializeSdk(Activity)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppKey를 설정합니다.
+void initializeSdk(Context)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppKey를 설정합니다.
 void initializeSdk(Activity, String, BidmadInitializeListener)|BidmadSDK 초기화 작업을 수행합니다. BidmadInitializeListener을 통해 초기화 여부를 전달 받습니다.
+void initializeSdk(Context, String, BidmadInitializeListener)|BidmadSDK 초기화 작업을 수행합니다. BidmadInitializeListener을 통해 초기화 여부를 전달 받습니다.
 void initializeSdk(Activity, BidmadInitializeListener)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppKey를 설정합니다. BidmadInitializeListener을 통해 초기화 여부를 전달 받습니다.
+void initializeSdk(Context, BidmadInitializeListener)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppKey를 설정합니다. BidmadInitializeListener을 통해 초기화 여부를 전달 받습니다.
 ---
 
 #### *AdOption Class Reference
