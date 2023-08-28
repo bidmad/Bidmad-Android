@@ -48,7 +48,7 @@ allprojects {
 dependencies {
     ...
     implementation 'com.adop.sdk:bidmad-androidx:3.8.0'
-    implementation 'ad.helper.openbidding:admob-obh:3.8.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.8.1'
     implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.8.0'
     implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.8.0'
 }

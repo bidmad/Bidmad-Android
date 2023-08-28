@@ -1,3 +1,7 @@
+# Version 3.8.1
+#### Changes
+- Banner bug fix using Contex
+
 # Version 3.8.0
 #### Changes
 - Ad Network SDK Update(Admob / Applovin / Pangle / Fyber)
