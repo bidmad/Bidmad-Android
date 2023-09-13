@@ -4,7 +4,7 @@ android {
     compileSdkVersion 31
     buildToolsVersion "31.0.0"
     defaultConfig {
-        applicationId "com.adop.example.adopsample"
+        applicationId "com.adop.example.adopsample_390"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode 1
@@ -39,8 +39,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.appcompat:appcompat:1.2.0"
 
-    implementation 'com.adop.sdk:bidmad-androidx:3.8.0'
-    implementation 'ad.helper.openbidding:admob-obh:3.8.1'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.8.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.8.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.9.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.9.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.9.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.9.0'
 }

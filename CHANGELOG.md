@@ -1,6 +1,12 @@
+# Version 3.9.0
+#### Changes
+- Support Context For NativeAds
+- Change AppOpen interface spec
+- Banner Refresh bug fix
+
 # Version 3.8.1
 #### Changes
-- Banner bug fix using Contex
+- Banner bug fix using Context
 
 # Version 3.8.0
 #### Changes

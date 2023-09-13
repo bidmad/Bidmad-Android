@@ -1,4 +1,4 @@
-# BidmadSDK(v3.8.0)
+# BidmadSDK(v3.9.0)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
    - [Gradle](#Gradle)
@@ -46,10 +46,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:3.8.0'
-    implementation 'ad.helper.openbidding:admob-obh:3.8.1'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.8.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.8.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.9.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.9.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.9.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.9.0'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
@@ -383,7 +383,7 @@ protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_appopen);
 
-    mAppOpen = new BidmadAppOpenAd(this.getApplication(), "YOUR ZONE ID", BidmadAppOpenAd.ORIENTATION_PORTRAIT);
+    mAppOpen = new BidmadAppOpenAd(this.getApplication(), "YOUR ZONE ID");
     mAppOpen.setAppOpenListener(new AppOpenListener() {
         @Override
         public void onLoadAd() {
@@ -516,7 +516,7 @@ void onClickAd()|Native 광고 Click시 이벤트가 발생합니다.
 
 Function|Description
 ---|---
-BidmadAppOpenAd(Application, String, int)|BidmadAppOpenAd 생성자입니다. 앱오픈광고 ZoneId와 Orientation을 같이 셋팅합니다.
+BidmadAppOpenAd(Application, String)|BidmadAppOpenAd 생성자입니다. 앱오픈광고 ZoneId를 셋팅합니다.
 void setAppOpenListener(AppOpenListener)|AppOpen 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void setAppOpenLifecycleListener(AppOpenLifecycleListener)|Lifecycle에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void start()|LifecycleObserver를 등록하여 Lifecycle에 따라 AppOpen 광고를 요청하고 노출시킵니다.

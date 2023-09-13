@@ -1,4 +1,4 @@
-# BidmadSDK(v3.8.0)
+# BidmadSDK(v3.9.0)
 ### Shortcuts
 
 1. [SDK Settings](#1-SDK-Settings)
@@ -47,10 +47,10 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:3.8.0'
-    implementation 'ad.helper.openbidding:admob-obh:3.8.1'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.8.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.8.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.9.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.9.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.9.0'
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.9.0'
 }
 ```
 3. Declare the option below in the android tag of the build.gradle file located in the project App-Level.
@@ -384,7 +384,7 @@ protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_appopen);
 
-    mAppOpen = new BidmadAppOpenAd(this.getApplication(), "YOUR ZONE ID", BidmadAppOpenAd.ORIENTATION_PORTRAIT);
+    mAppOpen = new BidmadAppOpenAd(this.getApplication(), "YOUR ZONE ID");
     mAppOpen.setAppOpenListener(new AppOpenListener() {
         @Override
         public void onLoadAd() {
@@ -520,7 +520,7 @@ void onClickAd()|An event occurs when a native ad is clicked.
 
 Function|Description
 ---|---
-BidmadAppOpenAd(Application, String, int)|BidmadAppOpenAd constructor. Set AppOpenAd ZoneId and Orientation.
+BidmadAppOpenAd(Application, String)|BidmadAppOpenAd constructor. Set AppOpenAd ZoneId.
 void setAppOpenListener(AppOpenListener)|Set up a listener to receive event callbacks for AppOpen ads.
 void setAppOpenLifecycleListener(AppOpenLifecycleListener)|Set up a listener to receive event callbacks for the Lifecycle.
 void start()|Register a LifecycleObserver to request and expose AppOpen ads according to the Lifecycle.
