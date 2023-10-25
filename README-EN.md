@@ -26,6 +26,7 @@
 
 #### *Gradle
 1. Declares the repository in the build.gradle file located at the top-level of the project.
+   Starting from SDK version 3.10.0 or higher, you can add dependencies for each ad network. For additional mediation ad settings, please contact the TechLabs Platform Division operations team.
 
 ```java
 allprojects {
@@ -33,12 +34,9 @@ allprojects {
        ...
        google()
        mavenCentral()
-       maven { url "https://devrepo.kakao.com/nexus/content/groups/public/" } //Adift
        maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //bidmad
        maven { url "https://sdk.tapjoy.com/" } //Tapjoy
        maven { url "https://artifact.bytedance.com/repository/pangle" } //Pangle
-       maven { url "https://jitpack.io" } //Adpie
-       maven { url "https://android-sdk.is.com/" } //ironsource
        maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
 }
 ```
@@ -47,10 +45,17 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:3.9.0'
-    implementation 'ad.helper.openbidding:admob-obh:3.9.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.9.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.9.0'
+        implementation 'com.adop.sdk:bidmad-androidx:3.10.0'
+        implementation 'ad.helper.openbidding:admob-obh:3.10.0'
+        implementation 'com.adop.sdk.adapter:admob:22.0.0.0'
+        implementation 'com.adop.sdk.adapter:adcolony:4.8.0.0'
+        implementation 'com.adop.sdk.adapter:applovin:11.9.0.0'
+        implementation 'com.adop.sdk.adapter:coupang:1.0.0.0'
+        implementation 'com.adop.sdk.adapter:fyber:8.2.3.0'
+        implementation 'com.adop.sdk.adapter:pangle:5.2.0.3.0'
+        implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.0'
+        implementation 'com.adop.sdk.adapter:unityads:4.6.1.0'
+        implementation 'com.adop.sdk.adapter:vungle:6.12.1.0'
 }
 ```
 3. Declare the option below in the android tag of the build.gradle file located in the project App-Level.
@@ -73,8 +78,7 @@ android {
 ```cpp
 -keep class com.adop.sdk.** { *; }
 -keep class ad.helper.openbidding.** { *; }
--keep class com.adop.adapter.fc.** { *; }
--keep class com.adop.adapter.fnc.** { *; }
+-keep class com.adop.sdk.adapter.**{ *; }
 -keepnames class * implements java.io.Serializable
 -keepclassmembers class * implements java.io.Serializable {
     static final long serialVersionUID;

@@ -21,12 +21,9 @@ allprojects {
         flatDir{
             dirs 'libs'
         }
-        maven { url "https://devrepo.kakao.com/nexus/content/groups/public/" } //Adift
         maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //bidmad
         maven { url "https://sdk.tapjoy.com/" } //Tapjoy
         maven { url "https://artifact.bytedance.com/repository/pangle" } //Pangle
-        maven { url 'https://jitpack.io' } //adpie
-        maven { url "https://android-sdk.is.com/" } //ironsource
         maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
     }
 }

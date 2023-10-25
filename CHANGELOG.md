@@ -1,3 +1,8 @@
+# Version 3.10.0
+#### Changes
+- Supports Mediation Adapter dependency by advertising network
+- Applovin reward payment bug fix
+
 # Version 3.9.0
 #### Changes
 - Support Context For NativeAds

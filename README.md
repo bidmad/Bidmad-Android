@@ -25,19 +25,16 @@
 
 #### *Gradle
 1. 프로젝트 Top-Level에 위치한 build.gradle 파일 내에 저장소 선언합니다.
-
+   SDK 버전 3.10.0 이상 부터 각 광고 네트워크 별 의존성을 추가 할 수 있습니다. 추가 미디에이션 광고 세팅은 테크랩스 플랫폼 사업부 운영팀에 문의하세요.
 ```java
 allprojects {
    repositories {
        ...
        google()
        mavenCentral()
-       maven { url "https://devrepo.kakao.com/nexus/content/groups/public/" } //Adift
        maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //bidmad
        maven { url "https://sdk.tapjoy.com/" } //Tapjoy
        maven { url "https://artifact.bytedance.com/repository/pangle" } //Pangle
-       maven { url "https://jitpack.io" } //Adpie
-       maven { url "https://android-sdk.is.com/" } //ironsource
        maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
 }
 ```
@@ -46,10 +43,17 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'com.adop.sdk:bidmad-androidx:3.9.0'
-    implementation 'ad.helper.openbidding:admob-obh:3.9.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:3.9.0'
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:3.9.0'
+        implementation 'com.adop.sdk:bidmad-androidx:3.10.0'
+        implementation 'ad.helper.openbidding:admob-obh:3.10.0'
+        implementation 'com.adop.sdk.adapter:admob:22.0.0.0'
+        implementation 'com.adop.sdk.adapter:adcolony:4.8.0.0'
+        implementation 'com.adop.sdk.adapter:applovin:11.9.0.0'
+        implementation 'com.adop.sdk.adapter:coupang:1.0.0.0'
+        implementation 'com.adop.sdk.adapter:fyber:8.2.3.0'
+        implementation 'com.adop.sdk.adapter:pangle:5.2.0.3.0'
+        implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.0'
+        implementation 'com.adop.sdk.adapter:unityads:4.6.1.0'
+        implementation 'com.adop.sdk.adapter:vungle:6.12.1.0'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
@@ -72,8 +76,7 @@ android {
 ```cpp
 -keep class com.adop.sdk.** { *; }
 -keep class ad.helper.openbidding.** { *; }
--keep class com.adop.adapter.fc.** { *; }
--keep class com.adop.adapter.fnc.** { *; }
+-keep class com.adop.sdk.adapter.**{ *; }
 -keepnames class * implements java.io.Serializable
 -keepclassmembers class * implements java.io.Serializable {
     static final long serialVersionUID;

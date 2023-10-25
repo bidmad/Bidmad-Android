@@ -4,9 +4,6 @@ import ad.helper.openbidding.reward.BidmadRewardAd;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.adop.adapter.fc.reward.RewardAdColony;
-import com.adop.adapter.fnc.reward.RewardPubMatic;
 import com.adop.example.adopsample.R;
 import com.adop.sdk.BMAdError;
 import com.adop.sdk.reward.RewardListener;
