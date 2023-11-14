@@ -1,4 +1,4 @@
-# BidmadSDK(v3.9.0)
+# BidmadSDK(v3.10.0)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
    - [Gradle](#Gradle)
@@ -44,7 +44,7 @@ allprojects {
 dependencies {
     ...
         implementation 'com.adop.sdk:bidmad-androidx:3.10.0'
-        implementation 'ad.helper.openbidding:admob-obh:3.10.0'
+        implementation 'ad.helper.openbidding:admob-obh:3.10.1'
         implementation 'com.adop.sdk.adapter:admob:22.0.0.0'
         implementation 'com.adop.sdk.adapter:adcolony:4.8.0.0'
         implementation 'com.adop.sdk.adapter:applovin:11.9.0.0'
