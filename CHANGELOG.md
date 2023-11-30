@@ -1,3 +1,8 @@
+# Version 3.10.1
+#### Changes
+- Improve of logic related to some network banner sizes
+- Fix bugs
+
 # Version 3.10.0
 #### Changes
 - Supports Mediation Adapter dependency by advertising network

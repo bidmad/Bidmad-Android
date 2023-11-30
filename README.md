@@ -1,4 +1,4 @@
-# BidmadSDK(v3.10.0)
+# BidmadSDK(v3.10.1)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
    - [Gradle](#Gradle)
@@ -43,17 +43,17 @@ allprojects {
 ```java
 dependencies {
     ...
-        implementation 'com.adop.sdk:bidmad-androidx:3.10.0'
+        implementation 'com.adop.sdk:bidmad-androidx:3.10.1'
         implementation 'ad.helper.openbidding:admob-obh:3.10.1'
-        implementation 'com.adop.sdk.adapter:admob:22.0.0.0'
-        implementation 'com.adop.sdk.adapter:adcolony:4.8.0.0'
-        implementation 'com.adop.sdk.adapter:applovin:11.9.0.0'
+        implementation 'com.adop.sdk.adapter:admob:22.0.0.1'
+        implementation 'com.adop.sdk.adapter:adcolony:4.8.0.1'
+        implementation 'com.adop.sdk.adapter:applovin:11.9.0.1'
         implementation 'com.adop.sdk.adapter:coupang:1.0.0.0'
-        implementation 'com.adop.sdk.adapter:fyber:8.2.3.0'
-        implementation 'com.adop.sdk.adapter:pangle:5.2.0.3.0'
-        implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.0'
-        implementation 'com.adop.sdk.adapter:unityads:4.6.1.0'
-        implementation 'com.adop.sdk.adapter:vungle:6.12.1.0'
+        implementation 'com.adop.sdk.adapter:fyber:8.2.3.1'
+        implementation 'com.adop.sdk.adapter:pangle:5.2.0.3.1'
+        implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.1'
+        implementation 'com.adop.sdk.adapter:unityads:4.6.1.1'
+        implementation 'com.adop.sdk.adapter:vungle:6.12.1.1'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
