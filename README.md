@@ -50,7 +50,7 @@ dependencies {
         implementation 'com.adop.sdk.adapter:applovin:11.9.0.1'
         implementation 'com.adop.sdk.adapter:coupang:1.0.0.0'
         implementation 'com.adop.sdk.adapter:fyber:8.2.3.1'
-        implementation 'com.adop.sdk.adapter:pangle:5.2.0.3.1'
+        implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.0'
         implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.1'
         implementation 'com.adop.sdk.adapter:unityads:4.6.1.1'
         implementation 'com.adop.sdk.adapter:vungle:6.12.1.1'
