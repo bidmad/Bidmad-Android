@@ -38,6 +38,7 @@ allprojects {
        maven { url "https://sdk.tapjoy.com/" } //Tapjoy
        maven { url "https://artifact.bytedance.com/repository/pangle" } //Pangle
        maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
+       maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
 }
 ```
 2. Declares SDK in the build.gradle file located in the project App-Level.
@@ -45,17 +46,18 @@ allprojects {
 ```java
 dependencies {
     ...
-        implementation 'com.adop.sdk:bidmad-androidx:3.10.1'
-        implementation 'ad.helper.openbidding:admob-obh:3.10.1'
-        implementation 'com.adop.sdk.adapter:admob:22.0.0.1'
+        implementation 'ad.helper.openbidding:admob-obh:3.11.0'
+        implementation 'com.adop.sdk:bidmad-androidx:3.11.0'
+        implementation 'com.adop.sdk.adapter:admob:22.0.0.2'
         implementation 'com.adop.sdk.adapter:adcolony:4.8.0.1'
-        implementation 'com.adop.sdk.adapter:applovin:11.9.0.1'
+        implementation 'com.adop.sdk.adapter:applovin:11.9.0.2'
         implementation 'com.adop.sdk.adapter:coupang:1.0.0.0'
-        implementation 'com.adop.sdk.adapter:fyber:8.2.3.1'
-        implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.0'
+        implementation 'com.adop.sdk.adapter:fyber:8.2.3.2'
+        implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.1'
         implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.1'
-        implementation 'com.adop.sdk.adapter:unityads:4.6.1.1'
+        implementation 'com.adop.sdk.adapter:unityads:4.6.1.2'
         implementation 'com.adop.sdk.adapter:vungle:6.12.1.1'
+        implementation 'com.adop.sdk.partners:admobbidding:1.0.0'
 }
 ```
 3. Declare the option below in the android tag of the build.gradle file located in the project App-Level.
@@ -162,8 +164,8 @@ public static final ** CREATOR;
          public void onInitialized(boolean isComplete) {
          }
       });
-   */  
-   
+   */
+
 ```
 - When you login to Insight and  save the Preload check, Account > My Info > DETAIL INFORMATION interstitial or rewarded ads  is preloaded at initialization.
 

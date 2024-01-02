@@ -36,6 +36,7 @@ allprojects {
        maven { url "https://sdk.tapjoy.com/" } //Tapjoy
        maven { url "https://artifact.bytedance.com/repository/pangle" } //Pangle
        maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
+       maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
 }
 ```
 2. 프로젝트 App-Level에 위치한 build.gradle 파일의 dependencies에 SDK 선언합니다.
@@ -43,17 +44,18 @@ allprojects {
 ```java
 dependencies {
     ...
-        implementation 'com.adop.sdk:bidmad-androidx:3.10.1'
-        implementation 'ad.helper.openbidding:admob-obh:3.10.1'
-        implementation 'com.adop.sdk.adapter:admob:22.0.0.1'
+        implementation 'ad.helper.openbidding:admob-obh:3.11.0'
+        implementation 'com.adop.sdk:bidmad-androidx:3.11.0'
+        implementation 'com.adop.sdk.adapter:admob:22.0.0.2'
         implementation 'com.adop.sdk.adapter:adcolony:4.8.0.1'
-        implementation 'com.adop.sdk.adapter:applovin:11.9.0.1'
+        implementation 'com.adop.sdk.adapter:applovin:11.9.0.2'
         implementation 'com.adop.sdk.adapter:coupang:1.0.0.0'
-        implementation 'com.adop.sdk.adapter:fyber:8.2.3.1'
-        implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.0'
+        implementation 'com.adop.sdk.adapter:fyber:8.2.3.2'
+        implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.1'
         implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.1'
-        implementation 'com.adop.sdk.adapter:unityads:4.6.1.1'
+        implementation 'com.adop.sdk.adapter:unityads:4.6.1.2'
         implementation 'com.adop.sdk.adapter:vungle:6.12.1.1'
+        implementation 'com.adop.sdk.partners:admobbidding:1.0.0'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
@@ -160,8 +162,8 @@ public static final ** CREATOR;
          public void onInitialized(boolean isComplete) {
          }
       });
-   */  
-    
+   */
+
 ```
 -  Insight 로그인 후 계정관리 > 나의 정보 > 상세 정보 에서 프리로드 사용여부를 체크 및 저장 하면 초기화 시 전면/보상형 광고를 Load 합니다.
 

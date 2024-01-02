@@ -25,6 +25,7 @@ allprojects {
         maven { url "https://sdk.tapjoy.com/" } //Tapjoy
         maven { url "https://artifact.bytedance.com/repository/pangle" } //Pangle
         maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
+        maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
     }
 }
 
