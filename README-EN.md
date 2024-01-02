@@ -1,4 +1,4 @@
-# BidmadSDK(v3.10.1)
+# BidmadSDK(v3.11.0)
 ### Shortcuts
 
 1. [SDK Settings](#1-SDK-Settings)
