@@ -40,6 +40,11 @@ public class RewardActivity extends AppCompatActivity {
             }
 
             @Override
+            public void onShowFailAd(BMAdError bmAdError) {
+                callbackStatus.append("onShowFailAd() Called\n");
+            }
+
+            @Override
             public void onCompleteAd() {
                 callbackStatus.append("onCompleteAd() Called\n");
             }

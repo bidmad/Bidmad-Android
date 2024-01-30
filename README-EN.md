@@ -1,4 +1,4 @@
-# BidmadSDK(v3.11.0)
+# BidmadSDK(v3.12.0)
 ### Shortcuts
 
 1. [SDK Settings](#1-SDK-Settings)
@@ -21,7 +21,7 @@
 ---
 ### 1. SDK Settings
 #### *Minimum requirements for using the SDK
-- Gradle Plugin 3.5.4 or higher
+- Gradle Plugin 3.6.0 or higher
 - minSdkVersion 21 or higher
 
 #### *Gradle
@@ -31,14 +31,18 @@
 ```java
 allprojects {
    repositories {
-       ...
-       google()
-       mavenCentral()
-       maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //bidmad
-       maven { url "https://sdk.tapjoy.com/" } //Tapjoy
-       maven { url "https://artifact.bytedance.com/repository/pangle" } //Pangle
-       maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
-       maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
+        ...
+        google()
+        mavenCentral()
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' } //Adift
+        maven { url 'https://jitpack.io' } //Adpie
+        maven { url 'https://artifacts.applovin.com/android'} // Applovin
+        maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //Bidmad
+        maven { url 'https://android-sdk.is.com/' } // IronSource
+        maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
+        maven { url 'https://artifact.bytedance.com/repository/pangle/' } //Pangle
+        maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
+        maven { url "https://sdk.tapjoy.com/" } //Tapjoy
 }
 ```
 2. Declares SDK in the build.gradle file located in the project App-Level.
@@ -46,18 +50,18 @@ allprojects {
 ```java
 dependencies {
     ...
-        implementation 'ad.helper.openbidding:admob-obh:3.11.0'
-        implementation 'com.adop.sdk:bidmad-androidx:3.11.0'
-        implementation 'com.adop.sdk.adapter:admob:22.0.0.2'
-        implementation 'com.adop.sdk.adapter:adcolony:4.8.0.1'
-        implementation 'com.adop.sdk.adapter:applovin:11.9.0.2'
-        implementation 'com.adop.sdk.adapter:coupang:1.0.0.0'
-        implementation 'com.adop.sdk.adapter:fyber:8.2.3.2'
-        implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.1'
-        implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.1'
-        implementation 'com.adop.sdk.adapter:unityads:4.6.1.2'
-        implementation 'com.adop.sdk.adapter:vungle:6.12.1.1'
-        implementation 'com.adop.sdk.partners:admobbidding:1.0.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.12.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.12.0'
+    implementation 'com.adop.sdk.adapter:admob:22.0.0.3'
+    implementation 'com.adop.sdk.adapter:applovin:11.9.0.3'
+    implementation 'com.adop.sdk.adapter:coupang:1.0.0.0'
+    implementation 'com.adop.sdk.adapter:fyber:8.2.3.3'
+    implementation 'com.adop.sdk.adapter:ironsource:7.3.0.0'
+    implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.2'
+    implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.2'
+    implementation 'com.adop.sdk.adapter:unityads:4.6.1.3'
+    implementation 'com.adop.sdk.adapter:vungle:6.12.1.2'
+    implementation 'com.adop.sdk.partners:admobbidding:1.0.1'
 }
 ```
 3. Declare the option below in the android tag of the build.gradle file located in the project App-Level.
@@ -250,6 +254,11 @@ protected void onCreate(Bundle savedInstanceState) {
         }
 
         @Override
+        public void onShowFailAd(BMAdError error) {
+           //onShowFailAd Callback
+        }
+
+        @Override
         public void onCloseAd() {
             //onCloseAd Callback
         }
@@ -291,6 +300,11 @@ protected void onCreate(Bundle savedInstanceState) {
         @Override
         public void onLoadFailAd(BMAdError error) {
             //onLoadFailAd Callback
+        }
+
+        @Override
+        public void onShowFailAd(BMAdError error) {
+           //onShowFailAd Callback
         }
 
         @Override
@@ -397,18 +411,27 @@ protected void onCreate(Bundle savedInstanceState) {
             //onLoadAd Callback
             mAppOpen.adShow();
         }
+
         @Override
         public void onShowAd() {
 	        //onShowAd Callback
         }
+
         @Override
         public void onLoadFailAd(BMAdError error) {
 	        //onLoadFailAd Callback
         }
+
+        @Override
+        public void onShowFailAd(BMAdError error) {
+           //onShowFailAd Callback
+        }
+
         @Override
         public void onCloseAd() {
             //onCloseAd Callback
         }
+
         @Override
         public void onCloseAd() {
             //onCloseAd Callback
@@ -469,7 +492,8 @@ Function|Description
 ---|---
 void onLoadAd()|An event occurs when an interstitial ad is loaded.
 void onShowAd()|An event occurs when an interstitial ad is shown.
-void onLoadFailAd(BMAdError error)|An event occurs when interstitial ad loading fails. You can check the error code and message with BMAError.
+void onLoadFailAd(BMAdError error)|An event occurs when interstitial ad load fails. You can check the error code and message with BMAError.
+void onShowFailAd(BMAdError error)|An event occurs when interstitial ad show fails. You can check the error code and message with BMAError.
 void onCloseAd()|An event occurs when a interstitial ad is Closed.
 ---
 
@@ -492,7 +516,8 @@ Function|Description
 ---|---
 void onLoadAd()|An event occurs when a reward ad is loaded.
 void onShowAd()|An event occurs when a reward ad is shown.
-void onLoadFailAd(BMAdError error)|An event occurs when reward ad loading fails, You can check the error code and message with BMAError.
+void onLoadFailAd(BMAdError error)|An event occurs when reward ad load fails, You can check the error code and message with BMAError.
+void onShowFailAd(BMAdError error)|An event occurs when reward ad show fails, You can check the error code and message with BMAError.
 void onCompleteAd()|In the reward ad, when the reward condition is satisfied.
 void onSkipAd()|In the reward ad, an event occurs when the ad ends when the reward condition is not satisfied.
 void onCloseAd()|An event occurs when the reward ad ends.
@@ -540,7 +565,8 @@ Function|Description
 ---|---
 void onLoadAd()|Event occurs when the AppOpen ad is loaded.
 void onShowAd()|Event occurs when the AppOpen ad is shown.
-void onLoadFailAd(BMAdError error)|Event occurs when the AppOpen ad is fails. You can check the error code and message with BMAError.
+void onLoadFailAd(BMAdError error)|Event occurs when the AppOpen ad is load fails. You can check the error code and message with BMAError.
+void onShowFailAd(BMAdError error)|Event occurs when the AppOpen ad is show fails. You can check the error code and message with BMAError.
 void onCloseAd()|Event occurs when the AppOpen ad is fails.
 void onExpireAd()|Event occurs when a show is call after 3 hours or more have elapsed after loading the AppOpen ad.
 

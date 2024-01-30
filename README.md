@@ -1,4 +1,4 @@
-# BidmadSDK(v3.11.0)
+# BidmadSDK(v3.12.0)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
    - [Gradle](#Gradle)
@@ -20,7 +20,7 @@
 ---
 ### 1. SDK 세팅
 #### *SDK 사용을 위한 기본 요건
-- Gradle Plugin 3.5.4 이상
+- Gradle Plugin 3.6.0 이상
 - minSdkVersion 21 이상
 
 #### *Gradle
@@ -29,14 +29,18 @@
 ```java
 allprojects {
    repositories {
-       ...
-       google()
-       mavenCentral()
-       maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //bidmad
-       maven { url "https://sdk.tapjoy.com/" } //Tapjoy
-       maven { url "https://artifact.bytedance.com/repository/pangle" } //Pangle
-       maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
-       maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
+        ...
+        google()
+        mavenCentral()
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' } //Adift
+        maven { url 'https://jitpack.io' } //Adpie
+        maven { url 'https://artifacts.applovin.com/android'} // Applovin
+        maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //Bidmad
+        maven { url 'https://android-sdk.is.com/' } // IronSource
+        maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
+        maven { url 'https://artifact.bytedance.com/repository/pangle/' } //Pangle
+        maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
+        maven { url "https://sdk.tapjoy.com/" } //Tapjoy
 }
 ```
 2. 프로젝트 App-Level에 위치한 build.gradle 파일의 dependencies에 SDK 선언합니다.
@@ -44,18 +48,18 @@ allprojects {
 ```java
 dependencies {
     ...
-        implementation 'ad.helper.openbidding:admob-obh:3.11.0'
-        implementation 'com.adop.sdk:bidmad-androidx:3.11.0'
-        implementation 'com.adop.sdk.adapter:admob:22.0.0.2'
-        implementation 'com.adop.sdk.adapter:adcolony:4.8.0.1'
-        implementation 'com.adop.sdk.adapter:applovin:11.9.0.2'
-        implementation 'com.adop.sdk.adapter:coupang:1.0.0.0'
-        implementation 'com.adop.sdk.adapter:fyber:8.2.3.2'
-        implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.1'
-        implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.1'
-        implementation 'com.adop.sdk.adapter:unityads:4.6.1.2'
-        implementation 'com.adop.sdk.adapter:vungle:6.12.1.1'
-        implementation 'com.adop.sdk.partners:admobbidding:1.0.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.12.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.12.0'
+    implementation 'com.adop.sdk.adapter:admob:22.0.0.3'
+    implementation 'com.adop.sdk.adapter:applovin:11.9.0.3'
+    implementation 'com.adop.sdk.adapter:coupang:1.0.0.0'
+    implementation 'com.adop.sdk.adapter:fyber:8.2.3.3'
+    implementation 'com.adop.sdk.adapter:ironsource:7.3.0.0'
+    implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.2'
+    implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.2'
+    implementation 'com.adop.sdk.adapter:unityads:4.6.1.3'
+    implementation 'com.adop.sdk.adapter:vungle:6.12.1.2'
+    implementation 'com.adop.sdk.partners:admobbidding:1.0.1'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
@@ -248,6 +252,11 @@ protected void onCreate(Bundle savedInstanceState) {
         }
 
         @Override
+        public void onShowFailAd(BMAdError error) {
+           //onShowFailAd Callback
+        }
+
+        @Override
         public void onCloseAd() {
             //onCloseAd Callback
         }
@@ -289,6 +298,11 @@ protected void onCreate(Bundle savedInstanceState) {
         @Override
         public void onLoadFailAd(BMAdError error) {
             //onLoadFailAd Callback
+        }
+
+        @Override
+        public void onShowFailAd(BMAdError error) {
+           //onShowFailAd Callback
         }
 
         @Override
@@ -395,18 +409,27 @@ protected void onCreate(Bundle savedInstanceState) {
             //onLoadAd Callback
             mAppOpen.adShow();
         }
+
         @Override
         public void onShowAd() {
 	        //onShowAd Callback
         }
+
         @Override
         public void onLoadFailAd(BMAdError error) {
 	        //onLoadFailAd Callback
         }
+
+        @Override
+        public void onShowFailAd(BMAdError error) {
+           //onShowFailAd Callback
+        }
+
         @Override
         public void onCloseAd() {
             //onCloseAd Callback
         }
+
         @Override
         public void onCloseAd() {
             //onCloseAd Callback
@@ -467,6 +490,7 @@ Function|Description
 void onLoadAd()|Interstitial 광고가 Load 될 떄 이벤트가 발생합니다.
 void onShowAd()|Interstitial 광고가 Show 될 때 이벤트가 발생합니다.
 void onLoadFailAd(BMAdError error)|Interstitial 광고 Load에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
+void onShowFailAd(BMAdError error)|Interstitial 광고 Show에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
 void onCloseAd()|Interstitial 광고 Close시 이벤트가 발생합니다.
 ---
 #### *보상형광고 Class Reference
@@ -489,6 +513,7 @@ Function|Description
 void onLoadAd()|Reward 광고가 Load 될 떄 이벤트가 발생합니다.
 void onShowAd()|Reward 광고가 Show 될 때 이벤트가 발생합니다.
 void onLoadFailAd(BMAdError error)|Reward 광고 Load에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
+void onShowFailAd(BMAdError error)|Reward 광고 Show에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
 void onCompleteAd()|Reward 광고에서 Reward가 지급조건이 충족되면 이벤트가 발생하며, ZoneId를 반환합니다.
 void onSkipAd()|Reward 광고에서 Reward가 지급조건이 충족되지 않은 상태로 광고 종료 시 이벤트가 발생합니다.
 void onCloseAd()|Reward 광고가 종료될 때 이벤트가 발생합니다.
@@ -537,6 +562,7 @@ Function|Description
 void onLoadAd()|AppOpen 광고가 Load 될 떄 이벤트가 발생합니다.
 void onShowAd()|AppOpen 광고가 Show 될 떄 이벤트가 발생합니다.
 void onLoadFailAd(BMAdError error)|AppOpen 광고 Load에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
+void onShowFailAd(BMAdError error)|AppOpen 광고 Show에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
 void onCloseAd()|AppOpen 광고가 종료될 때 이벤트가 발생합니다.
 void onExpireAd()|AppOpen 광고 Load하고 3시간 이상 경과 후 Show를 하는 경우에 이벤트가 발생합니다.
 

@@ -48,6 +48,11 @@ public class AppOpenActivity extends Activity {
             }
 
             @Override
+            public void onShowFailAd(BMAdError bmAdError) {
+                callbackStatus.append("onShowFailAd() Called\n");
+            }
+
+            @Override
             public void onCloseAd() {
                 callbackStatus.append("onCloseAd() Called\n");
             }

@@ -36,7 +36,12 @@ public class InterstitialActivity extends AppCompatActivity {
 
             @Override
             public void onLoadFailAd(BMAdError bmAdError) {
-                callbackStatus.append("onFailedAd() Called\n");
+                callbackStatus.append("onLoadFailAd() Called\n");
+            }
+
+            @Override
+            public void onShowFailAd(BMAdError bmAdError) {
+                callbackStatus.append("onShowFailAd() Called\n");
             }
 
             @Override
