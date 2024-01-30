@@ -1,3 +1,31 @@
+# Version 3.12.0
+#### Changes
+- Add Showfail listener.
+- Fixed resource error that occurred when building in lower Gradle Plugin
+- Fixed prevent show from occurring during ad showing in interstitial/reward type.
+- Fix bugs
+
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.12.0</li>
+<li>Adfit Adapter - 3.12.15.1</li>
+<li>Admob Adapter - 22.0.0.3</li>
+<li>Adpie Adapter - 1.11.0.2</li>
+<li>Applovin Adapter - 11.9.0.3</li>
+<li>Atom Adapter - 1.0.0.0</li>
+<li>Coupang Adapter - 1.0.0.0</li>
+<li>Fyber Adapter - 8.2.3.3</li>
+<li>Ironsource Adapter - 7.3.0.0</li>
+<li>Mobon Adapter - 1.0.0.60.2</li>
+<li>Pangle Adapter - 5.2.1.1.2</li>
+<li>Pubmatic Adapter - 2.7.1.2</li>
+<li>UnityAds Adapter - 4.6.1.3</li>
+<li>Vungle Adapter - 6.12.1.2</li>
+<li>AdmobBidding Partner - 1.0.1</li>
+</div>
+</details>
+
 # Version 3.11.0
 #### Changes
 - Admob Mediation Adapters is separated from Bidmad Adapter and changed to rely on partner libraries.
