@@ -1,4 +1,4 @@
-# BidmadSDK(v3.12.0)
+# BidmadSDK(v3.13.0)
 ### Shortcuts
 
 1. [SDK Settings](#1-SDK-Settings)
@@ -35,8 +35,6 @@ allprojects {
         google()
         mavenCentral()
         maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' } //Adift
-        maven { url 'https://jitpack.io' } //Adpie
-        maven { url 'https://artifacts.applovin.com/android'} // Applovin
         maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //Bidmad
         maven { url 'https://android-sdk.is.com/' } // IronSource
         maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
@@ -50,18 +48,20 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'ad.helper.openbidding:admob-obh:3.12.0'
-    implementation 'com.adop.sdk:bidmad-androidx:3.12.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.13.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.13.0'
+    implementation 'com.adop.sdk.adapter:adfit:3.12.15.1'
     implementation 'com.adop.sdk.adapter:admob:22.0.0.3'
     implementation 'com.adop.sdk.adapter:applovin:11.9.0.3'
-    implementation 'com.adop.sdk.adapter:coupang:1.0.0.0'
+    implementation 'com.adop.sdk.adapter:coupang:1.0.0.1'
+    implementation 'com.adop.sdk.adapter:criteo:6.0.0.0'
     implementation 'com.adop.sdk.adapter:fyber:8.2.3.3'
     implementation 'com.adop.sdk.adapter:ironsource:7.3.0.0'
     implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.2'
-    implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.2'
+    implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.3'
     implementation 'com.adop.sdk.adapter:unityads:4.6.1.3'
     implementation 'com.adop.sdk.adapter:vungle:6.12.1.2'
-    implementation 'com.adop.sdk.partners:admobbidding:1.0.1'
+    implementation 'com.adop.sdk.partners:admobbidding:1.0.2'
 }
 ```
 3. Declare the option below in the android tag of the build.gradle file located in the project App-Level.

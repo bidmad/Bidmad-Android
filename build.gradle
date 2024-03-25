@@ -22,8 +22,6 @@ allprojects {
             dirs 'libs'
         }
         maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' } //Adift
-        maven { url 'https://jitpack.io' } //Adpie
-        maven { url 'https://artifacts.applovin.com/android'} // Applovin
         maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //Bidmad
         maven { url 'https://android-sdk.is.com/' } // IronSource
         maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
