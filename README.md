@@ -1,4 +1,4 @@
-# BidmadSDK(v3.13.0)
+# BidmadSDK(v3.15.0)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
    - [Gradle](#Gradle)
@@ -46,18 +46,18 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'ad.helper.openbidding:admob-obh:3.13.0'
-    implementation 'com.adop.sdk:bidmad-androidx:3.13.0'
-    implementation 'com.adop.sdk.adapter:adfit:3.12.15.1'
-    implementation 'com.adop.sdk.adapter:admob:22.0.0.3'
+    implementation 'ad.helper.openbidding:admob-obh:3.15.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.15.0'
+    implementation 'com.adop.sdk.adapter:adfit:3.12.15.2'
+    implementation 'com.adop.sdk.adapter:admob:22.0.0.5'
     implementation 'com.adop.sdk.adapter:applovin:11.9.0.3'
-    implementation 'com.adop.sdk.adapter:coupang:1.0.0.1'
-    implementation 'com.adop.sdk.adapter:criteo:6.0.0.0'
+    implementation 'com.adop.sdk.adapter:coupang:1.0.0.2'
+    implementation 'com.adop.sdk.adapter:criteo:6.0.0.1'
     implementation 'com.adop.sdk.adapter:fyber:8.2.3.3'
     implementation 'com.adop.sdk.adapter:ironsource:7.3.0.0'
     implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.2'
     implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.3'
-    implementation 'com.adop.sdk.adapter:unityads:4.6.1.3'
+    implementation 'com.adop.sdk.adapter:unityads:4.6.1.4'
     implementation 'com.adop.sdk.adapter:vungle:6.12.1.2'
     implementation 'com.adop.sdk.partners:admobbidding:1.0.2'
 }
@@ -570,7 +570,6 @@ void onExpireAd()|AppOpen 광고 Load하고 3시간 이상 경과 후 Show를 �
 
 Function|Description
 ---|---
-void onActivityForGround()|Application.ActivityLifecycleCallbacks의 onActivityForGround가 호출되면 이벤트가 발생합니다.
 void onActivityCreated(Activity, Bundle)|Application.ActivityLifecycleCallbacks의 onActivityCreated가 호출되면 이벤트가 발생합니다.
 void onActivityStarted(Activity)|Application.ActivityLifecycleCallbacks의 onActivityStarted가 호출되면 이벤트가 발생합니다.
 void onActivityResumed(Activity)|Application.ActivityLifecycleCallbacks의 onActivityResumed가 호출되면 이벤트가 발생합니다.

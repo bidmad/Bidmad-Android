@@ -1,4 +1,4 @@
-# BidmadSDK(v3.13.0)
+# BidmadSDK(v3.15.0)
 ### Shortcuts
 
 1. [SDK Settings](#1-SDK-Settings)
@@ -48,18 +48,18 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'ad.helper.openbidding:admob-obh:3.13.0'
-    implementation 'com.adop.sdk:bidmad-androidx:3.13.0'
-    implementation 'com.adop.sdk.adapter:adfit:3.12.15.1'
-    implementation 'com.adop.sdk.adapter:admob:22.0.0.3'
+    implementation 'ad.helper.openbidding:admob-obh:3.15.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.15.0'
+    implementation 'com.adop.sdk.adapter:adfit:3.12.15.2'
+    implementation 'com.adop.sdk.adapter:admob:22.0.0.5'
     implementation 'com.adop.sdk.adapter:applovin:11.9.0.3'
-    implementation 'com.adop.sdk.adapter:coupang:1.0.0.1'
-    implementation 'com.adop.sdk.adapter:criteo:6.0.0.0'
+    implementation 'com.adop.sdk.adapter:coupang:1.0.0.2'
+    implementation 'com.adop.sdk.adapter:criteo:6.0.0.1'
     implementation 'com.adop.sdk.adapter:fyber:8.2.3.3'
     implementation 'com.adop.sdk.adapter:ironsource:7.3.0.0'
     implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.2'
     implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.3'
-    implementation 'com.adop.sdk.adapter:unityads:4.6.1.3'
+    implementation 'com.adop.sdk.adapter:unityads:4.6.1.4'
     implementation 'com.adop.sdk.adapter:vungle:6.12.1.2'
     implementation 'com.adop.sdk.partners:admobbidding:1.0.2'
 }
@@ -574,7 +574,6 @@ void onExpireAd()|Event occurs when a show is call after 3 hours or more have el
 
 Function|Description
 ---|---
-void onActivityForGround()|The event is fired when onActivityForGround of Application.ActivityLifecycleCallbacks is called.
 void onActivityCreated(Activity, Bundle)|The event is fired when onActivityCreated of Application.ActivityLifecycleCallbacks is called.
 void onActivityStarted(Activity)|The event is fired when onActivityStarted of Application.ActivityLifecycleCallbacks is called.
 void onActivityResumed(Activity)|The event is fired when onActivityResumed of Application.ActivityLifecycleCallbacks is called.
