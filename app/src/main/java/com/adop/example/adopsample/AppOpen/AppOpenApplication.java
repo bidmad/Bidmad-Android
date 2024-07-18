@@ -5,12 +5,18 @@ import ad.helper.openbidding.appopen.BidmadAppOpenAd;
 import ad.helper.openbidding.initialize.BidmadInitializeListener;
 
 import android.app.Application;
+import android.content.ComponentCallbacks;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.adop.sdk.BMAdError;
 import com.adop.sdk.appopen.AppOpenListener;
 
-public class AppOpenApplication extends  Application {
+public class AppOpenApplication extends Application implements DefaultLifecycleObserver {
     BidmadAppOpenAd mAppOpen;
     @Override
     public void onCreate() {
@@ -22,6 +28,7 @@ public class AppOpenApplication extends  Application {
 				init();
             }
         });
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     }
 
     public void init() {
@@ -57,10 +64,12 @@ public class AppOpenApplication extends  Application {
         mAppOpen.start();
     }
 
+
     @Override
-    public void onTerminate() {
-        super.onTerminate();
-        Log.d("release ttt11", "onTerminate");
+    public void onStop(@NonNull LifecycleOwner owner) {
+        DefaultLifecycleObserver.super.onStop(owner);
+
         mAppOpen.end();
+        ProcessLifecycleOwner.get().getLifecycle().removeObserver(this);
     }
 }
