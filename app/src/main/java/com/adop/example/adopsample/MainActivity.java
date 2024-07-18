@@ -1,11 +1,11 @@
 package com.adop.example.adopsample;
 
-import ad.helper.openbidding.BidmadCommon;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
-import com.adop.example.adopsample.AppOpen.AppOpenActivity;
+
 import com.adop.example.adopsample.Banner.BannerActivity;
 import com.adop.example.adopsample.Interstitial.InterstitialActivity;
 import com.adop.example.adopsample.Native.NativeActivity;
@@ -19,10 +19,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        BidmadCommon.initializeSdk(this);
-
-        BidmadCommon.setDebugging(true);
 
         findViewById(R.id.goBannerSample).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,15 +64,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, RewardActivity.class);
-                startActivity(i);
-            }
-        });
-
-
-        findViewById(R.id.goAppopenSample).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, AppOpenActivity.class);
                 startActivity(i);
             }
         });
