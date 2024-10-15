@@ -14,6 +14,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.adop.sdk.BMAdError;
+import com.adop.sdk.BMAdInfo;
 import com.adop.sdk.appopen.AppOpenListener;
 
 public class AppOpenApplication extends Application implements DefaultLifecycleObserver {
@@ -36,11 +37,11 @@ public class AppOpenApplication extends Application implements DefaultLifecycleO
 
         mAppOpen.setAppOpenListener(new AppOpenListener() {
             @Override
-            public void onLoadAd() {
+            public void onLoadAd(@NonNull BMAdInfo info) {
                 mAppOpen.adShow();
             }
             @Override
-            public void onShowAd() {
+            public void onShowAd(@NonNull BMAdInfo info) {
             }
 
             @Override
@@ -48,15 +49,15 @@ public class AppOpenApplication extends Application implements DefaultLifecycleO
             }
 
             @Override
-            public void onShowFailAd(BMAdError bmAdError) {
+            public void onShowFailAd(BMAdError bmAdError, @NonNull BMAdInfo info) {
             }
 
             @Override
-            public void onCloseAd() {
+            public void onCloseAd(@NonNull BMAdInfo info) {
             }
 
             @Override
-            public void onExpireAd() {
+            public void onExpireAd(@NonNull BMAdInfo info) {
                 mAppOpen.adLoad();
             }
         });

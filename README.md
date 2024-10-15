@@ -1,9 +1,16 @@
-# BidmadSDK(v3.15.0)
+> [!IMPORTANT]
+> 3.18.0 버전부터는 기존에 사용하던 **Appkey가 AppDomain으로 변경**되었습니다.<br>
+> **AppDomain은 기존 Appkey와 호환이 되지 않아 initiaize를 위해서는 AppDomain을 새로 발급받으셔야 합니다.**<br>
+> 3.18.0 버전으로 업데이트 하시는 경우에는 **테크랩스 플랫폼 사업부 운영팀에 연락 부탁 드립니다.**<br>
+> AppDomain 변경 내용은 [AndroidManifest 설정](#AndroidManifest-설정)를 확인 바랍니다.
+
+# BidmadSDK(v3.18.0)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
    - [Gradle](#Gradle)
-   - [AndroidManifest.xml](#AndroidManifest.xml)
+   - [AndroidManifest](#AndroidManifest-설정)
 2. [광고 추가하기](#2-SDK-사용하기)
+   - [SDK 초기화 하기](#BidmadSDK-초기화-하기)
    - [배너광고 추가하기](#배너광고-추가하기)
    - [전면광고 추가하기](#전면광고-추가하기)
    - [보상형광고 추가하기](#보상형광고-추가하기)
@@ -20,7 +27,6 @@
 ---
 ### 1. SDK 세팅
 #### *SDK 사용을 위한 기본 요건
-- Gradle Plugin 3.6.0 이상
 - minSdkVersion 21 이상
 
 #### *Gradle
@@ -33,8 +39,8 @@ allprojects {
         google()
         mavenCentral()
         maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' } //Adift
+        maven { url 'https://jitpack.io' } //adpie
         maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //Bidmad
-        maven { url 'https://android-sdk.is.com/' } // IronSource
         maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
         maven { url 'https://artifact.bytedance.com/repository/pangle/' } //Pangle
         maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
@@ -46,19 +52,19 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'ad.helper.openbidding:admob-obh:3.15.0'
-    implementation 'com.adop.sdk:bidmad-androidx:3.15.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.18.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.18.0'
     implementation 'com.adop.sdk.adapter:adfit:3.12.15.2'
-    implementation 'com.adop.sdk.adapter:admob:22.0.0.5'
-    implementation 'com.adop.sdk.adapter:applovin:11.9.0.3'
-    implementation 'com.adop.sdk.adapter:coupang:1.0.0.2'
-    implementation 'com.adop.sdk.adapter:criteo:6.0.0.1'
-    implementation 'com.adop.sdk.adapter:fyber:8.2.3.3'
-    implementation 'com.adop.sdk.adapter:ironsource:7.3.0.0'
-    implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.2'
-    implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.3'
-    implementation 'com.adop.sdk.adapter:unityads:4.6.1.4'
-    implementation 'com.adop.sdk.adapter:vungle:6.12.1.2'
+    implementation 'com.adop.sdk.adapter:admob:22.0.0.6'
+    implementation 'com.adop.sdk.adapter:adpie:1.13.6.0'
+    implementation 'com.adop.sdk.adapter:adpopcorn:3.6.3.0'
+    implementation 'com.adop.sdk.adapter:applovin:11.9.0.4'
+    implementation 'com.adop.sdk.adapter:criteo:6.0.0.2'
+    implementation 'com.adop.sdk.adapter:fyber:8.2.3.4'
+    implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.3'
+    implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.4'
+    implementation 'com.adop.sdk.adapter:unityads:4.6.1.5'
+    implementation 'com.adop.sdk.adapter:vungle:6.12.1.3'
     implementation 'com.adop.sdk.partners:admobbidding:1.0.2'
 }
 ```
@@ -125,18 +131,18 @@ public static final ** CREATOR;
 
 *Bidmad는 AndroidX 라이브러리를 사용합니다. AndroidX 프로젝트가 아니라면 AndroidX로 마이그레이션 바랍니다.
 
-#### *AndroidManifest.xml
+#### *AndroidManifest 설정
 
-1. 프로젝트 내 AndroidManifest.xml의 application 태그 안에 아래 코드를 선언합니다([가이드](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BKR%5D))<br>
-   *com.google.android.gms.ads.APPLICATION_ID의 value는 Admob 대시보드에서 확인 바랍니다.
-   *com.adop.sdk.APP_KEY의 value는 Insight 로그인 후 계정관리 > 나의 정보 > 상세 정보 에서 확인 바랍니다.
+1. 프로젝트 내 AndroidManifest.xml의 application 태그 안에 아래 코드를 선언합니다.<br>
+   *com.google.android.gms.ads.APPLICATION_ID의 value는 Admob 대시보드에서 확인 바랍니다.<br>
+   *com.adop.sdk.APP_DOMAIN의 value는 테크랩스 플랫폼 사업부 운영팀에 연락 바랍니다.
 
 ```xml
 <application
    android:usesCleartextTraffic="true">
    ...
    <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="APPLICATION_ID"/>
-   <meta-data android:name="com.adop.sdk.APP_KEY" android:value="INSERT_YOUR_APPKEY"/>
+   <meta-data android:name="com.adop.sdk.APP_DOMAIN" android:value="INSERT_YOUR_APPDOMAIN"/>
    ...
 </application>
 ```
@@ -169,7 +175,6 @@ public static final ** CREATOR;
    */
 
 ```
--  Insight 로그인 후 계정관리 > 나의 정보 > 상세 정보 에서 프리로드 사용여부를 체크 및 저장 하면 초기화 시 전면/보상형 광고를 Load 합니다.
 
 #### *배너광고 추가하기
 
@@ -185,6 +190,7 @@ public static final ** CREATOR;
 
 2. 배너 광고를 요청하기 위해 BidmadBannerAd를 생성, ZoneId 세팅 후 load 함수를 호출합니다.
 3. 배너 광고를 노출하기 위해 BidmadBannerAd를 위에서 생성한 View에 추가합니다.
+4. 생명주기에 따라 배너광고의 onResuem / onPause를 호출합니다.
 ```java
 ConstraintLayout layout;
 BidmadBannerAd mAdView;
@@ -198,7 +204,7 @@ protected void onCreate(Bundle savedInstanceState) {
     mAdView = new BidmadBannerAd(this,"YOUR ZONE ID");
     mAdView.setAdViewListener(new AdViewListener() {
         @Override
-        public void onLoadAd() {
+        public void onLoadAd(@NonNull BMAdInfo) {
             //onLoad Callback
         }
 
@@ -208,7 +214,7 @@ protected void onCreate(Bundle savedInstanceState) {
         }
 
         @Override
-        public void onClickAd() {
+        public void onClickAd(@NonNull BMAdInfo) {
             //onClickAd Callback
         }
     });
@@ -218,6 +224,20 @@ protected void onCreate(Bundle savedInstanceState) {
 
     layout = findViewById(R.id.bannerLayout);
     layout.addView(mAdView.getView()); //attach Banner
+}
+
+@Override
+protected void onResume() {
+    super.onResume();
+    if(mAdView != null)
+        mAdView.onResume();
+}
+
+@Override
+protected void onPause() {
+    super.onPause();
+    if(mAdView != null)
+        mAdView.onPause();
 }
 ```
 
@@ -237,12 +257,12 @@ protected void onCreate(Bundle savedInstanceState) {
     mInterstitial = new BidmadInterstitialAd(this,"YOUR ZONE ID");
     mInterstitial.setInterstitialListener(new InterstitialListener() {
         @Override
-        public void onLoadAd() {
+        public void onLoadAd(@NonNull BMAdInfo) {
            //onLoad Callback
         }
 
         @Override
-        public void onShowAd() {
+        public void onShowAd(@NonNull BMAdInfo) {
             //onShowAd Callback
         }
 
@@ -252,12 +272,17 @@ protected void onCreate(Bundle savedInstanceState) {
         }
 
         @Override
-        public void onShowFailAd(BMAdError error) {
+        public void onShowFailAd(BMAdError error, @NonNull BMAdInfo) {
            //onShowFailAd Callback
         }
 
         @Override
-        public void onCloseAd() {
+        public void onClickAd(@NonNull BMAdInfo info) {
+            //onClickAd Callback
+        }
+
+        @Override
+        public void onCloseAd(@NonNull BMAdInfo) {
             //onCloseAd Callback
         }
     });
@@ -286,12 +311,12 @@ protected void onCreate(Bundle savedInstanceState) {
     //Require
     mReward = new BidmadRewardAd(this,"YOUR ZONE ID");
     mReward.setRewardListener(new RewardListener() {
-        public void onLoadAd() {
+        public void onLoadAd(@NonNull BMAdInfo) {
             //onLoad Callback
         }
 
         @Override
-        public void onShowAd() {
+        public void onShowAd(@NonNull BMAdInfo) {
             //onShowAd Callback
         }
 
@@ -301,27 +326,27 @@ protected void onCreate(Bundle savedInstanceState) {
         }
 
         @Override
-        public void onShowFailAd(BMAdError error) {
+        public void onShowFailAd(BMAdError error, @NonNull BMAdInfo) {
            //onShowFailAd Callback
         }
 
         @Override
-        public void onCompleteAd() {
+        public void onCompleteAd(@NonNull BMAdInfo) {
             //onCompleteAd Callback
         }
 
         @Override
-        public void onCloseAd() {
+        public void onCloseAd(@NonNull BMAdInfo) {
             //onCloseAd Callback
         }
 
         @Override
-        public void onClickAd() {
+        public void onClickAd(@NonNull BMAdInfo) {
             //onClickAd Callback
         }
 
         @Override
-        public void onSkipAd() {
+        public void onSkipAd(@NonNull BMAdInfo) {
             //onSkipAd Callback
         }
     });
@@ -364,7 +389,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
     nativeAd.setNativeListener(new NativeListener() {
         @Override
-        public void onLoadAd() {
+        public void onLoadAd(@NonNull BMAdInfo) {
             layoutNative.removeAllViews();
             layoutNative.addView(nativeAd.getNativeLayout());
             //onLoadAd Callback
@@ -377,7 +402,7 @@ protected void onCreate(Bundle savedInstanceState) {
         }
 
         @Override
-        public void onClickAd(){
+        public void onClickAd(@NonNull BMAdInfo){
             callbackStatus.append("onClickAd() Called\n");
             //onClickAd Callback
         }
@@ -405,13 +430,13 @@ protected void onCreate(Bundle savedInstanceState) {
     mAppOpen = new BidmadAppOpenAd(this.getApplication(), "YOUR ZONE ID");
     mAppOpen.setAppOpenListener(new AppOpenListener() {
         @Override
-        public void onLoadAd() {
+        public void onLoadAd(@NonNull BMAdInfo) {
             //onLoadAd Callback
             mAppOpen.adShow();
         }
 
         @Override
-        public void onShowAd() {
+        public void onShowAd(@NonNull BMAdInfo) {
 	        //onShowAd Callback
         }
 
@@ -421,17 +446,17 @@ protected void onCreate(Bundle savedInstanceState) {
         }
 
         @Override
-        public void onShowFailAd(BMAdError error) {
+        public void onShowFailAd(BMAdError error, @NonNull BMAdInfo) {
            //onShowFailAd Callback
         }
 
         @Override
-        public void onCloseAd() {
+        public void onCloseAd(@NonNull BMAdInfo) {
             //onCloseAd Callback
         }
 
         @Override
-        public void onCloseAd() {
+        public void onCloseAd(@NonNull BMAdInfo) {
             //onCloseAd Callback
             mAppOpen.adLoad();
         }
@@ -466,9 +491,9 @@ void onResume()|Banner 광고를 재요청합니다.
 
 Function|Description
 ---|---
-void onLoadAd()|Banner 광고가 Load 될 떄 이벤트가 발생합니다.
+void onLoadAd(@NonNull BMAdInfo)|Banner 광고가 Load 될 떄 이벤트가 발생합니다.
 void onLoadFailAd(BMAdError error)|Banner 광고 Load에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
-void onClickAd()|Banner 광고 Click시 이벤트가 발생합니다.
+void onClickAd(@NonNull BMAdInfo)|Banner 광고 Click시 이벤트가 발생합니다.
 ---
 #### *전면광고 Class Reference
 
@@ -487,11 +512,12 @@ static void setAutoReload(boolean)|광고 노출 시 자동으로 다음 광고�
 
 Function|Description
 ---|---
-void onLoadAd()|Interstitial 광고가 Load 될 떄 이벤트가 발생합니다.
-void onShowAd()|Interstitial 광고가 Show 될 때 이벤트가 발생합니다.
+void onLoadAd(@NonNull BMAdInfo)|Interstitial 광고가 Load 될 떄 이벤트가 발생합니다.
+void onShowAd(@NonNull BMAdInfo)|Interstitial 광고가 Show 될 때 이벤트가 발생합니다.
 void onLoadFailAd(BMAdError error)|Interstitial 광고 Load에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
-void onShowFailAd(BMAdError error)|Interstitial 광고 Show에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
-void onCloseAd()|Interstitial 광고 Close시 이벤트가 발생합니다.
+void onShowFailAd(BMAdError error, @NonNull BMAdInfo)|Interstitial 광고 Show에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
+void onClickAd(@NonNull BMAdInfo)|Interstitial 광고 Click시 이벤트가 발생합니다.
+void onCloseAd(@NonNull BMAdInfo)|Interstitial 광고 Close시 이벤트가 발생합니다.
 ---
 #### *보상형광고 Class Reference
 
@@ -510,14 +536,14 @@ static void setAutoReload(boolean)|광고 노출 시 자동으로 다음 광고�
 
 Function|Description
 ---|---
-void onLoadAd()|Reward 광고가 Load 될 떄 이벤트가 발생합니다.
-void onShowAd()|Reward 광고가 Show 될 때 이벤트가 발생합니다.
+void onLoadAd(@NonNull BMAdInfo)|Reward 광고가 Load 될 떄 이벤트가 발생합니다.
+void onShowAd(@NonNull BMAdInfo)|Reward 광고가 Show 될 때 이벤트가 발생합니다.
 void onLoadFailAd(BMAdError error)|Reward 광고 Load에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
-void onShowFailAd(BMAdError error)|Reward 광고 Show에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
-void onCompleteAd()|Reward 광고에서 Reward가 지급조건이 충족되면 이벤트가 발생하며, ZoneId를 반환합니다.
-void onSkipAd()|Reward 광고에서 Reward가 지급조건이 충족되지 않은 상태로 광고 종료 시 이벤트가 발생합니다.
-void onCloseAd()|Reward 광고가 종료될 때 이벤트가 발생합니다.
-void onClickAd()|Reward 광고 Click시 이벤트가 발생합니다.
+void onShowFailAd(BMAdError error, @NonNull BMAdInfo)|Reward 광고 Show에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
+void onCompleteAd(@NonNull BMAdInfo)|Reward 광고에서 Reward가 지급조건이 충족되면 이벤트가 발생하며, ZoneId를 반환합니다.
+void onSkipAd(@NonNull BMAdInfo)|Reward 광고에서 Reward가 지급조건이 충족되지 않은 상태로 광고 종료 시 이벤트가 발생합니다.
+void onCloseAd(@NonNull BMAdInfo)|Reward 광고가 종료될 때 이벤트가 발생합니다.
+void onClickAd(@NonNull BMAdInfo)|Reward 광고 Click시 이벤트가 발생합니다.
 ---
 #### *네이티브광고 Class Reference
 
@@ -559,12 +585,12 @@ void adShow()|Load된 AppOpen 광고를 화면에 노출합니다.
 
 Function|Description
 ---|---
-void onLoadAd()|AppOpen 광고가 Load 될 떄 이벤트가 발생합니다.
-void onShowAd()|AppOpen 광고가 Show 될 떄 이벤트가 발생합니다.
+void onLoadAd(@NonNull BMAdInfo)|AppOpen 광고가 Load 될 떄 이벤트가 발생합니다.
+void onShowAd(@NonNull BMAdInfo)|AppOpen 광고가 Show 될 떄 이벤트가 발생합니다.
 void onLoadFailAd(BMAdError error)|AppOpen 광고 Load에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
-void onShowFailAd(BMAdError error)|AppOpen 광고 Show에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
-void onCloseAd()|AppOpen 광고가 종료될 때 이벤트가 발생합니다.
-void onExpireAd()|AppOpen 광고 Load하고 3시간 이상 경과 후 Show를 하는 경우에 이벤트가 발생합니다.
+void onShowFailAd(BMAdError error, @NonNull BMAdInfo)|AppOpen 광고 Show에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
+void onCloseAd(@NonNull BMAdInfo)|AppOpen 광고가 종료될 때 이벤트가 발생합니다.
+void onExpireAd(@NonNull BMAdInfo)|AppOpen 광고 Load하고 3시간 이상 경과 후 Show를 하는 경우에 이벤트가 발생합니다.
 
 - AppOpenLifecycleListener
 
@@ -589,14 +615,14 @@ String getSDKVersion()|SDK의 버전 정보를 얻습니다.
 void setDebugging(boolean)|True값으로 호출 시 SDK의 로그를 출력합니다.
 void setGgTestDeviceid()|Google TEST 기기로 등록하여 구글 광고에 대한 테스트 광고를 수신합니다.
 String getGgTestDeviceid()|setGgTestDeviceid로 등록한 기기 ID를 가져옵니다.
-void initializeSdk(Activity, String)|BidmadSDK 초기화 작업을 수행합니다. AppKey를 설정합니다.
-void initializeSdk(Context, String)|BidmadSDK 초기화 작업을 수행합니다. AppKey를 설정합니다.
-void initializeSdk(Activity)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppKey를 설정합니다.
-void initializeSdk(Context)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppKey를 설정합니다.
+void initializeSdk(Activity, String)|BidmadSDK 초기화 작업을 수행합니다. AppDomain를 설정합니다.
+void initializeSdk(Context, String)|BidmadSDK 초기화 작업을 수행합니다. AppDomain를 설정합니다.
+void initializeSdk(Activity)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppDomain를 설정합니다.
+void initializeSdk(Context)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppDomain를 설정합니다.
 void initializeSdk(Activity, String, BidmadInitializeListener)|BidmadSDK 초기화 작업을 수행합니다. BidmadInitializeListener을 통해 초기화 여부를 전달 받습니다.
 void initializeSdk(Context, String, BidmadInitializeListener)|BidmadSDK 초기화 작업을 수행합니다. BidmadInitializeListener을 통해 초기화 여부를 전달 받습니다.
-void initializeSdk(Activity, BidmadInitializeListener)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppKey를 설정합니다. BidmadInitializeListener을 통해 초기화 여부를 전달 받습니다.
-void initializeSdk(Context, BidmadInitializeListener)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppKey를 설정합니다. BidmadInitializeListener을 통해 초기화 여부를 전달 받습니다.
+void initializeSdk(Activity, BidmadInitializeListener)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppDomain를 설정합니다. BidmadInitializeListener을 통해 초기화 여부를 전달 받습니다.
+void initializeSdk(Context, BidmadInitializeListener)|BidmadSDK 초기화 작업을 수행합니다. AndroidManifest.xml의 AppDomain를 설정합니다. BidmadInitializeListener을 통해 초기화 여부를 전달 받습니다.
 ---
 
 #### *AdOption Class Reference

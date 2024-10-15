@@ -1,3 +1,117 @@
+# Version 3.18.0
+#### Changes
+- Update AdPopcorn SDK
+- On initialization, Appkey is changed to AppDomain.
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.18.0</li>
+<li>Adfit Adapter - 3.12.15.2</li>
+<li>Admob Adapter - 22.0.0.6</li>
+<li>Adpie Adapter - 1.13.6.0</li>
+<li>AdPopcorn Adapter - 3.6.0.0</li>
+<li>AdPopcorn Partner - 1.0.0</li>
+<li>Applovin Adapter - 11.9.0.4</li>
+<li>Atom Adapter - 1.1.0.1</li>
+<li>Coupang Adapter - 1.0.0.3</li>
+<li>Covi Adapter - 1.0.2</li>
+<li>Criteo Adapter - 6.0.0.2</li>
+<li>Fyber Adapter - 8.2.3.4</li>
+<li>Ironsource Adapter - 7.3.0.1</li>
+<li>Mobon Adapter - 1.0.0.60.5</li>
+<li>Mobwith Adapter - 1.0.0</li>
+<li>Pangle Adapter - 5.2.1.1.3</li>
+<li>Pubmatic Adapter - 2.7.1.4</li>
+<li>UnityAds Adapter - 4.6.1.5</li>
+<li>Vungle Adapter - 6.12.1.3</li>
+<li>AdmobBidding Partner - 1.0.2</li>
+</div>
+</details>
+
+# Version 3.17.0
+#### Changes
+- Add Covi / Mobwith Network
+- Add AdPopcorn Interstitial
+- Update adpie sdk version
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.17.0</li>
+<li>Adfit Adapter - 3.12.15.2</li>
+<li>Admob Adapter - 22.0.0.6</li>
+<li>Adpie Adapter - 1.13.6.0</li>
+<li>AdPopcorn Adapter - 3.5.0.1</li>
+<li>Applovin Adapter - 11.9.0.4</li>
+<li>Atom Adapter - 1.1.0.1</li>
+<li>Coupang Adapter - 1.0.0.3</li>
+<li>Covi Adapter - 1.0.2</li>
+<li>Criteo Adapter - 6.0.0.2</li>
+<li>Fyber Adapter - 8.2.3.4</li>
+<li>Ironsource Adapter - 7.3.0.1</li>
+<li>Mobon Adapter - 1.0.0.60.5</li>
+<li>Mobwith Adapter - 1.0.0</li>
+<li>Pangle Adapter - 5.2.1.1.3</li>
+<li>Pubmatic Adapter - 2.7.1.4</li>
+<li>UnityAds Adapter - 4.6.1.5</li>
+<li>Vungle Adapter - 6.12.1.3</li>
+<li>AdmobBidding Partner - 1.0.2</li>
+</div>
+</details>
+
+# Version 3.16.1
+#### Changes
+- Add interstitial onClick callback.
+
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.16.1</li>
+<li>Adfit Adapter - 3.12.15.2</li>
+<li>Admob Adapter - 22.0.0.6</li>
+<li>Adpie Adapter - 1.11.0.3</li>
+<li>AdPopcorn Adapter - 3.5.0.0</li>
+<li>Applovin Adapter - 11.9.0.4</li>
+<li>Atom Adapter - 1.1.0.1</li>
+<li>Coupang Adapter - 1.0.0.3</li>
+<li>Criteo Adapter - 6.0.0.2</li>
+<li>Fyber Adapter - 8.2.3.4</li>
+<li>Ironsource Adapter - 7.3.0.1</li>
+<li>Mobon Adapter - 1.0.0.60.5</li>
+<li>Pangle Adapter - 5.2.1.1.3</li>
+<li>Pubmatic Adapter - 2.7.1.4</li>
+<li>UnityAds Adapter - 4.6.1.5</li>
+<li>Vungle Adapter - 6.12.1.3</li>
+<li>AdmobBidding Partner - 1.0.2</li>
+</div>
+</details>
+
+# Version 3.16.0
+#### Changes
+- Callbacks except onLoadFailAd return a BMAdInfo object with the ad type and network name.
+
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.16.0</li>
+<li>Adfit Adapter - 3.12.15.2</li>
+<li>Admob Adapter - 22.0.0.5</li>
+<li>Adpie Adapter - 1.11.0.2</li>
+<li>AdPopcorn Adapter - 3.5.0.0</li>
+<li>Applovin Adapter - 11.9.0.3</li>
+<li>Atom Adapter - 1.1.0.0</li>
+<li>Coupang Adapter - 1.0.0.2</li>
+<li>Criteo Adapter - 6.0.0.1</li>
+<li>Fyber Adapter - 8.2.3.3</li>
+<li>Ironsource Adapter - 7.3.0.0</li>
+<li>Mobon Adapter - 1.0.0.60.4</li>
+<li>Pangle Adapter - 5.2.1.1.2</li>
+<li>Pubmatic Adapter - 2.7.1.3</li>
+<li>UnityAds Adapter - 4.6.1.4</li>
+<li>Vungle Adapter - 6.12.1.2</li>
+<li>AdmobBidding Partner - 1.0.2</li>
+</div>
+</details>
+
 # Version 3.15.0
 #### Changes
 - Add Admob Collapsible Baaner Type

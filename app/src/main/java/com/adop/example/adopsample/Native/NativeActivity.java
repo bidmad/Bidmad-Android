@@ -4,9 +4,12 @@ import ad.helper.openbidding.nativead.BidmadNativeAd;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.adop.example.adopsample.R;
 import com.adop.sdk.BMAdError;
+import com.adop.sdk.BMAdInfo;
 import com.adop.sdk.nativead.NativeListener;
 
 public class NativeActivity extends AppCompatActivity {
@@ -37,7 +40,7 @@ public class NativeActivity extends AppCompatActivity {
 
         nativeAd.setNativeListener(new NativeListener() {
             @Override
-            public void onLoadAd() {
+            public void onLoadAd(@NonNull BMAdInfo info) {
                 layoutNative.removeAllViews();
                 layoutNative.addView(nativeAd.getNativeLayout());
                 callbackStatus.append("onLoadAd() Called\n");
@@ -50,7 +53,7 @@ public class NativeActivity extends AppCompatActivity {
 
 
             @Override
-            public void onClickAd(){
+            public void onClickAd(@NonNull BMAdInfo info){
                 callbackStatus.append("onClickAd() Called\n");
             }
         });

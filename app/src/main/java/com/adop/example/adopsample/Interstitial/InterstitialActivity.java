@@ -3,9 +3,12 @@ package com.adop.example.adopsample.Interstitial;
 import ad.helper.openbidding.interstitial.BidmadInterstitialAd;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.adop.example.adopsample.R;
 import com.adop.sdk.BMAdError;
+import com.adop.sdk.BMAdInfo;
 import com.adop.sdk.interstitial.InterstitialListener;
 
 public class InterstitialActivity extends AppCompatActivity {
@@ -25,12 +28,12 @@ public class InterstitialActivity extends AppCompatActivity {
         mInterstitial = new BidmadInterstitialAd(this, "e9acd7fc-a962-40e4-aaad-9feab1b4f821");
         mInterstitial.setInterstitialListener(new InterstitialListener() {
             @Override
-            public void onLoadAd() {
+            public void onLoadAd(@NonNull BMAdInfo info) {
                 callbackStatus.append("onLoadAd() Called\n");
             }
 
             @Override
-            public void onShowAd() {
+            public void onShowAd(@NonNull BMAdInfo info) {
                 callbackStatus.append("onShowAd() Called\n");
             }
 
@@ -40,12 +43,17 @@ public class InterstitialActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onShowFailAd(BMAdError bmAdError) {
+            public void onShowFailAd(BMAdError bmAdError, @NonNull BMAdInfo info) {
                 callbackStatus.append("onShowFailAd() Called\n");
             }
 
             @Override
-            public void onCloseAd() {
+            public void onClickAd(@NonNull BMAdInfo info) {
+                callbackStatus.append("onClickAd Called\n");
+            }
+
+            @Override
+            public void onCloseAd(@NonNull BMAdInfo info) {
                 callbackStatus.append("onCloseAd() Called\n");
             }
         });

@@ -9,9 +9,12 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ListView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.adop.example.adopsample.R;
 import com.adop.sdk.BMAdError;
+import com.adop.sdk.BMAdInfo;
 import com.adop.sdk.nativead.NativeListener;
 import java.util.ArrayList;
 
@@ -98,7 +101,7 @@ public class NativeSmallCardListActivity extends AppCompatActivity {
 
             nativeAd.setNativeListener(new NativeListener() {
                 @Override
-                public void onLoadAd() {
+                public void onLoadAd(@NonNull BMAdInfo info) {
                     Log.d(LOG_TAG, "onLoadAd() Called\n");
                     layoutNative.addView(nativeAd.getNativeLayout());
                 }
@@ -110,7 +113,7 @@ public class NativeSmallCardListActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onClickAd() {
+                public void onClickAd(@NonNull BMAdInfo info) {
                     Log.d(LOG_TAG, "onClickAd() Called\n");
                 }
             });

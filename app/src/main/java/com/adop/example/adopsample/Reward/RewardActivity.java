@@ -3,9 +3,12 @@ package com.adop.example.adopsample.Reward;
 import ad.helper.openbidding.reward.BidmadRewardAd;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.adop.example.adopsample.R;
 import com.adop.sdk.BMAdError;
+import com.adop.sdk.BMAdInfo;
 import com.adop.sdk.reward.RewardListener;
 
 public class RewardActivity extends AppCompatActivity {
@@ -25,12 +28,12 @@ public class RewardActivity extends AppCompatActivity {
         mReward = new BidmadRewardAd(this,"7d9a2c9e-5755-4022-85f1-6d4fc79e4418");
         mReward.setRewardListener(new RewardListener() {
             @Override
-            public void onLoadAd() {
+            public void onLoadAd(@NonNull BMAdInfo info) {
                 callbackStatus.append("onLoadAd() Called\n");
             }
 
             @Override
-            public void onShowAd() {
+            public void onShowAd(@NonNull BMAdInfo info) {
                 callbackStatus.append("onShowAd() Called\n");
             }
 
@@ -40,27 +43,27 @@ public class RewardActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onShowFailAd(BMAdError bmAdError) {
+            public void onShowFailAd(BMAdError bmAdError, @NonNull BMAdInfo info) {
                 callbackStatus.append("onShowFailAd() Called\n");
             }
 
             @Override
-            public void onCompleteAd() {
+            public void onCompleteAd(@NonNull BMAdInfo info) {
                 callbackStatus.append("onCompleteAd() Called\n");
             }
 
             @Override
-            public void onCloseAd() {
+            public void onCloseAd(@NonNull BMAdInfo info) {
                 callbackStatus.append("onCloseAd() Called\n");
             }
 
             @Override
-            public void onClickAd() {
+            public void onClickAd(@NonNull BMAdInfo info) {
                 callbackStatus.append("onClickAd() Called\n");
             }
 
             @Override
-            public void onSkipAd() {
+            public void onSkipAd(@NonNull BMAdInfo info) {
                 callbackStatus.append("onSkippedAd() Called\n");
             }
 

@@ -3,10 +3,13 @@ package com.adop.example.adopsample.Banner;
 import ad.helper.openbidding.adview.BidmadBannerAd;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import com.adop.example.adopsample.R;
 import com.adop.sdk.BMAdError;
+import com.adop.sdk.BMAdInfo;
 import com.adop.sdk.adview.AdViewListener;
 
 public class BannerActivity extends AppCompatActivity {
@@ -27,7 +30,7 @@ public class BannerActivity extends AppCompatActivity {
         mAdView.setAdViewListener(new AdViewListener() {
 
             @Override
-            public void onLoadAd() {
+            public void onLoadAd(@NonNull BMAdInfo info) {
                 callbackStatus.append("onLoadAd() Called\n");
             }
 
@@ -37,7 +40,7 @@ public class BannerActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onClickAd() {
+            public void onClickAd(@NonNull BMAdInfo info) {
                 callbackStatus.append("onClickAd() Called\n");
             }
         });

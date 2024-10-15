@@ -1,9 +1,15 @@
-# BidmadSDK(v3.15.0)
+> [!IMPORTANT]
+> Starting with version 3.18.0, the previously used Appkey has been changed to AppDomain.<br>
+> **AppDomain is not compatible with existing Appkeys, so a new AppDomain must be issued to initiaize.**<br>
+> If you are updating to version 3.18.0, please contact **Techlabs Platform Operations Team.**<br>
+> For AppDomain changes, please check  [AndroidManifest Settings](#AndroidManifest-Settings).
+
+# BidmadSDK(v3.18.0)
 ### Shortcuts
 
 1. [SDK Settings](#1-SDK-Settings)
    - [Gradle](#Gradle)
-   - [AndroidManifest.xml](#AndroidManifest.xml)
+   - [AndroidManifest](#AndroidManifest-Settings)
 2. [How to use](#2-How-to-use)
    - [Banner Ads](#Banner-Ads)
    - [Interstitial Ads](#Interstitial-Ads)
@@ -21,7 +27,6 @@
 ---
 ### 1. SDK Settings
 #### *Minimum requirements for using the SDK
-- Gradle Plugin 3.6.0 or higher
 - minSdkVersion 21 or higher
 
 #### *Gradle
@@ -35,8 +40,8 @@ allprojects {
         google()
         mavenCentral()
         maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' } //Adift
+        maven { url 'https://jitpack.io' } //adpie
         maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //Bidmad
-        maven { url 'https://android-sdk.is.com/' } // IronSource
         maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
         maven { url 'https://artifact.bytedance.com/repository/pangle/' } //Pangle
         maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
@@ -48,19 +53,19 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'ad.helper.openbidding:admob-obh:3.15.0'
-    implementation 'com.adop.sdk:bidmad-androidx:3.15.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.18.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.18.0'
     implementation 'com.adop.sdk.adapter:adfit:3.12.15.2'
-    implementation 'com.adop.sdk.adapter:admob:22.0.0.5'
-    implementation 'com.adop.sdk.adapter:applovin:11.9.0.3'
-    implementation 'com.adop.sdk.adapter:coupang:1.0.0.2'
-    implementation 'com.adop.sdk.adapter:criteo:6.0.0.1'
-    implementation 'com.adop.sdk.adapter:fyber:8.2.3.3'
-    implementation 'com.adop.sdk.adapter:ironsource:7.3.0.0'
-    implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.2'
-    implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.3'
-    implementation 'com.adop.sdk.adapter:unityads:4.6.1.4'
-    implementation 'com.adop.sdk.adapter:vungle:6.12.1.2'
+    implementation 'com.adop.sdk.adapter:admob:22.0.0.6'
+    implementation 'com.adop.sdk.adapter:adpie:1.13.6.0'
+    implementation 'com.adop.sdk.adapter:adpopcorn:3.6.3.0'
+    implementation 'com.adop.sdk.adapter:applovin:11.9.0.4'
+    implementation 'com.adop.sdk.adapter:criteo:6.0.0.2'
+    implementation 'com.adop.sdk.adapter:fyber:8.2.3.4'
+    implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.3'
+    implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.4'
+    implementation 'com.adop.sdk.adapter:unityads:4.6.1.5'
+    implementation 'com.adop.sdk.adapter:vungle:6.12.1.3'
     implementation 'com.adop.sdk.partners:admobbidding:1.0.2'
 }
 ```
@@ -127,18 +132,18 @@ public static final ** CREATOR;
 
 *Bidmad uses the AndroidX library. If it's not an AndroidX project, please migrate to AndroidX.
 
-#### *AndroidManifest.xml
+#### *AndroidManifest Settings
 
-1. Declare the code below in the application tag of AndroidManifest.xml in the project([Guide](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D))<br>
-   *Check the value of com.google.android.gms.ads.APPLICATION_ID on the admob dashboard.
-   *Check the value of com.adop.sdk.APP_KEY at Account Management > My Information > Details after login to Insight.
+1. Declare the code below in the application tag of AndroidManifest.xml in the project.<br>
+   *Check the value of com.google.android.gms.ads.APPLICATION_ID on the admob dashboard.<br>
+   *For the value of com.adop.sdk.APP_DOMAIN, please contact the Techlabs Platform Operations Team.
 
 ```xml
 <application
    android:usesCleartextTraffic="true">
    ...
    <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="APPLICATION_ID"/>
-   <meta-data android:name="com.adop.sdk.APP_KEY" android:value="INSERT_YOUR_APPKEY"/>
+   <meta-data android:name="com.adop.sdk.APP_DOMAIN" android:value="INSERT_YOUR_APPDOMAIN"/>
    ...
 </application>
 ```
@@ -187,6 +192,7 @@ public static final ** CREATOR;
 
 2. To request a banner ad, create a BidmadBannerAd, set the ZoneId, and call the load function.
 3. Add a BidmadBannerAd to the view created above to expose a banner ad.
+4. Call onResuem / onPause of banner advertisement according to the life cycle.
 ```java
 ConstraintLayout layout;
 BidmadBannerAd mAdView;
@@ -200,7 +206,7 @@ protected void onCreate(Bundle savedInstanceState) {
     mAdView = new BidmadBannerAd(this,"YOUR ZONE ID");
     mAdView.setAdViewListener(new AdViewListener() {
         @Override
-        public void onLoadAd() {
+        public void onLoadAd(@NonNull BMAdInfo) {
             //onLoad Callback
         }
 
@@ -210,7 +216,7 @@ protected void onCreate(Bundle savedInstanceState) {
         }
 
         @Override
-        public void onClickAd() {
+        public void onClickAd(@NonNull BMAdInfo) {
             //onClickAd Callback
         }
     });
@@ -220,6 +226,20 @@ protected void onCreate(Bundle savedInstanceState) {
 
     layout = findViewById(R.id.bannerLayout);
     layout.addView(mAdView.getView()); //attach Banner
+}
+
+@Override
+protected void onResume() {
+    super.onResume();
+    if(mAdView != null)
+        mAdView.onResume();
+}
+
+@Override
+protected void onPause() {
+    super.onPause();
+    if(mAdView != null)
+        mAdView.onPause();
 }
 ```
 
@@ -239,12 +259,12 @@ protected void onCreate(Bundle savedInstanceState) {
     mInterstitial = new BidmadInterstitialAd(this,"YOUR ZONE ID");
     mInterstitial.setInterstitialListener(new InterstitialListener() {
         @Override
-        public void onLoadAd() {
+        public void onLoadAd(@NonNull BMAdInfo) {
            //onLoad Callback
         }
 
         @Override
-        public void onShowAd() {
+        public void onShowAd(@NonNull BMAdInfo) {
             //onShowAd Callback
         }
 
@@ -254,12 +274,17 @@ protected void onCreate(Bundle savedInstanceState) {
         }
 
         @Override
-        public void onShowFailAd(BMAdError error) {
+        public void onShowFailAd(BMAdError error, @NonNull BMAdInfo) {
            //onShowFailAd Callback
         }
 
         @Override
-        public void onCloseAd() {
+        public void onClickAd(@NonNull BMAdInfo info) {
+            //onClickAd Callback
+        }
+
+        @Override
+        public void onCloseAd(@NonNull BMAdInfo) {
             //onCloseAd Callback
         }
     });
@@ -288,12 +313,12 @@ protected void onCreate(Bundle savedInstanceState) {
     //Require
     mReward = new BidmadRewardAd(this,"YOUR ZONE ID");
     mReward.setRewardListener(new RewardListener() {
-        public void onLoadAd() {
+        public void onLoadAd(@NonNull BMAdInfo) {
             //onLoad Callback
         }
 
         @Override
-        public void onShowAd() {
+        public void onShowAd(@NonNull BMAdInfo) {
             //onShowAd Callback
         }
 
@@ -303,27 +328,27 @@ protected void onCreate(Bundle savedInstanceState) {
         }
 
         @Override
-        public void onShowFailAd(BMAdError error) {
+        public void onShowFailAd(BMAdError error, @NonNull BMAdInfo) {
            //onShowFailAd Callback
         }
 
         @Override
-        public void onCompleteAd() {
+        public void onCompleteAd(@NonNull BMAdInfo) {
             //onCompleteAd Callback
         }
 
         @Override
-        public void onCloseAd() {
+        public void onCloseAd(@NonNull BMAdInfo) {
             //onCloseAd Callback
         }
 
         @Override
-        public void onClickAd() {
+        public void onClickAd(@NonNull BMAdInfo) {
             //onClickAd Callback
         }
 
         @Override
-        public void onSkipAd() {
+        public void onSkipAd(@NonNull BMAdInfo) {
             //onSkipAd Callback
         }
     });
@@ -366,7 +391,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
     nativeAd.setNativeListener(new NativeListener() {
         @Override
-        public void onLoadAd() {
+        public void onLoadAd(@NonNull BMAdInfo) {
             layoutNative.removeAllViews();
             layoutNative.addView(nativeAd.getNativeLayout());
             //onLoadAd Callback
@@ -379,7 +404,7 @@ protected void onCreate(Bundle savedInstanceState) {
         }
 
         @Override
-        public void onClickAd(){
+        public void onClickAd(@NonNull BMAdInfo){
             callbackStatus.append("onClickAd() Called\n");
             //onClickAd Callback
         }
@@ -407,13 +432,13 @@ protected void onCreate(Bundle savedInstanceState) {
     mAppOpen = new BidmadAppOpenAd(this.getApplication(), "YOUR ZONE ID");
     mAppOpen.setAppOpenListener(new AppOpenListener() {
         @Override
-        public void onLoadAd() {
+        public void onLoadAd(@NonNull BMAdInfo) {
             //onLoadAd Callback
             mAppOpen.adShow();
         }
 
         @Override
-        public void onShowAd() {
+        public void onShowAd(@NonNull BMAdInfo) {
 	        //onShowAd Callback
         }
 
@@ -423,17 +448,17 @@ protected void onCreate(Bundle savedInstanceState) {
         }
 
         @Override
-        public void onShowFailAd(BMAdError error) {
+        public void onShowFailAd(BMAdError error, @NonNull BMAdInfo) {
            //onShowFailAd Callback
         }
 
         @Override
-        public void onCloseAd() {
+        public void onCloseAd(@NonNull BMAdInfo) {
             //onCloseAd Callback
         }
 
         @Override
-        public void onCloseAd() {
+        public void onCloseAd(@NonNull BMAdInfo) {
             //onCloseAd Callback
             mAppOpen.adLoad();
         }
@@ -468,9 +493,9 @@ void onResume()|Resume Banner ads.
 
 Function|Description
 ---|---
-void onLoadAd()|An event occurs when a banner ad is loaded.
+void onLoadAd(@NonNull BMAdInfo)|An event occurs when a banner ad is loaded.
 void onLoadFailAd(BMAdError error)|An event occurs when a banner ad loading fails. You can check the error code and message with BMAError.
-void onClickAd()|An event occurs when a banner ad is clicked.
+void onClickAd(@NonNull BMAdInfo)|An event occurs when a banner ad is clicked.
 ---
 
 #### *Interstitial Class Reference
@@ -490,11 +515,12 @@ static void setAutoReload(boolean)|Automatically request the next ad when an ad 
 
 Function|Description
 ---|---
-void onLoadAd()|An event occurs when an interstitial ad is loaded.
-void onShowAd()|An event occurs when an interstitial ad is shown.
+void onLoadAd(@NonNull BMAdInfo)|An event occurs when an interstitial ad is loaded.
+void onShowAd(@NonNull BMAdInfo)|An event occurs when an interstitial ad is shown.
 void onLoadFailAd(BMAdError error)|An event occurs when interstitial ad load fails. You can check the error code and message with BMAError.
-void onShowFailAd(BMAdError error)|An event occurs when interstitial ad show fails. You can check the error code and message with BMAError.
-void onCloseAd()|An event occurs when a interstitial ad is Closed.
+void onShowFailAd(BMAdError error, @NonNull BMAdInfo)|An event occurs when interstitial ad show fails. You can check the error code and message with BMAError.
+void onClickAd(@NonNull BMAdInfo)|An event occurs when a interstitial ad is Click.
+void onCloseAd(@NonNull BMAdInfo)|An event occurs when a interstitial ad is Closed.
 ---
 
 #### *Reward Class Reference
@@ -514,14 +540,14 @@ static void setAutoReload(boolean)|Automatically request the next ad when an ad 
 
 Function|Description
 ---|---
-void onLoadAd()|An event occurs when a reward ad is loaded.
-void onShowAd()|An event occurs when a reward ad is shown.
+void onLoadAd(@NonNull BMAdInfo)|An event occurs when a reward ad is loaded.
+void onShowAd(@NonNull BMAdInfo)|An event occurs when a reward ad is shown.
 void onLoadFailAd(BMAdError error)|An event occurs when reward ad load fails, You can check the error code and message with BMAError.
-void onShowFailAd(BMAdError error)|An event occurs when reward ad show fails, You can check the error code and message with BMAError.
-void onCompleteAd()|In the reward ad, when the reward condition is satisfied.
-void onSkipAd()|In the reward ad, an event occurs when the ad ends when the reward condition is not satisfied.
-void onCloseAd()|An event occurs when the reward ad ends.
-void onClickAd()|An event occurs when a reward ad is clicked
+void onShowFailAd(BMAdError error, @NonNull BMAdInfo)|An event occurs when reward ad show fails, You can check the error code and message with BMAError.
+void onCompleteAd(@NonNull BMAdInfo)|In the reward ad, when the reward condition is satisfied.
+void onSkipAd(@NonNull BMAdInfo)|In the reward ad, an event occurs when the ad ends when the reward condition is not satisfied.
+void onCloseAd(@NonNull BMAdInfo)|An event occurs when the reward ad ends.
+void onClickAd(@NonNull BMAdInfo)|An event occurs when a reward ad is clicked
 ---
 
 #### *NativeAd Class Reference
@@ -563,12 +589,12 @@ void adShow()|Display the loaded AppOpen advertisement on the screen.
 
 Function|Description
 ---|---
-void onLoadAd()|Event occurs when the AppOpen ad is loaded.
-void onShowAd()|Event occurs when the AppOpen ad is shown.
+void onLoadAd(@NonNull BMAdInfo)|Event occurs when the AppOpen ad is loaded.
+void onShowAd(@NonNull BMAdInfo)|Event occurs when the AppOpen ad is shown.
 void onLoadFailAd(BMAdError error)|Event occurs when the AppOpen ad is load fails. You can check the error code and message with BMAError.
-void onShowFailAd(BMAdError error)|Event occurs when the AppOpen ad is show fails. You can check the error code and message with BMAError.
-void onCloseAd()|Event occurs when the AppOpen ad is fails.
-void onExpireAd()|Event occurs when a show is call after 3 hours or more have elapsed after loading the AppOpen ad.
+void onShowFailAd(BMAdError error, @NonNull BMAdInfo)|Event occurs when the AppOpen ad is show fails. You can check the error code and message with BMAError.
+void onCloseAd(@NonNull BMAdInfo)|Event occurs when the AppOpen ad is fails.
+void onExpireAd(@NonNull BMAdInfo)|Event occurs when a show is call after 3 hours or more have elapsed after loading the AppOpen ad.
 
 - AppOpenLifecycleListener
 
@@ -593,14 +619,14 @@ String getSDKVersion()|Get SDK version information.
 void setDebugging(boolean)|When called with a true value, the log of the SDK is output.
 void setGgTestDeviceid()|Register with Google TEST device to receive test ads for Google ads.
 String getGgTestDeviceid()|Get the device ID registered with setGgTestDeviceid.
-void initializeSdk(Activity, String)|Perform BidmadSDK initialization. Set the AppKey.
-void initializeSdk(Context, String)|Perform BidmadSDK initialization. Set the AppKey.
-void initializeSdk(Activity)|Perform BidmadSDK initialization. Set by the AppKey in AndroidManifest.xml.
-void initializeSdk(Context)|Perform BidmadSDK initialization. Set by the AppKey in AndroidManifest.xml.
-void initializeSdk(Activity, String, BidmadInitializeListener)|Perform BidmadSDK initialization. Set the AppKey. BidmadInitializeListener conveys the initialization status.
-void initializeSdk(Context, String, BidmadInitializeListener)|Perform BidmadSDK initialization. Set the AppKey. BidmadInitializeListener conveys the initialization status.
-void initializeSdk(Activity, BidmadInitializeListener)|Perform BidmadSDK initialization. Set by the AppKey in AndroidManifest.xml. BidmadInitializeListener conveys the initialization status.
-void initializeSdk(Context, BidmadInitializeListener)|Perform BidmadSDK initialization. Set by the AppKey in AndroidManifest.xml. BidmadInitializeListener conveys the initialization status.
+void initializeSdk(Activity, String)|Perform BidmadSDK initialization. Set the AppDomain.
+void initializeSdk(Context, String)|Perform BidmadSDK initialization. Set the AppDomain.
+void initializeSdk(Activity)|Perform BidmadSDK initialization. Set by the AppDomain in AndroidManifest.xml.
+void initializeSdk(Context)|Perform BidmadSDK initialization. Set by the AppDomain in AndroidManifest.xml.
+void initializeSdk(Activity, String, BidmadInitializeListener)|Perform BidmadSDK initialization. Set the AppDomain. BidmadInitializeListener conveys the initialization status.
+void initializeSdk(Context, String, BidmadInitializeListener)|Perform BidmadSDK initialization. Set the AppDomain. BidmadInitializeListener conveys the initialization status.
+void initializeSdk(Activity, BidmadInitializeListener)|Perform BidmadSDK initialization. Set by the AppDomain in AndroidManifest.xml. BidmadInitializeListener conveys the initialization status.
+void initializeSdk(Context, BidmadInitializeListener)|Perform BidmadSDK initialization. Set by the AppDomain in AndroidManifest.xml. BidmadInitializeListener conveys the initialization status.
 ---
 
 #### *AdOption Class Reference
