@@ -27,7 +27,7 @@
 ---
 ### 1. SDK Settings
 #### *Minimum requirements for using the SDK
-- minSdkVersion 21 or higher
+- minSdkVersion 23 or higher
 
 #### *Gradle
 1. Declares the repository in the build.gradle file located at the top-level of the project.
@@ -40,12 +40,12 @@ allprojects {
         google()
         mavenCentral()
         maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' } //Adift
-        maven { url 'https://jitpack.io' } //adpie
         maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //Bidmad
         maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
         maven { url 'https://artifact.bytedance.com/repository/pangle/' } //Pangle
         maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
-        maven { url "https://sdk.tapjoy.com/" } //Tapjoy
+        maven { url "https://teads.jfrog.io/artifactory/SDKAndroid-maven-prod" } //Teads
+        maven { url 'https://taboolapublic.jfrog.io/artifactory/mobile-release'} //Taboola
 }
 ```
 2. Declares SDK in the build.gradle file located in the project App-Level.
@@ -53,20 +53,21 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'ad.helper.openbidding:admob-obh:3.18.0'
-    implementation 'com.adop.sdk:bidmad-androidx:3.18.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.20.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.20.0'
     implementation 'com.adop.sdk.adapter:adfit:3.12.15.2'
     implementation 'com.adop.sdk.adapter:admob:22.0.0.6'
-    implementation 'com.adop.sdk.adapter:adpie:1.13.6.0'
-    implementation 'com.adop.sdk.adapter:adpopcorn:3.6.3.0'
+    implementation 'com.adop.sdk.adapter:adpopcorn:3.7.4.0'
     implementation 'com.adop.sdk.adapter:applovin:11.9.0.4'
-    implementation 'com.adop.sdk.adapter:criteo:6.0.0.2'
-    implementation 'com.adop.sdk.adapter:fyber:8.2.3.4'
+    implementation 'com.adop.sdk.adapter:coupang:1.0.0.3'
+    implementation 'com.adop.sdk.adapter:ortb:1.0.0'
+    implementation 'com.adop.sdk.adapter:mobwith:1.1.0'
     implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.3'
     implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.4'
+    implementation 'com.adop.sdk.adapter:taboola:3.10.7.0'
     implementation 'com.adop.sdk.adapter:unityads:4.6.1.5'
     implementation 'com.adop.sdk.adapter:vungle:6.12.1.3'
-    implementation 'com.adop.sdk.partners:admobbidding:1.0.2'
+    implementation 'com.adop.sdk.partners:admobbidding:1.0.3'
 }
 ```
 3. Declare the option below in the android tag of the build.gradle file located in the project App-Level.

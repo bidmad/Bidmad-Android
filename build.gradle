@@ -22,12 +22,14 @@ allprojects {
             dirs 'libs'
         }
         maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' } //Adift
-        maven { url 'https://jitpack.io' } //adpie
         maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //Bidmad
         maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
         maven { url 'https://artifact.bytedance.com/repository/pangle/' } //Pangle
         maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
-        maven { url "https://sdk.tapjoy.com/" } //Tapjoy
+        maven { url "https://teads.jfrog.io/artifactory/SDKAndroid-maven-prod" } //Teads
+        maven { url 'https://taboolapublic.jfrog.io/artifactory/mobile-release'} //Taboola
+
+
     }
 }
 
