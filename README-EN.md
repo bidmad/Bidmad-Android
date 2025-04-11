@@ -64,7 +64,7 @@ dependencies {
     implementation 'com.adop.sdk.adapter:mobwith:1.1.0'
     implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.3'
     implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.4'
-    implementation 'com.adop.sdk.adapter:taboola:3.10.7.0'
+    implementation 'com.adop.sdk.adapter:taboola:3.10.7.1'
     implementation 'com.adop.sdk.adapter:unityads:4.6.1.5'
     implementation 'com.adop.sdk.adapter:vungle:6.12.1.3'
     implementation 'com.adop.sdk.partners:admobbidding:1.0.3'
