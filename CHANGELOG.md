@@ -1,7 +1,36 @@
+# Version 3.21.0
+#### Changes
+- Add Admixer Network
+- Fix bugs
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.21.0</li>
+<li>Adfit Adapter - 3.12.15.2</li>
+<li>AdMixer Adapter - 1.0.8.0</li>
+<li>Admob Adapter - 22.0.0.6</li>
+<li>AdPopcorn Adapter - 3.7.4.0</li>
+<li>Applovin Adapter - 11.9.0.4</li>
+<li>Coupang Adapter - 1.0.0.4</li>
+<li>Criteo Adapter - 6.0.0.2</li>
+<li>Fyber Adapter - 8.3.6.0</li>
+<li>Ironsource Adapter - 7.3.0.1</li>
+<li>Mobon Adapter - 1.0.0.60.5</li>
+<li>Mobwith Adapter - 1.1.2</li>
+<li>ORTB Adapter - 1.0.1</li>
+<li>Pangle Adapter - 5.2.1.1.3</li>
+<li>Pubmatic Adapter - 2.7.1.4</li>
+<li>Taboola Adapter - 3.10.7.2</li>
+<li>UnityAds Adapter - 4.6.1.5</li>
+<li>Vungle Adapter - 6.12.1.3</li>
+<li>AdmobBidding Partner - 1.0.3</li>
+</div>
+</details>
+
 # Version 3.20.0
 #### Changes
-- Update AdPopcorn SDK
-- On initialization, Appkey is changed to AppDomain.
+- Add Teads, ORTB Network
+- Fix bugs
 <details>
 <summary>Check Available Support libraries</summary>
 <div markdown="1">
