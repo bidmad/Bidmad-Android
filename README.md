@@ -4,7 +4,7 @@
 > 3.18.0 버전으로 업데이트 하시는 경우에는 **테크랩스 플랫폼 사업부 운영팀에 연락 부탁 드립니다.**<br>
 > AppDomain 변경 내용은 [AndroidManifest 설정](#AndroidManifest-설정)를 확인 바랍니다.
 
-# BidmadSDK(v3.21.0)
+# BidmadSDK(v3.23.0)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
    - [Gradle](#Gradle)
@@ -42,7 +42,6 @@ allprojects {
         maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //Bidmad
         maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
         maven { url 'https://artifact.bytedance.com/repository/pangle/' } //Pangle
-        maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
         maven { url "https://teads.jfrog.io/artifactory/SDKAndroid-maven-prod" } //Teads
         maven { url 'https://taboolapublic.jfrog.io/artifactory/mobile-release'} //Taboola
 }
@@ -52,22 +51,22 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'ad.helper.openbidding:admob-obh:3.21.0'
-    implementation 'com.adop.sdk:bidmad-androidx:3.21.0'
-    implementation 'com.adop.sdk.adapter:adfit:3.12.15.2'
-    implementation 'com.adop.sdk.adapter:admixer:1.0.8.0'
-    implementation 'com.adop.sdk.adapter:admob:22.0.0.6'
-    implementation 'com.adop.sdk.adapter:adpopcorn:3.7.4.0'
-    implementation 'com.adop.sdk.adapter:applovin:11.9.0.4'
-    implementation 'com.adop.sdk.adapter:coupang:1.0.0.4'
+    implementation 'ad.helper.openbidding:admob-obh:3.23.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.23.0'
+    implementation 'com.adop.sdk.adapter:adfit:3.19.5.0'
+    implementation 'com.adop.sdk.adapter:admixer:1.0.9.0'
+    implementation 'com.adop.sdk.adapter:admob:24.4.0.0'
+    implementation 'com.adop.sdk.adapter:adpopcorn:3.8.2.0'
+    implementation 'com.adop.sdk.adapter:applovin:13.3.1.0'
+    implementation 'com.adop.sdk.adapter:coupang:1.0.0.5'
+    implementation 'com.adop.sdk.adapter:fyber:8.3.7.0'
     implementation 'com.adop.sdk.adapter:ortb:1.0.1'
-    implementation 'com.adop.sdk.adapter:mobwith:1.1.2'
-    implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.3'
-    implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.4'
-    implementation 'com.adop.sdk.adapter:taboola:3.10.7.2'
-    implementation 'com.adop.sdk.adapter:unityads:4.6.1.5'
-    implementation 'com.adop.sdk.adapter:vungle:6.12.1.3'
-    implementation 'com.adop.sdk.partners:admobbidding:1.0.3'
+    implementation 'com.adop.sdk.adapter:mobwith:1.1.3'
+    implementation 'com.adop.sdk.adapter:pangle:7.2.0.6.0'
+    implementation 'com.adop.sdk.adapter:taboola:4.0.8.0'
+    implementation 'com.adop.sdk.adapter:unityads:4.15.0.0'
+    implementation 'com.adop.sdk.adapter:vungle:7.5.0.0'
+    implementation 'com.adop.sdk.partners:admobbidding:1.1.0'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
@@ -416,11 +415,11 @@ protected void onCreate(Bundle savedInstanceState) {
 
 #### *앱오픈광고 추가하기
 
-1. 앱오픈광고 요청하기 위해 BidmadAppOpenAd 생성자를 호출합니다. 이때 ZoneId를 셋팅하고 광고 Orientation option을 설정합니다.
-2. start를 호출하면 BidmadAppOpenAd가 Application의 Lifecycle에 따라 onStart 발생 시 광고를 요청하고 노출합니다.<br>
+1. 앱오픈광고 요청하기 위해 BidmadAppOpenAd 생성자를 호출합니다.<br>
+2. BidmadAppOpenAd가 Application의 Foreground 상태에 진입하는 것을 감지하면 광고를 요청합니다.<br>
+3. 더 이상 광고를 요청하지 않으려면 BidmadAppOpenAd의 Destroy를 호출합니다.
 
-*앱 오픈 광고는 앱 상태가 백그라운드에서 포그라운드로 변경될 때 광고를 노출합니다.<br>
-*Lifecycle에 따른 광고 호출을 변경하고자 하는 경우 BidmadAppOpenAd을 사용해 앱오픈 광고를 구현 바랍니다.
+*앱 오픈 광고는 앱 상태가 백그라운드에서 포그라운드로 변경될 때 광고를 노출합니다.
 ```java
 BidmadAppOpenAd mAppOpen;
 
@@ -428,6 +427,8 @@ BidmadAppOpenAd mAppOpen;
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_appopen);
+
+    ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
 
     mAppOpen = new BidmadAppOpenAd(this.getApplication(), "YOUR ZONE ID");
     mAppOpen.setAppOpenListener(new AppOpenListener() {
@@ -463,14 +464,18 @@ protected void onCreate(Bundle savedInstanceState) {
             mAppOpen.adLoad();
         }
     });
-
-    mAppOpen.start();
 }
 
 @Override
-public void onBackPressed() {
-    super.onBackPressed();
-    mAppOpen.end();
+public void onStop(@NonNull LifecycleOwner owner) {
+    DefaultLifecycleObserver.super.onStop(owner);
+
+    ProcessLifecycleOwner.get().getLifecycle().removeObserver(this);
+
+    // If the advertisement operates only when the app
+    // Continues depending on app activation/deactivation, move the code below to when the app is closed.
+    mAppOpen.destory();
+    mAppOpen = null;
 }
 ```
 
@@ -574,11 +579,10 @@ void onClickAd()|Native 광고 Click시 이벤트가 발생합니다.
 
 Function|Description
 ---|---
-BidmadAppOpenAd(Application, String)|BidmadAppOpenAd 생성자입니다. 앱오픈광고 ZoneId를 셋팅합니다.
+BidmadAppOpenAd(Application, String)|BidmadAppOpenAd 생성자입니다. ZoneId를 셋팅하고 광고를 로드합니다.
 void setAppOpenListener(AppOpenListener)|AppOpen 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void setAppOpenLifecycleListener(AppOpenLifecycleListener)|Lifecycle에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
-void start()|LifecycleObserver를 등록하여 Lifecycle에 따라 AppOpen 광고를 요청하고 노출시킵니다.
-void end()|등록한 LifecycleObserver를 제거합니다.
+void destory()|앱 오픈 객체를 파괴하여 더 이상 광고를 요청하지 않는 상태로 만듭니다.
 void adLoad()|AppOpen 광고를 요청합니다.
 boolean isAdLoaded()|AppOpen 광고의 Load 여부를 확인합니다.
 void adShow()|Load된 AppOpen 광고를 화면에 노출합니다.

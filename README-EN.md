@@ -4,7 +4,7 @@
 > If you are updating to version 3.18.0, please contact **Techlabs Platform Operations Team.**<br>
 > For AppDomain changes, please check  [AndroidManifest Settings](#AndroidManifest-Settings).
 
-# BidmadSDK(v3.21.0)
+# BidmadSDK(v3.23.0)
 ### Shortcuts
 
 1. [SDK Settings](#1-SDK-Settings)
@@ -43,7 +43,6 @@ allprojects {
         maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //Bidmad
         maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral
         maven { url 'https://artifact.bytedance.com/repository/pangle/' } //Pangle
-        maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic
         maven { url "https://teads.jfrog.io/artifactory/SDKAndroid-maven-prod" } //Teads
         maven { url 'https://taboolapublic.jfrog.io/artifactory/mobile-release'} //Taboola
 }
@@ -53,22 +52,22 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'ad.helper.openbidding:admob-obh:3.21.0'
-    implementation 'com.adop.sdk:bidmad-androidx:3.21.0'
-    implementation 'com.adop.sdk.adapter:adfit:3.12.15.2'
-    implementation 'com.adop.sdk.adapter:admixer:1.0.8.0'
-    implementation 'com.adop.sdk.adapter:admob:22.0.0.6'
-    implementation 'com.adop.sdk.adapter:adpopcorn:3.7.4.0'
-    implementation 'com.adop.sdk.adapter:applovin:11.9.0.4'
-    implementation 'com.adop.sdk.adapter:coupang:1.0.0.4'
+    implementation 'ad.helper.openbidding:admob-obh:3.23.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.23.0'
+    implementation 'com.adop.sdk.adapter:adfit:3.19.5.0'
+    implementation 'com.adop.sdk.adapter:admixer:1.0.9.0'
+    implementation 'com.adop.sdk.adapter:admob:24.4.0.0'
+    implementation 'com.adop.sdk.adapter:adpopcorn:3.8.2.0'
+    implementation 'com.adop.sdk.adapter:applovin:13.3.1.0'
+    implementation 'com.adop.sdk.adapter:coupang:1.0.0.5'
+    implementation 'com.adop.sdk.adapter:fyber:8.3.7.0'
     implementation 'com.adop.sdk.adapter:ortb:1.0.1'
-    implementation 'com.adop.sdk.adapter:mobwith:1.1.2'
-    implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.3'
-    implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.4'
-    implementation 'com.adop.sdk.adapter:taboola:3.10.7.2'
-    implementation 'com.adop.sdk.adapter:unityads:4.6.1.5'
-    implementation 'com.adop.sdk.adapter:vungle:6.12.1.3'
-    implementation 'com.adop.sdk.partners:admobbidding:1.0.3'
+    implementation 'com.adop.sdk.adapter:mobwith:1.1.3'
+    implementation 'com.adop.sdk.adapter:pangle:7.2.0.6.0'
+    implementation 'com.adop.sdk.adapter:taboola:4.0.8.0'
+    implementation 'com.adop.sdk.adapter:unityads:4.15.0.0'
+    implementation 'com.adop.sdk.adapter:vungle:7.5.0.0'
+    implementation 'com.adop.sdk.partners:admobbidding:1.1.0'
 }
 ```
 3. Declare the option below in the android tag of the build.gradle file located in the project App-Level.
@@ -418,11 +417,11 @@ protected void onCreate(Bundle savedInstanceState) {
 
 #### *AppOpen Ads
 
-1. Call BidmadAppOpenAd constructor to request AppOpenAd. At this time, set the ZoneId and set the advertisement Orientation option.
-2. When start is called, BidmadAppOpenAd requests and displays advertisements when onStart occurs according to the lifecycle of the application..<br>
+1. Call BidmadAppOpenAd constructor to request AppOpenAd.
+2. When BidmadAppOpenAd detects that the Application is entering the Foreground state, it requests an ad.<br>
+3. If you don't want to request any more ads, call BidmadAppOpenAd's Destroy.
 
 *App open ads expose ads when the app state changes from background to foreground.<br>
-*If you want to change the ad call according to lifecycle, implement AppOpen Ad using BidmadAppOpenAd.
 ```java
 BidmadAppOpenAd mAppOpen;
 
@@ -430,6 +429,8 @@ BidmadAppOpenAd mAppOpen;
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_appopen);
+
+    ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
 
     mAppOpen = new BidmadAppOpenAd(this.getApplication(), "YOUR ZONE ID");
     mAppOpen.setAppOpenListener(new AppOpenListener() {
@@ -465,14 +466,18 @@ protected void onCreate(Bundle savedInstanceState) {
             mAppOpen.adLoad();
         }
     });
-
-    mAppOpen.start();
 }
 
 @Override
-public void onBackPressed() {
-    super.onBackPressed();
-    mAppOpen.end();
+public void onStop(@NonNull LifecycleOwner owner) {
+    DefaultLifecycleObserver.super.onStop(owner);
+
+    ProcessLifecycleOwner.get().getLifecycle().removeObserver(this);
+
+    // If the advertisement operates only when the app
+    // Continues depending on app activation/deactivation, move the code below to when the app is closed.
+    mAppOpen.destory();
+    mAppOpen = null;
 }
 ```
 
@@ -579,11 +584,10 @@ void onClickAd()|An event occurs when a native ad is clicked.
 
 Function|Description
 ---|---
-BidmadAppOpenAd(Application, String)|BidmadAppOpenAd constructor. Set AppOpenAd ZoneId.
+BidmadAppOpenAd(Application, String)|BidmadAppOpenAd constructor. Set the ZoneId and load the advertisement.
 void setAppOpenListener(AppOpenListener)|Set up a listener to receive event callbacks for AppOpen ads.
 void setAppOpenLifecycleListener(AppOpenLifecycleListener)|Set up a listener to receive event callbacks for the Lifecycle.
-void start()|Register a LifecycleObserver to request and expose AppOpen ads according to the Lifecycle.
-void end()|Delete the registered LifecycleObserver.
+void destory()|Destroys the app open object so that it no longer requests ads.
 void adLoad()|Request an AppOpen ad.
 boolean isAdLoaded()|Check whether AppOpen ads are loaded.
 void adShow()|Display the loaded AppOpen advertisement on the screen.

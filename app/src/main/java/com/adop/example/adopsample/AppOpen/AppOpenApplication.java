@@ -8,6 +8,7 @@ import android.app.Application;
 import android.content.ComponentCallbacks;
 import android.util.Log;
 
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
@@ -23,17 +24,16 @@ public class AppOpenApplication extends Application implements DefaultLifecycleO
     public void onCreate() {
         super.onCreate();
         BidmadCommon.setDebugging(true);
-        BidmadCommon.initializeSdk(this, new BidmadInitializeListener() {
-            @Override
-            public void onInitialized(boolean isComplete) {
-				init();
-            }
-        });
+        BidmadCommon.initializeSdk(this);
+        init();
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     }
 
     public void init() {
-        mAppOpen = new BidmadAppOpenAd(this, "33906f96-dae8-4790-8ce4-d1f287ba00b2");
+        mAppOpen = new BidmadAppOpenAd(
+                this,
+                "33906f96-dae8-4790-8ce4-d1f287ba00b2"
+        );
 
         mAppOpen.setAppOpenListener(new AppOpenListener() {
             @Override
@@ -61,16 +61,19 @@ public class AppOpenApplication extends Application implements DefaultLifecycleO
                 mAppOpen.adLoad();
             }
         });
-
-        mAppOpen.start();
     }
+
 
 
     @Override
     public void onStop(@NonNull LifecycleOwner owner) {
         DefaultLifecycleObserver.super.onStop(owner);
 
-        mAppOpen.end();
         ProcessLifecycleOwner.get().getLifecycle().removeObserver(this);
+
+        // If the advertisement operates only when the app
+        // Continues depending on app activation/deactivation, move the code below to when the app is closed.
+        mAppOpen.destory();
+        mAppOpen = null;
     }
 }
