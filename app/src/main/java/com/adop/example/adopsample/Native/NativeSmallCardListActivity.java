@@ -12,13 +12,14 @@ import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.adop.example.adopsample.BaseActivity;
 import com.adop.example.adopsample.R;
 import com.adop.sdk.BMAdError;
 import com.adop.sdk.BMAdInfo;
 import com.adop.sdk.nativead.NativeListener;
 import java.util.ArrayList;
 
-public class NativeSmallCardListActivity extends AppCompatActivity {
+public class NativeSmallCardListActivity extends BaseActivity {
     private String LOG_TAG = "NativeSmallCardListActivity";
 
     ListView listview;
@@ -29,8 +30,8 @@ public class NativeSmallCardListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_native_list);
+        super.onCreate(savedInstanceState);
 
         mAdapter = new ListAdapter();
         itemList = new ArrayList<>();

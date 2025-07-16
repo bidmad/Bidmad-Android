@@ -7,12 +7,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import com.adop.example.adopsample.BaseActivity;
 import com.adop.example.adopsample.R;
 import com.adop.sdk.BMAdError;
 import com.adop.sdk.BMAdInfo;
 import com.adop.sdk.adview.AdViewListener;
 
-public class BannerActivity extends AppCompatActivity {
+public class BannerActivity extends BaseActivity {
 
     ConstraintLayout layout;
     BidmadBannerAd mAdView;
@@ -20,8 +21,8 @@ public class BannerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_banner);
+        super.onCreate(savedInstanceState);
 
         callbackStatus = findViewById(R.id.bannerCallbackStatus);
 

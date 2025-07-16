@@ -6,20 +6,21 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.adop.example.adopsample.BaseActivity;
 import com.adop.example.adopsample.R;
 import com.adop.sdk.BMAdError;
 import com.adop.sdk.BMAdInfo;
 import com.adop.sdk.reward.RewardListener;
 
-public class RewardActivity extends AppCompatActivity {
+public class RewardActivity extends BaseActivity {
 
     BidmadRewardAd mReward;
     TextView callbackStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reward);
+        super.onCreate(savedInstanceState);
 
         callbackStatus = findViewById(R.id.rewardCallbackStatus);
 

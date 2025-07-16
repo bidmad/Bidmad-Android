@@ -19,13 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.adop.example.adopsample.BaseActivity"/>
         <activity android:name="com.adop.example.adopsample.Banner.BannerActivity"/>
         <activity android:name="com.adop.example.adopsample.Native.NativeActivity"/>
         <activity android:name="com.adop.example.adopsample.Native.NativeCardListActivity"/>
         <activity android:name="com.adop.example.adopsample.Native.NativeSmallCardListActivity"/>
         <activity android:name="com.adop.example.adopsample.Interstitial.InterstitialActivity"/>
         <activity android:name="com.adop.example.adopsample.Reward.RewardActivity"/>
-        <activity android:name="com.adop.example.adopsample.AppOpen.AppOpenApplication"/>
         <!-- AdMob Mediation Activity-->
         <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
         <!-- AdMob Mediation Activity-->

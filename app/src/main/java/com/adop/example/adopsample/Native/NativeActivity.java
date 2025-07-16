@@ -7,12 +7,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.adop.example.adopsample.BaseActivity;
 import com.adop.example.adopsample.R;
 import com.adop.sdk.BMAdError;
 import com.adop.sdk.BMAdInfo;
 import com.adop.sdk.nativead.NativeListener;
 
-public class NativeActivity extends AppCompatActivity {
+public class NativeActivity extends BaseActivity {
 
     FrameLayout layoutNative;
     BidmadNativeAd nativeAd;
@@ -20,8 +21,8 @@ public class NativeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_native);
+        super.onCreate(savedInstanceState);
 
         callbackStatus = findViewById(R.id.nativeCallbackStatus);
         layoutNative = findViewById(R.id.native_ad_container);
