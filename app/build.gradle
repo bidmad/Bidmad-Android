@@ -50,5 +50,5 @@ dependencies {
     implementation 'com.adop.sdk.adapter:taboola:4.0.8.0'
     implementation 'com.adop.sdk.adapter:unityads:4.15.0.0'
     implementation 'com.adop.sdk.adapter:vungle:7.5.0.0'
-    implementation 'com.adop.sdk.partners:admobbidding:1.1.0'
+    implementation 'com.adop.sdk.partners:admobbidding:1.1.1'
 }
