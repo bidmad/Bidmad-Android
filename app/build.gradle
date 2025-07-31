@@ -39,7 +39,7 @@ dependencies {
     implementation 'com.adop.sdk:bidmad-androidx:3.23.0'
     implementation 'com.adop.sdk.adapter:adfit:3.19.5.0'
     implementation 'com.adop.sdk.adapter:admixer:1.0.9.0'
-    implementation 'com.adop.sdk.adapter:admob:24.4.0.0'
+    implementation 'com.adop.sdk.adapter:admob:24.4.0.1'
     implementation 'com.adop.sdk.adapter:adpopcorn:3.8.2.0'
     implementation 'com.adop.sdk.adapter:applovin:13.3.1.0'
     implementation 'com.adop.sdk.adapter:coupang:1.0.0.5'
