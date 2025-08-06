@@ -51,8 +51,8 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'ad.helper.openbidding:admob-obh:3.23.0'
-    implementation 'com.adop.sdk:bidmad-androidx:3.23.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.25.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.25.0'
     implementation 'com.adop.sdk.adapter:adfit:3.19.5.0'
     implementation 'com.adop.sdk.adapter:admixer:1.0.9.0'
     implementation 'com.adop.sdk.adapter:admob:24.4.0.1'
@@ -203,7 +203,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
     //Require
     mAdView = new BidmadBannerAd(this,"YOUR ZONE ID");
-    mAdView.setAdViewListener(new AdViewListener() {
+    mAdView.setListener(new AdViewListener() {
         @Override
         public void onLoadAd(@NonNull BMAdInfo) {
             //onLoad Callback
@@ -256,7 +256,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
     //Require
     mInterstitial = new BidmadInterstitialAd(this,"YOUR ZONE ID");
-    mInterstitial.setInterstitialListener(new InterstitialListener() {
+    mInterstitial.setListener(new InterstitialListener() {
         @Override
         public void onLoadAd(@NonNull BMAdInfo) {
            //onLoad Callback
@@ -311,7 +311,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
     //Require
     mReward = new BidmadRewardAd(this,"YOUR ZONE ID");
-    mReward.setRewardListener(new RewardListener() {
+    mReward.setListener(new RewardListener() {
         public void onLoadAd(@NonNull BMAdInfo) {
             //onLoad Callback
         }
@@ -388,7 +388,7 @@ protected void onCreate(Bundle savedInstanceState) {
             R.id.adCallToActionButton
     );
 
-    nativeAd.setNativeListener(new NativeListener() {
+    nativeAd.setListener(new NativeListener() {
         @Override
         public void onLoadAd(@NonNull BMAdInfo) {
             layoutNative.removeAllViews();
@@ -428,10 +428,8 @@ protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_appopen);
 
-    ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
-
-    mAppOpen = new BidmadAppOpenAd(this.getApplication(), "YOUR ZONE ID");
-    mAppOpen.setAppOpenListener(new AppOpenListener() {
+    mAppOpen = new BidmadAppOpenAd(this, "YOUR ZONE ID");
+    mAppOpen.setListener(new AppOpenListener() {
         @Override
         public void onLoadAd(@NonNull BMAdInfo) {
             //onLoadAd Callback
@@ -467,15 +465,13 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 
 @Override
-public void onStop(@NonNull LifecycleOwner owner) {
-    DefaultLifecycleObserver.super.onStop(owner);
-
-    ProcessLifecycleOwner.get().getLifecycle().removeObserver(this);
-
-    // If the advertisement operates only when the app
-    // Continues depending on app activation/deactivation, move the code below to when the app is closed.
-    mAppOpen.destory();
-    mAppOpen = null;
+protected void onDestroy() {
+    if(mAppOpen != null) {
+        // Continues depending on app activation/deactivation, and executes the code below when the app terminates
+        // Or call below code if you no longer use app open ads.
+        mAppOpen.destory();
+        mAppOpen = null;
+    }
 }
 ```
 
@@ -487,7 +483,7 @@ public void onStop(@NonNull LifecycleOwner owner) {
 Function|Description
 ---|---
 BidmadBannerAd(Activity, String)|BidmadBannerAd 생성자입니다. ZoneId를 같이 세팅합니다.
-void setAdViewListener(AdViewListener)|Banner 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
+void setListener(AdViewListener)|Banner 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void setInterval(int)| Banner 광고 Refresh Interval을 설정합니다.(60s~120s)
 void load()|Banner 광고를 요청합니다. 설정된 Interval마다 광고를 재요청 합니다.
 void onceLoad()|Banner 광고를 요청합니다. 설정된 Interval에 관계없이 1번만 요청합니다.
@@ -509,7 +505,7 @@ void onClickAd(@NonNull BMAdInfo)|Banner 광고 Click시 이벤트가 발생합�
 Function|Description
 ---|---
 BidmadInterstitialAd(Activity, String)|BidmadInterstitialAd 생성자입니다. ZoneId를 같이 세팅합니다.
-void setInterstitialListener(InterstitialListener)|Interstitial 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
+void setListener(InterstitialListener)|Interstitial 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void load()|Interstitial 광고를 요청합니다.
 void show()|Load된 Interstitial 광고를 화면에 노출합니다.
 boolean isLoaded()|Interstitial 광고의 Load 여부를 확인합니다.
@@ -533,7 +529,7 @@ void onCloseAd(@NonNull BMAdInfo)|Interstitial 광고 Close시 이벤트가 발�
 Function|Description
 ---|---
 BidmadRewardAd(Activity, String)|BidmadRewardAd 생성자입니다. ZoneId를 같이 세팅합니다.
-void setRewardListener(RewardListener)|Reward 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
+void setListener(RewardListener)|Reward 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void load()|Reward 광고를 요청합니다.
 void show()|Load된 Reward 광고를 화면에 노출합니다.
 boolean isLoaded()|Reward 광고의 Load 여부를 확인합니다.
@@ -559,7 +555,7 @@ void onClickAd(@NonNull BMAdInfo)|Reward 광고 Click시 이벤트가 발생합�
 Function|Description
 ---|---
 BidmadNativeAd(Activity, String)|BidmadNativeAd 생성자입니다. ZoneId를 같이 세팅합니다.
-void setNativeListener(NativeListener)|Native 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
+void setListener(NativeListener)|Native 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void registerViewForInteraction(Int, Int, Int, Int, Int, Int)|Native 광고를 구성하는 Layout에 대한 세부 요소를 등록합니다.
 void load()|Native 광고를 요청합니다.
 FrameLayout getNativeLayout()|NativeAd 레이아웃을 가져옵니다.
@@ -579,9 +575,9 @@ void onClickAd()|Native 광고 Click시 이벤트가 발생합니다.
 
 Function|Description
 ---|---
-BidmadAppOpenAd(Application, String)|BidmadAppOpenAd 생성자입니다. ZoneId를 셋팅하고 광고를 로드합니다.
-void setAppOpenListener(AppOpenListener)|AppOpen 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
-void setAppOpenLifecycleListener(AppOpenLifecycleListener)|Lifecycle에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
+BidmadAppOpenAd(Activity, String)|BidmadAppOpenAd 생성자입니다. ZoneId를 셋팅하고 광고를 로드합니다.
+void setListener(AppOpenListener)|AppOpen 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
+void setLifecycleListener(AppOpenLifecycleListener)|Lifecycle에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
 void destory()|앱 오픈 객체를 파괴하여 더 이상 광고를 요청하지 않는 상태로 만듭니다.
 void adLoad()|AppOpen 광고를 요청합니다.
 boolean isAdLoaded()|AppOpen 광고의 Load 여부를 확인합니다.

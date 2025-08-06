@@ -39,7 +39,7 @@ public class NativeActivity extends BaseActivity {
                 R.id.adCallToActionButton
         );
 
-        nativeAd.setNativeListener(new NativeListener() {
+        nativeAd.setListener(new NativeListener() {
             @Override
             public void onLoadAd(@NonNull BMAdInfo info) {
                 layoutNative.removeAllViews();
@@ -58,10 +58,6 @@ public class NativeActivity extends BaseActivity {
                 callbackStatus.append("onClickAd() Called\n");
             }
         });
-
-        //Option HouseAd Setting(Use when needed)
-//        nativeAd.setChildDirected(true); //COPPA
-//        nativeAd.setCUID("YOUR ENCRYPTED CUID"); //Encrypt the identifier and send it to Bidmad.
 
         nativeAd.load();
     }

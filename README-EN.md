@@ -52,8 +52,8 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'ad.helper.openbidding:admob-obh:3.23.0'
-    implementation 'com.adop.sdk:bidmad-androidx:3.23.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.25.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.25.0'
     implementation 'com.adop.sdk.adapter:adfit:3.19.5.0'
     implementation 'com.adop.sdk.adapter:admixer:1.0.9.0'
     implementation 'com.adop.sdk.adapter:admob:24.4.0.1'
@@ -205,7 +205,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
     //Require
     mAdView = new BidmadBannerAd(this,"YOUR ZONE ID");
-    mAdView.setAdViewListener(new AdViewListener() {
+    mAdView.setListener(new AdViewListener() {
         @Override
         public void onLoadAd(@NonNull BMAdInfo) {
             //onLoad Callback
@@ -258,7 +258,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
     //Require
     mInterstitial = new BidmadInterstitialAd(this,"YOUR ZONE ID");
-    mInterstitial.setInterstitialListener(new InterstitialListener() {
+    mInterstitial.setListener(new InterstitialListener() {
         @Override
         public void onLoadAd(@NonNull BMAdInfo) {
            //onLoad Callback
@@ -313,7 +313,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
     //Require
     mReward = new BidmadRewardAd(this,"YOUR ZONE ID");
-    mReward.setRewardListener(new RewardListener() {
+    mReward.setListener(new RewardListener() {
         public void onLoadAd(@NonNull BMAdInfo) {
             //onLoad Callback
         }
@@ -390,7 +390,7 @@ protected void onCreate(Bundle savedInstanceState) {
             R.id.adCallToActionButton
     );
 
-    nativeAd.setNativeListener(new NativeListener() {
+    nativeAd.setListener(new NativeListener() {
         @Override
         public void onLoadAd(@NonNull BMAdInfo) {
             layoutNative.removeAllViews();
@@ -430,10 +430,8 @@ protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_appopen);
 
-    ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
-
-    mAppOpen = new BidmadAppOpenAd(this.getApplication(), "YOUR ZONE ID");
-    mAppOpen.setAppOpenListener(new AppOpenListener() {
+    mAppOpen = new BidmadAppOpenAd(this, "YOUR ZONE ID");
+    mAppOpen.setListener(new AppOpenListener() {
         @Override
         public void onLoadAd(@NonNull BMAdInfo) {
             //onLoadAd Callback
@@ -469,15 +467,13 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 
 @Override
-public void onStop(@NonNull LifecycleOwner owner) {
-    DefaultLifecycleObserver.super.onStop(owner);
-
-    ProcessLifecycleOwner.get().getLifecycle().removeObserver(this);
-
-    // If the advertisement operates only when the app
-    // Continues depending on app activation/deactivation, move the code below to when the app is closed.
-    mAppOpen.destory();
-    mAppOpen = null;
+protected void onDestroy() {
+    if(mAppOpen != null) {
+        // Continues depending on app activation/deactivation, and executes the code below when the app terminates
+        // Or call below code if you no longer use app open ads.
+        mAppOpen.destory();
+        mAppOpen = null;
+    }
 }
 ```
 
@@ -489,7 +485,7 @@ public void onStop(@NonNull LifecycleOwner owner) {
 Function|Description
 ---|---
 BidmadBannerAd(Activity, String)|BidmadBannerAd constructor. Set ZoneId together.
-void setAdViewListener(AdViewListener)|Set listener to receive event callbacks for Banner ad.
+void setListener(AdViewListener)|Set listener to receive event callbacks for Banner ad.
 void setInterval(int)| Set the banner ad refresh interval.(60s~120s)
 void load()|Request a Banner ad. Re-requests the advertisement every set interval.
 void onceLoad()|Request a Banner ad. Regardless of the set interval, only one request.
@@ -512,7 +508,7 @@ void onClickAd(@NonNull BMAdInfo)|An event occurs when a banner ad is clicked.
 Function|Description
 ---|---
 BidmadInterstitialAd(Activity, String)|BidmadInterstitialAd constructor. Set ZoneId together.
-void setInterstitialListener(InterstitialListener)|Set listener to receive event callbacks for interstitial ad.
+void setListener(InterstitialListener)|Set listener to receive event callbacks for interstitial ad.
 void load()|Request an interstitial ad.
 void show()|The loaded interstitial ad is displayed on the screen.
 boolean isLoaded()|Check whether interstitial ad is loaded or not.
@@ -537,7 +533,7 @@ void onCloseAd(@NonNull BMAdInfo)|An event occurs when a interstitial ad is Clos
 Function|Description
 ---|---
 BidmadRewardAd(Activity, String)|BidmadRewardAd constructor. Set ZoneId together.
-void setRewardListener(RewardListener)|Set listener to receive event callbacks for reward ad.
+void setListener(RewardListener)|Set listener to receive event callbacks for reward ad.
 void load()|Request a reward ad.
 void show()|The loaded reward ad is displayed on the screen.
 boolean isLoaded()|Checks whether the reward ad is loaded or not.
@@ -564,7 +560,7 @@ void onClickAd(@NonNull BMAdInfo)|An event occurs when a reward ad is clicked
 Function|Description
 ---|---
 BidmadNativeAd(Activity, String)|BidmadNativeAd constructor. Set ZoneId together.
-void setNativeListener(NativeListener)|Set listener to receive event callbacks for native ad.
+void setListener(NativeListener)|Set listener to receive event callbacks for native ad.
 void registerViewForInteraction(Int, Int, Int, Int, Int, Int)|Register detailed elements for Layout composing native advertisement.
 void load()|Request Native Ad.
 FrameLayout getNativeLayout()|Get the NativeAd layout.
@@ -584,9 +580,9 @@ void onClickAd()|An event occurs when a native ad is clicked.
 
 Function|Description
 ---|---
-BidmadAppOpenAd(Application, String)|BidmadAppOpenAd constructor. Set the ZoneId and load the advertisement.
-void setAppOpenListener(AppOpenListener)|Set up a listener to receive event callbacks for AppOpen ads.
-void setAppOpenLifecycleListener(AppOpenLifecycleListener)|Set up a listener to receive event callbacks for the Lifecycle.
+BidmadAppOpenAd(Activity, String)|BidmadAppOpenAd constructor. Set the ZoneId and load the advertisement.
+void setListener(AppOpenListener)|Set up a listener to receive event callbacks for AppOpen ads.
+void setLifecycleListener(AppOpenLifecycleListener)|Set up a listener to receive event callbacks for the Lifecycle.
 void destory()|Destroys the app open object so that it no longer requests ads.
 void adLoad()|Request an AppOpen ad.
 boolean isAdLoaded()|Check whether AppOpen ads are loaded.

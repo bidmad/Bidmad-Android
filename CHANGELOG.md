@@ -1,3 +1,30 @@
+# Version 3.25.0
+#### Changes
+- Change appopen ad interface
+- Change callback Listener setting method name to setListener
+- Fix bugs
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.25.0</li>
+<li>Adfit Adapter - 3.19.5.0</li>
+<li>AdMixer Adapter - 1.0.9.0</li>
+<li>Admob Adapter - 24.4.0.1</li>
+<li>AdPopcorn Adapter - 3.8.2.0</li>
+<li>Applovin Adapter - 13.3.1.0</li>
+<li>Coupang Adapter - 1.0.0.5</li>
+<li>Fyber Adapter - 8.3.7.0</li>
+<li>Mobwith Adapter - 1.1.3</li>
+<li>ORTB Adapter - 1.0.1</li>
+<li>Pangle Adapter - 7.2.0.6.0</li>
+<li>Taboola Adapter - 4.0.8.0</li>
+<li>UnityAds Adapter - 4.15.0.0</li>
+<li>Vungle Adapter - 7.5.0.0</li>
+<li>AdmobBidding Partner - 1.1.0</li>
+</div>
+</details>
+
+
 # Version 3.23.0
 #### Changes
 - Ad Network SDK Update
@@ -9,7 +36,7 @@
 <li>Admob OBH - 3.23.0</li>
 <li>Adfit Adapter - 3.19.5.0</li>
 <li>AdMixer Adapter - 1.0.9.0</li>
-<li>Admob Adapter - 24.4.0.0</li>
+<li>Admob Adapter - 24.4.0.1</li>
 <li>AdPopcorn Adapter - 3.8.2.0</li>
 <li>Applovin Adapter - 13.3.1.0</li>
 <li>Coupang Adapter - 1.0.0.5</li>

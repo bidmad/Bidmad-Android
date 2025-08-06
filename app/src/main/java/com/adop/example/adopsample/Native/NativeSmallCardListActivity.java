@@ -100,7 +100,7 @@ public class NativeSmallCardListActivity extends BaseActivity {
                     R.id.adCallToActionButton
             );
 
-            nativeAd.setNativeListener(new NativeListener() {
+            nativeAd.setListener(new NativeListener() {
                 @Override
                 public void onLoadAd(@NonNull BMAdInfo info) {
                     Log.d(LOG_TAG, "onLoadAd() Called\n");
@@ -118,9 +118,6 @@ public class NativeSmallCardListActivity extends BaseActivity {
                     Log.d(LOG_TAG, "onClickAd() Called\n");
                 }
             });
-
-            //Option HouseAd Setting(Use when needed)
-            //        nativeAd.setChildDirected(true); //COPPA
         }
 
         public View load() {

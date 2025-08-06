@@ -35,8 +35,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    implementation 'ad.helper.openbidding:admob-obh:3.23.0'
-    implementation 'com.adop.sdk:bidmad-androidx:3.23.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.25.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.25.0'
     implementation 'com.adop.sdk.adapter:adfit:3.19.5.0'
     implementation 'com.adop.sdk.adapter:admixer:1.0.9.0'
     implementation 'com.adop.sdk.adapter:admob:24.4.0.1'

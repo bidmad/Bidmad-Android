@@ -27,7 +27,7 @@ public class InterstitialActivity extends BaseActivity {
 //        BidmadInterstitialAd.setAutoReload(false);
         //Require
         mInterstitial = new BidmadInterstitialAd(this, "e9acd7fc-a962-40e4-aaad-9feab1b4f821");
-        mInterstitial.setInterstitialListener(new InterstitialListener() {
+        mInterstitial.setListener(new InterstitialListener() {
             @Override
             public void onLoadAd(@NonNull BMAdInfo info) {
                 callbackStatus.append("onLoadAd() Called\n");
@@ -58,10 +58,6 @@ public class InterstitialActivity extends BaseActivity {
                 callbackStatus.append("onCloseAd() Called\n");
             }
         });
-
-        //Option(Use when needed)
-//        mInterstitial.setChildDirected(true); //COPPA
-//        mInterstitial.setCUID("YOUR ENCRYPTED CUID"); //Encrypt the identifier and send it to Bidmad.
 
         mInterstitial.load();
 

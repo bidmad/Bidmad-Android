@@ -27,7 +27,7 @@ public class RewardActivity extends BaseActivity {
 //        BidmadRewardAd.setAutoReload(false);
         //Require
         mReward = new BidmadRewardAd(this,"7d9a2c9e-5755-4022-85f1-6d4fc79e4418");
-        mReward.setRewardListener(new RewardListener() {
+        mReward.setListener(new RewardListener() {
             @Override
             public void onLoadAd(@NonNull BMAdInfo info) {
                 callbackStatus.append("onLoadAd() Called\n");
@@ -70,11 +70,6 @@ public class RewardActivity extends BaseActivity {
 
 
         });
-        
-        //Option(Use when needed)
-//        mReward.setChildDirected(true); //COPPA
-//        mReward.setCUID("YOUR ENCRYPTED CUID"); //Encrypt the identifier and send it to Bidmad.
-//        mReward.setMute(true); //Only some networks are supported
 
         mReward.load();
 

@@ -28,7 +28,7 @@ public class BannerActivity extends BaseActivity {
 
         //Require
         mAdView = new BidmadBannerAd(this, "944fe870-fa3a-4d1b-9cc2-38e50b2aed43");
-        mAdView.setAdViewListener(new AdViewListener() {
+        mAdView.setListener(new AdViewListener() {
 
             @Override
             public void onLoadAd(@NonNull BMAdInfo info) {
@@ -45,11 +45,6 @@ public class BannerActivity extends BaseActivity {
                 callbackStatus.append("onClickAd() Called\n");
             }
         });
-
-        //Option(Use when needed)
-//        mAdView.setChildDirected(true); //COPPA
-//        mAdView.setInterval(120); //Refresh Interval 60~120s
-//        mAdView.setCUID("YOUR ENCRYPTED CUID"); //Encrypt the identifier and send it to Bidmad.
 
         mAdView.load(); //Banner Ad Load
 
