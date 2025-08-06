@@ -4,7 +4,7 @@
 > If you are updating to version 3.18.0, please contact **Techlabs Platform Operations Team.**<br>
 > For AppDomain changes, please check  [AndroidManifest Settings](#AndroidManifest-Settings).
 
-# BidmadSDK(v3.23.0)
+# BidmadSDK(v3.25.0)
 ### Shortcuts
 
 1. [SDK Settings](#1-SDK-Settings)
