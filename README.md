@@ -61,12 +61,12 @@ dependencies {
     implementation 'com.adop.sdk.adapter:coupang:1.0.0.5'
     implementation 'com.adop.sdk.adapter:fyber:8.3.7.0'
     implementation 'com.adop.sdk.adapter:ortb:1.0.1'
-    implementation 'com.adop.sdk.adapter:mobwith:1.1.3'
+    implementation 'com.adop.sdk.adapter:mobwith:1.1.4'
     implementation 'com.adop.sdk.adapter:pangle:7.2.0.6.0'
     implementation 'com.adop.sdk.adapter:taboola:4.0.8.0'
     implementation 'com.adop.sdk.adapter:unityads:4.15.0.0'
     implementation 'com.adop.sdk.adapter:vungle:7.5.0.0'
-    implementation 'com.adop.sdk.partners:admobbidding:1.1.1'
+    implementation 'com.adop.sdk.partners:admobbidding:1.1.0'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
