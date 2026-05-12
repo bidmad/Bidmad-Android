@@ -11,12 +11,19 @@ import androidx.annotation.Nullable;
 import java.lang.ref.WeakReference;
 
 public final class RootActivityTracker {
+    public interface Listener {
+        void onRootDestroyed();
+        void onRootRecreated(@NonNull Activity newRoot);
+    }
+
     private static final String TAG = "RootActivityTracker";
     private static volatile RootActivityTracker instance;
 
     private final Application.ActivityLifecycleCallbacks callbacks;
     private WeakReference<Activity> currentRoot = new WeakReference<>(null);
     private String rootClassName;
+    @Nullable
+    private Listener listener;
 
     private RootActivityTracker(@NonNull Activity currentActivity) {
         currentRoot = new WeakReference<>(currentActivity);
@@ -62,6 +69,10 @@ public final class RootActivityTracker {
         return local;
     }
 
+    public synchronized void setListener(@Nullable Listener listener) {
+        this.listener = listener;
+    }
+
     @Nullable
     public Activity getCurrentRoot() {
         return currentRoot.get();
@@ -69,14 +80,24 @@ public final class RootActivityTracker {
 
     private synchronized void onRootCreated(Activity activity) {
         String className = activity.getClass().getName();
+        boolean isRecreation = rootClassName != null
+                && currentRoot.get() == null
+                && className.equals(rootClassName);
         currentRoot = new WeakReference<>(activity);
         rootClassName = className;
+        if (isRecreation && listener != null) {
+            Log.d(TAG, "root RECREATED: " + className
+                    + "@" + Integer.toHexString(System.identityHashCode(activity)));
+            listener.onRootRecreated(activity);
+        }
     }
 
     private synchronized void onRootDestroyed(Activity activity) {
         String hex = "@" + Integer.toHexString(System.identityHashCode(activity));
         Log.d(TAG, "root DESTROYED: " + activity.getClass().getName() + hex);
         currentRoot.clear();
+        if (listener != null) {
+            listener.onRootDestroyed();
+        }
     }
-
 }

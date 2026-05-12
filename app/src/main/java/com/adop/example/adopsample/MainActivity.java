@@ -10,7 +10,6 @@ import com.adop.example.adopsample.AppOpen.AppOpenActivity;
 import com.adop.example.adopsample.Banner.BannerActivity;
 import com.adop.example.adopsample.Consumable.Consumable;
 import com.adop.example.adopsample.Consumable.ConsumableExampleActivity;
-import com.adop.example.adopsample.Consumable.RootActivityTracker;
 import com.adop.example.adopsample.Interstitial.InterstitialActivity;
 import com.adop.example.adopsample.Native.NativeActivity;
 import com.adop.example.adopsample.Native.NativeCardListActivity;
@@ -41,8 +40,6 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
         Log.d("Bidmad","MainActivity onCreate");
-
-        RootActivityTracker.shared(this);
 
         BidmadCommon.setDebugging(true);
         BidmadCommon.initializeSdk(this, new BidmadInitializeListener() {

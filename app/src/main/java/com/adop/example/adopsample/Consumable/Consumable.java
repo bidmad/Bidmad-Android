@@ -23,25 +23,59 @@ public final class Consumable {
     public List<String> fullscreenAdZoneIds = new ArrayList<>();
     public List<String> bannerAdZoneIds = new ArrayList<>();
 
+    private RootActivityTracker tracker;
+    private long loadGeneration = 0;
+    private boolean hasLoaded = false;
+
     private Consumable() {}
 
     public void load(Activity activity,
                      List<String> fullscreenAdZoneIds,
                      List<String> bannerAdZoneIds) {
         onMain(() -> {
+            if (hasLoaded) {
+                return;
+            }
+            hasLoaded = true;
+            doLoad(activity, fullscreenAdZoneIds, bannerAdZoneIds);
+        });
+    }
+
+    private void doLoad(Activity activity,
+                        List<String> fullscreenAdZoneIds,
+                        List<String> bannerAdZoneIds) {
+        onMain(() -> {
             this.fullscreenAdZoneIds = fullscreenAdZoneIds != null
                     ? new ArrayList<>(fullscreenAdZoneIds) : new ArrayList<>();
             this.bannerAdZoneIds = bannerAdZoneIds != null
                     ? new ArrayList<>(bannerAdZoneIds) : new ArrayList<>();
 
+            if (tracker == null) {
+                tracker = RootActivityTracker.shared(activity);
+                tracker.setListener(new RootActivityTracker.Listener() {
+                    @Override
+                    public void onRootDestroyed() {
+                        handleRootDestroyed();
+                    }
+                    @Override
+                    public void onRootRecreated(Activity newRoot) {
+                        doLoad(newRoot,
+                                Consumable.this.fullscreenAdZoneIds,
+                                Consumable.this.bannerAdZoneIds);
+                    }
+                });
+            }
+
+            long gen = ++loadGeneration;
             List<Task> tasks = new ArrayList<>();
             for (String id : this.fullscreenAdZoneIds) tasks.add(new Task(true, id));
             for (String id : this.bannerAdZoneIds) tasks.add(new Task(false, id));
-            loadSequentially(activity, tasks, 0);
+            loadSequentially(activity, tasks, 0, gen);
         });
     }
 
-    private void loadSequentially(Activity activity, List<Task> tasks, int index) {
+    private void loadSequentially(Activity activity, List<Task> tasks, int index, long gen) {
+        if (gen != loadGeneration) return; // a destroy or newer load() bumped the generation
         if (index >= tasks.size()) return;
         Task task = tasks.get(index);
         AdCallback<BMAdInfo> advance = new AdCallback<BMAdInfo>() {
@@ -50,7 +84,9 @@ public final class Consumable {
             @Override
             public void onFailure(BMAdError error) { schedule(); }
             private void schedule() {
-                MAIN.postDelayed(() -> loadSequentially(activity, tasks, index + 1), 1000);
+                MAIN.postDelayed(
+                        () -> loadSequentially(activity, tasks, index + 1, gen),
+                        1000);
             }
         };
         if (task.isFullscreen) {
@@ -58,6 +94,20 @@ public final class Consumable {
         } else {
             loadBannerAd(activity, task.zoneId, advance);
         }
+    }
+
+    private void handleRootDestroyed() {
+        onMain(() -> {
+            loadGeneration++;
+            fullscreenAds.clear();
+            for (List<BannerAd> pool : bannerAds.values()) {
+                if (pool == null) continue;
+                for (BannerAd banner : pool) {
+                    if (banner != null && banner.ad != null) banner.ad.onPause();
+                }
+            }
+            bannerAds.clear();
+        });
     }
 
     public void consumeFullscreenAd(final String zoneId,
