@@ -26,12 +26,13 @@
         <activity android:name="com.adop.example.adopsample.Interstitial.InterstitialActivity"/>
         <activity android:name="com.adop.example.adopsample.Reward.RewardActivity"/>
         <activity android:name="com.adop.example.adopsample.AppOpen.AppOpenActivity"/>
+        <activity android:name="com.adop.example.adopsample.Consumable.ConsumableExampleActivity"/>
         <!-- AdMob Mediation Activity-->
         <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
         <!-- AdMob Mediation Activity-->
         <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing"
             android:value="false" />
-        <meta-data android:name="com.adop.sdk.APP_DOMAIN" android:value="YOUR_APP_DOMAIN"/>
+        <meta-data android:name="com.adop.sdk.APP_DOMAIN" android:value="common-serving-bidmad.adop.co.kr"/>
         <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3940256099942544~3347511713"/>
     </application>
 

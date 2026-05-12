@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import com.adop.example.adopsample.AppOpen.AppOpenActivity;
 import com.adop.example.adopsample.Banner.BannerActivity;
+import com.adop.example.adopsample.Consumable.ConsumableExampleActivity;
 import com.adop.example.adopsample.Interstitial.InterstitialActivity;
 import com.adop.example.adopsample.Native.NativeActivity;
 import com.adop.example.adopsample.Native.NativeCardListActivity;
@@ -21,7 +22,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         Log.d("Bidmad","MainActivity onCreate");
 
-//        BidmadCommon.setDebugging(true);
+        BidmadCommon.setDebugging(true);
         BidmadCommon.initializeSdk(this);
 
         findViewById(R.id.goBannerSample).setOnClickListener(new View.OnClickListener() {
@@ -76,6 +77,14 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, AppOpenActivity.class);
+                startActivity(i);
+            }
+        });
+
+        findViewById(R.id.goConsumableSample).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ConsumableExampleActivity.class);
                 startActivity(i);
             }
         });
