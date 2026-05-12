@@ -20,19 +20,23 @@ public final class Consumable {
     public final Map<String, List<FullscreenAd>> fullscreenAds = new HashMap<>();
     public final Map<String, List<BannerAd>> bannerAds = new HashMap<>();
 
+    public List<String> fullscreenAdZoneIds = new ArrayList<>();
+    public List<String> bannerAdZoneIds = new ArrayList<>();
+
     private Consumable() {}
 
     public void load(Activity activity,
                      List<String> fullscreenAdZoneIds,
                      List<String> bannerAdZoneIds) {
         onMain(() -> {
+            this.fullscreenAdZoneIds = fullscreenAdZoneIds != null
+                    ? new ArrayList<>(fullscreenAdZoneIds) : new ArrayList<>();
+            this.bannerAdZoneIds = bannerAdZoneIds != null
+                    ? new ArrayList<>(bannerAdZoneIds) : new ArrayList<>();
+
             List<Task> tasks = new ArrayList<>();
-            if (fullscreenAdZoneIds != null) {
-                for (String id : fullscreenAdZoneIds) tasks.add(new Task(true, id));
-            }
-            if (bannerAdZoneIds != null) {
-                for (String id : bannerAdZoneIds) tasks.add(new Task(false, id));
-            }
+            for (String id : this.fullscreenAdZoneIds) tasks.add(new Task(true, id));
+            for (String id : this.bannerAdZoneIds) tasks.add(new Task(false, id));
             loadSequentially(activity, tasks, 0);
         });
     }

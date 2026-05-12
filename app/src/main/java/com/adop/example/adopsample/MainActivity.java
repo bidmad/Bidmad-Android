@@ -1,20 +1,40 @@
 package com.adop.example.adopsample;
 
 import ad.helper.openbidding.BidmadCommon;
+import ad.helper.openbidding.initialize.BidmadInitializeListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import com.adop.example.adopsample.AppOpen.AppOpenActivity;
 import com.adop.example.adopsample.Banner.BannerActivity;
+import com.adop.example.adopsample.Consumable.Consumable;
 import com.adop.example.adopsample.Consumable.ConsumableExampleActivity;
+import com.adop.example.adopsample.Consumable.RootActivityTracker;
 import com.adop.example.adopsample.Interstitial.InterstitialActivity;
 import com.adop.example.adopsample.Native.NativeActivity;
 import com.adop.example.adopsample.Native.NativeCardListActivity;
 import com.adop.example.adopsample.Native.NativeSmallCardListActivity;
 import com.adop.example.adopsample.Reward.RewardActivity;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MainActivity extends BaseActivity {
+
+    private static final List<String> FULLSCREEN_ZONE_IDS = Arrays.asList(
+            "b9992eb6-e8fc-41f4-a63e-a86c63730a10",
+            "b9992eb6-e8fc-41f4-a63e-a86c63730a10",
+            "b9992eb6-e8fc-41f4-a63e-a86c63730a10",
+            "b9992eb6-e8fc-41f4-a63e-a86c63730a10"
+    );
+
+    private static final List<String> BANNER_ZONE_IDS = Arrays.asList(
+            "944fe870-fa3a-4d1b-9cc2-38e50b2aed43",
+            "944fe870-fa3a-4d1b-9cc2-38e50b2aed43",
+            "944fe870-fa3a-4d1b-9cc2-38e50b2aed43",
+            "944fe870-fa3a-4d1b-9cc2-38e50b2aed43"
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +42,21 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         Log.d("Bidmad","MainActivity onCreate");
 
+        RootActivityTracker.shared(this);
+
         BidmadCommon.setDebugging(true);
-        BidmadCommon.initializeSdk(this);
+        BidmadCommon.initializeSdk(this, new BidmadInitializeListener() {
+            @Override
+            public void onInitialized(boolean isComplete) {
+                Log.d("Bidmad", "initializeSdk onInitialized=" + isComplete);
+                if (isComplete) {
+                    Consumable.shared.load(
+                            MainActivity.this,
+                            FULLSCREEN_ZONE_IDS,
+                            BANNER_ZONE_IDS);
+                }
+            }
+        });
 
         findViewById(R.id.goBannerSample).setOnClickListener(new View.OnClickListener() {
             @Override
