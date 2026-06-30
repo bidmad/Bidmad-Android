@@ -4,7 +4,7 @@
 > 3.18.0 버전으로 업데이트 하시는 경우에는 **테크랩스 플랫폼 사업부 운영팀에 연락 부탁 드립니다.**<br>
 > AppDomain 변경 내용은 [AndroidManifest 설정](#AndroidManifest-설정)를 확인 바랍니다.
 
-# BidmadSDK(v3.25.0)
+# BidmadSDK(v3.28.1)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
    - [Gradle](#Gradle)
@@ -44,6 +44,7 @@ allprojects {
         maven { url 'https://artifact.bytedance.com/repository/pangle/' } //Pangle
         maven { url "https://teads.jfrog.io/artifactory/SDKAndroid-maven-prod" } //Teads
         maven { url 'https://taboolapublic.jfrog.io/artifactory/mobile-release'} //Taboola
+        maven { url 'https://repo.premiumads.net/artifactory/mobile-ads-sdk/' } // PremiumAds
 }
 ```
 2. 프로젝트 App-Level에 위치한 build.gradle 파일의 dependencies에 SDK 선언합니다.
@@ -51,22 +52,22 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'ad.helper.openbidding:admob-obh:3.25.0'
-    implementation 'com.adop.sdk:bidmad-androidx:3.25.0'
-    implementation 'com.adop.sdk.adapter:adfit:3.19.5.0'
-    implementation 'com.adop.sdk.adapter:admixer:1.0.9.0'
-    implementation 'com.adop.sdk.adapter:admob:24.4.0.1'
-    implementation 'com.adop.sdk.adapter:adpopcorn:3.8.2.0'
-    implementation 'com.adop.sdk.adapter:applovin:13.3.1.0'
-    implementation 'com.adop.sdk.adapter:coupang:1.0.0.5'
-    implementation 'com.adop.sdk.adapter:fyber:8.3.7.0'
-    implementation 'com.adop.sdk.adapter:ortb:1.0.1'
-    implementation 'com.adop.sdk.adapter:mobwith:1.1.4'
-    implementation 'com.adop.sdk.adapter:pangle:7.2.0.6.0'
-    implementation 'com.adop.sdk.adapter:taboola:4.0.8.0'
-    implementation 'com.adop.sdk.adapter:unityads:4.15.0.0'
-    implementation 'com.adop.sdk.adapter:vungle:7.5.0.0'
-    implementation 'com.adop.sdk.partners:admobbidding:1.1.0'
+    implementation 'ad.helper.openbidding:admob-obh:3.28.0'
+    implementation 'com.adop.sdk:bidmad-androidx:3.28.1'
+    implementation 'com.adop.sdk.adapter:adfit:3.21.17.0'
+    implementation 'com.adop.sdk.adapter:admixer:1.0.9.1'
+    implementation 'com.adop.sdk.adapter:admob:25.2.0.0'
+    implementation 'com.adop.sdk.adapter:adpopcorn:3.8.2.1'
+    implementation 'com.adop.sdk.adapter:applovin:13.6.2.0'
+    implementation 'com.adop.sdk.adapter:coupang:1.0.0.6'
+    implementation 'com.adop.sdk.adapter:fyber:8.4.4.0'
+    implementation 'com.adop.sdk.adapter:ortb:1.0.2'
+    implementation 'com.adop.sdk.adapter:mobwith:2.0.2'
+    implementation 'com.adop.sdk.adapter:pangle:7.9.1.3.0'
+    implementation 'com.adop.sdk.adapter:taboola:4.0.8.1'
+    implementation 'com.adop.sdk.adapter:unityads:4.17.0.0'
+    implementation 'com.adop.sdk.adapter:vungle:7.7.2.0'
+    implementation 'com.adop.sdk.partners:admobbidding:1.1.5'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
