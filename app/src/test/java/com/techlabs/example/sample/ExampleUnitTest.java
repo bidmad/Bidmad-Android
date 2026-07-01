@@ -1,4 +1,4 @@
-package com.adop.example.adopsample;
+package com.techlabs.example.sample;
 
 import org.junit.Test;
 

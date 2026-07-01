@@ -1,4 +1,4 @@
-package com.adop.example.adopsample.Banner;
+package com.techlabs.example.sample.Banner;
 
 import ad.helper.openbidding.adview.BidmadBannerAd;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.adop.example.adopsample.BaseActivity;
-import com.adop.example.adopsample.R;
+import com.techlabs.example.sample.BaseActivity;
+import com.techlabs.example.sample.R;
 import com.adop.sdk.BMAdError;
 import com.adop.sdk.BMAdInfo;
 import com.adop.sdk.adview.AdViewListener;

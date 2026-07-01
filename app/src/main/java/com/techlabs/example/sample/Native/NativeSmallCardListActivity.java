@@ -1,4 +1,4 @@
-package com.adop.example.adopsample.Native;
+package com.techlabs.example.sample.Native;
 
 import ad.helper.openbidding.nativead.BidmadNativeAd;
 import android.os.Bundle;
@@ -12,8 +12,8 @@ import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.adop.example.adopsample.BaseActivity;
-import com.adop.example.adopsample.R;
+import com.techlabs.example.sample.BaseActivity;
+import com.techlabs.example.sample.R;
 import com.adop.sdk.BMAdError;
 import com.adop.sdk.BMAdInfo;
 import com.adop.sdk.nativead.NativeListener;

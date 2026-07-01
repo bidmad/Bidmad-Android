@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.adop.example.adopsample">
+    package="com.techlabs.example.sample">
 
     <application
         android:allowBackup="true"
@@ -11,21 +11,21 @@
         android:theme="@style/AppTheme">
 
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
-        <activity android:name="com.adop.example.adopsample.MainActivity"
+        <activity android:name="com.techlabs.example.sample.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.adop.example.adopsample.BaseActivity"/>
-        <activity android:name="com.adop.example.adopsample.Banner.BannerActivity"/>
-        <activity android:name="com.adop.example.adopsample.Native.NativeActivity"/>
-        <activity android:name="com.adop.example.adopsample.Native.NativeCardListActivity"/>
-        <activity android:name="com.adop.example.adopsample.Native.NativeSmallCardListActivity"/>
-        <activity android:name="com.adop.example.adopsample.Interstitial.InterstitialActivity"/>
-        <activity android:name="com.adop.example.adopsample.Reward.RewardActivity"/>
-        <activity android:name="com.adop.example.adopsample.AppOpen.AppOpenActivity"/>
+        <activity android:name="com.techlabs.example.sample.BaseActivity"/>
+        <activity android:name="com.techlabs.example.sample.Banner.BannerActivity"/>
+        <activity android:name="com.techlabs.example.sample.Native.NativeActivity"/>
+        <activity android:name="com.techlabs.example.sample.Native.NativeCardListActivity"/>
+        <activity android:name="com.techlabs.example.sample.Native.NativeSmallCardListActivity"/>
+        <activity android:name="com.techlabs.example.sample.Interstitial.InterstitialActivity"/>
+        <activity android:name="com.techlabs.example.sample.Reward.RewardActivity"/>
+        <activity android:name="com.techlabs.example.sample.AppOpen.AppOpenActivity"/>
         <!-- AdMob Mediation Activity-->
         <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
         <!-- AdMob Mediation Activity-->

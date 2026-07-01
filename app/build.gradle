@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "com.adop.example.adopsample"
+    namespace "com.techlabs.example.sample"
     compileSdk 35
     defaultConfig {
-        applicationId "com.adop.example.adopsample"
+        applicationId "com.techlabs.example.sample"
         minSdkVersion 23
         targetSdkVersion 35
         versionCode 1

@@ -1,4 +1,4 @@
-package com.adop.example.adopsample.AppOpen;
+package com.techlabs.example.sample.AppOpen;
 
 import ad.helper.openbidding.BidmadCommon;
 import ad.helper.openbidding.appopen.BidmadAppOpenAd;
@@ -13,8 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.adop.example.adopsample.BaseActivity;
-import com.adop.example.adopsample.R;
+import com.techlabs.example.sample.BaseActivity;
+import com.techlabs.example.sample.R;
 import com.adop.sdk.BMAdError;
 import com.adop.sdk.BMAdInfo;
 import com.adop.sdk.appopen.AppOpenListener;

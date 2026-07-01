@@ -1,4 +1,4 @@
-package com.adop.example.adopsample;
+package com.techlabs.example.sample;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.adop.example.adopsample", appContext.getPackageName());
+        assertEquals("com.techlabs.example.sample", appContext.getPackageName());
     }
 }

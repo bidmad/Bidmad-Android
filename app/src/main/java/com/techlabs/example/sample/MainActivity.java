@@ -1,17 +1,17 @@
-package com.adop.example.adopsample;
+package com.techlabs.example.sample;
 
 import ad.helper.openbidding.BidmadCommon;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import com.adop.example.adopsample.AppOpen.AppOpenActivity;
-import com.adop.example.adopsample.Banner.BannerActivity;
-import com.adop.example.adopsample.Interstitial.InterstitialActivity;
-import com.adop.example.adopsample.Native.NativeActivity;
-import com.adop.example.adopsample.Native.NativeCardListActivity;
-import com.adop.example.adopsample.Native.NativeSmallCardListActivity;
-import com.adop.example.adopsample.Reward.RewardActivity;
+import com.techlabs.example.sample.AppOpen.AppOpenActivity;
+import com.techlabs.example.sample.Banner.BannerActivity;
+import com.techlabs.example.sample.Interstitial.InterstitialActivity;
+import com.techlabs.example.sample.Native.NativeActivity;
+import com.techlabs.example.sample.Native.NativeCardListActivity;
+import com.techlabs.example.sample.Native.NativeSmallCardListActivity;
+import com.techlabs.example.sample.Reward.RewardActivity;
 
 public class MainActivity extends BaseActivity {
 
