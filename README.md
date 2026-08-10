@@ -4,7 +4,7 @@
 > 3.18.0 버전으로 업데이트 하시는 경우에는 **테크랩스 플랫폼 사업부 운영팀에 연락 부탁 드립니다.**<br>
 > AppDomain 변경 내용은 [AndroidManifest 설정](#AndroidManifest-설정)를 확인 바랍니다.
 
-# BidmadSDK(v3.28.1)
+# BidmadSDK(v3.28.2)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
    - [Gradle](#Gradle)
@@ -52,22 +52,20 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'ad.helper.openbidding:admob-obh:3.28.0'
-    implementation 'com.adop.sdk:bidmad-androidx:3.28.1'
-    implementation 'com.adop.sdk.adapter:adfit:3.21.17.0'
-    implementation 'com.adop.sdk.adapter:admixer:1.0.9.1'
-    implementation 'com.adop.sdk.adapter:admob:25.2.0.0'
-    implementation 'com.adop.sdk.adapter:adpopcorn:3.8.2.1'
-    implementation 'com.adop.sdk.adapter:applovin:13.6.2.0'
-    implementation 'com.adop.sdk.adapter:coupang:1.0.0.6'
-    implementation 'com.adop.sdk.adapter:fyber:8.4.4.0'
-    implementation 'com.adop.sdk.adapter:ortb:1.0.2'
-    implementation 'com.adop.sdk.adapter:mobwith:2.0.2'
-    implementation 'com.adop.sdk.adapter:pangle:7.9.1.3.0'
-    implementation 'com.adop.sdk.adapter:taboola:4.0.8.1'
-    implementation 'com.adop.sdk.adapter:unityads:4.17.0.0'
-    implementation 'com.adop.sdk.adapter:vungle:7.7.2.0'
-    implementation 'com.adop.sdk.partners:admobbidding:1.1.5'
+    implementation 'ad.helper.openbidding:admob-obh:3.28.1'
+    implementation 'com.adop.sdk:bidmad-androidx:3.28.2'
+    implementation 'com.adop.sdk.adapter:adfit:3.21.17.1'
+    implementation 'com.adop.sdk.adapter:admob:25.4.0.0'
+    implementation 'com.adop.sdk.adapter:applovin:13.6.2.1'
+    implementation 'com.adop.sdk.adapter:coupang:1.0.0.7'
+    implementation 'com.adop.sdk.adapter:fyber:8.4.6.0'
+    implementation 'com.adop.sdk.adapter:ortb:1.0.3'
+    implementation 'com.adop.sdk.adapter:mobwith:2.0.3'
+    implementation 'com.adop.sdk.adapter:pangle:8.1.0.3.0'
+    implementation 'com.adop.sdk.adapter:taboola:4.0.38.0'
+    implementation 'com.adop.sdk.adapter:unityads:4.19.0.0'
+    implementation 'com.adop.sdk.adapter:vungle:7.7.7.0'
+    implementation 'com.adop.sdk.partners:admobbidding:1.1.6'
 }
 ```
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
@@ -109,9 +107,7 @@ android {
 -keep class com.bytedance.sdk.** { *; }
 -keep class com.bykv.vk.openvk.component.video.api.** { *; }
 
-# Tapjoy
--keep class com.tapjoy.** { *; }
--keep class com.moat.** { *; }
+# Common
 -keepattributes JavascriptInterface
 -keepattributes *Annotation*
 -keep class * extends java.util.ListResourceBundle {
@@ -128,7 +124,6 @@ public static final *** NULL;
 public static final ** CREATOR;
 }
 -keep class com.google.android.gms.ads.identifier.** { *; }
--dontwarn com.tapjoy.**
 ```
 
 *Bidmad는 AndroidX 라이브러리를 사용합니다. AndroidX 프로젝트가 아니라면 AndroidX로 마이그레이션 바랍니다.
