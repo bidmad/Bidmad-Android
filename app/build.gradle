@@ -5,7 +5,7 @@ android {
     compileSdk 36
     defaultConfig {
         applicationId "com.techlabs.example.sample"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 36
         versionCode 1
         versionName "1.0"
@@ -28,6 +28,12 @@ android {
     }
 }
 
+// GMA NextGen SDK가 com.google.android.gms.ads.* 호환 클래스를 자체 포함하므로 레거시 play-services-ads를 제외합니다.
+configurations.configureEach {
+    exclude group: 'com.google.android.gms', module: 'play-services-ads'
+    exclude group: 'com.google.android.gms', module: 'play-services-ads-lite'
+}
+
 dependencies {
 
     implementation fileTree(dir: "libs", include: ['*.jar'])
@@ -38,7 +44,7 @@ dependencies {
     implementation 'ad.helper.openbidding:admob-obh:3.28.1'
     implementation 'com.adop.sdk:bidmad-androidx:3.28.2'
     implementation 'com.adop.sdk.adapter:adfit:3.21.17.1'
-    implementation 'com.adop.sdk.adapter:admob:25.4.0.0'
+    implementation 'com.adop.sdk.adapter:admob-nextgen:1.2.1.1'
     implementation 'com.adop.sdk.adapter:applovin:13.6.2.1'
     implementation 'com.adop.sdk.adapter:coupang:1.0.0.7'
     implementation 'com.adop.sdk.adapter:fyber:8.4.6.0'

@@ -1,3 +1,8 @@
+> [!NOTE]
+> **This branch (`GmaNextGen`) is the Google Mobile Ads NextGen SDK sample.**<br>
+> For the legacy GMA (`play-services-ads`) sample, see the [`master` branch](https://github.com/bidmad/Bidmad-Android/tree/master).<br>
+> To move an existing integration from legacy to NextGen, see [Using GMA NextGen in the master branch README](https://github.com/bidmad/Bidmad-Android/blob/master/README-EN.md#using-gma-nextgen).
+
 > [!IMPORTANT]
 > Starting with version 3.18.0, the previously used Appkey has been changed to AppDomain.<br>
 > **AppDomain is not compatible with existing Appkeys, so a new AppDomain must be issued to initiaize.**<br>
@@ -27,7 +32,7 @@
 ---
 ### 1. SDK Settings
 #### *Minimum requirements for using the SDK
-- minSdkVersion 23 or higher
+- minSdkVersion 24 or higher (required by the GMA NextGen SDK)
 
 #### *Gradle
 1. Declares the repository in the build.gradle file located at the top-level of the project.
@@ -55,7 +60,7 @@ dependencies {
     implementation 'ad.helper.openbidding:admob-obh:3.28.1'
     implementation 'com.adop.sdk:bidmad-androidx:3.28.2'
     implementation 'com.adop.sdk.adapter:adfit:3.21.17.1'
-    implementation 'com.adop.sdk.adapter:admob:25.4.0.0'
+    implementation 'com.adop.sdk.adapter:admob-nextgen:1.2.1.1'
     implementation 'com.adop.sdk.adapter:applovin:13.6.2.1'
     implementation 'com.adop.sdk.adapter:coupang:1.0.0.7'
     implementation 'com.adop.sdk.adapter:fyber:8.4.6.0'
@@ -75,6 +80,7 @@ android {
     ...
     defaultConfig {
         ...
+        minSdkVersion 24
         multiDexEnabled true
     }
     compileOptions {
@@ -84,7 +90,20 @@ android {
 }
 ```
 
-4. If you are applying Proguard in your project, add the rules below.
+4. Exclude the legacy GMA SDK in the build.gradle file located in the project App-Level.<br>
+   *The GMA NextGen SDK ships its own `com.google.android.gms.ads.*` mediation compatibility
+   classes. The legacy `play-services-ads` SDK, pulled in transitively by the AdMob bidding
+   adapters (`com.adop.sdk.partners:admobbidding`), collides with them and must be excluded.
+   ([Google migration guide](https://developers.google.com/admob/android/next-gen/migration#exclude-comgoogleandroidgms-modules-in-mediation-integrations))
+
+```java
+configurations.configureEach {
+    exclude group: 'com.google.android.gms', module: 'play-services-ads'
+    exclude group: 'com.google.android.gms', module: 'play-services-ads-lite'
+}
+```
+
+5. If you are applying Proguard in your project, add the rules below.
 ```cpp
 -keep class com.adop.sdk.** { *; }
 -keep class ad.helper.openbidding.** { *; }

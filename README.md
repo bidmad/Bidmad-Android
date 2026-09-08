@@ -1,3 +1,8 @@
+> [!NOTE]
+> **이 브랜치(`GmaNextGen`)는 Google Mobile Ads NextGen SDK 기반 샘플입니다.**<br>
+> 기존 GMA(레거시 `play-services-ads`) 기반 샘플은 [`master` 브랜치](https://github.com/bidmad/Bidmad-Android/tree/master)를 확인 바랍니다.<br>
+> 레거시에서 NextGen으로 전환하는 방법은 [master 브랜치 README의 GMA NextGen 사용하기](https://github.com/bidmad/Bidmad-Android/blob/master/README.md#gma-nextgen-사용하기)를 확인 바랍니다.
+
 > [!IMPORTANT]
 > 3.18.0 버전부터는 기존에 사용하던 **Appkey가 AppDomain으로 변경**되었습니다.<br>
 > **AppDomain은 기존 Appkey와 호환이 되지 않아 initiaize를 위해서는 AppDomain을 새로 발급받으셔야 합니다.**<br>
@@ -27,7 +32,7 @@
 ---
 ### 1. SDK 세팅
 #### *SDK 사용을 위한 기본 요건
-- minSdkVersion 23 이상
+- minSdkVersion 24 이상 (GMA NextGen SDK 요구사항)
 
 #### *Gradle
 1. 프로젝트 Top-Level에 위치한 build.gradle 파일 내에 저장소 선언합니다.<br>
@@ -55,7 +60,7 @@ dependencies {
     implementation 'ad.helper.openbidding:admob-obh:3.28.1'
     implementation 'com.adop.sdk:bidmad-androidx:3.28.2'
     implementation 'com.adop.sdk.adapter:adfit:3.21.17.1'
-    implementation 'com.adop.sdk.adapter:admob:25.4.0.0'
+    implementation 'com.adop.sdk.adapter:admob-nextgen:1.2.1.1'
     implementation 'com.adop.sdk.adapter:applovin:13.6.2.1'
     implementation 'com.adop.sdk.adapter:coupang:1.0.0.7'
     implementation 'com.adop.sdk.adapter:fyber:8.4.6.0'
@@ -75,6 +80,7 @@ android {
     ...
     defaultConfig {
         ...
+        minSdkVersion 24
         multiDexEnabled true
     }
     compileOptions {
@@ -84,7 +90,20 @@ android {
 }
 ```
 
-4. 프로젝트에서 Proguard를 적용하고 있다면 아래의 룰을 추가하세요.
+4. 프로젝트 App-Level에 위치한 build.gradle 파일에 레거시 GMA SDK 제외 설정을 선언합니다.<br>
+   *GMA NextGen SDK는 `com.google.android.gms.ads.*` 미디에이션 호환 클래스를 자체적으로 포함합니다.
+   AdMob 비딩 어댑터(`com.adop.sdk.partners:admobbidding`)가 전이 의존성으로 가져오는 레거시
+   `play-services-ads`와 클래스가 충돌하므로 반드시 제외해야 합니다.
+   ([Google 마이그레이션 가이드](https://developers.google.com/admob/android/next-gen/migration?hl=ko#exclude-comgoogleandroidgms-modules-in-mediation-integrations))
+
+```java
+configurations.configureEach {
+    exclude group: 'com.google.android.gms', module: 'play-services-ads'
+    exclude group: 'com.google.android.gms', module: 'play-services-ads-lite'
+}
+```
+
+5. 프로젝트에서 Proguard를 적용하고 있다면 아래의 룰을 추가하세요.
 ```cpp
 -keep class com.adop.sdk.** { *; }
 -keep class ad.helper.openbidding.** { *; }
