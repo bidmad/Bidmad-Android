@@ -4,6 +4,13 @@
 > To move an existing integration from legacy to NextGen, see [Using GMA NextGen in the master branch README](https://github.com/bidmad/Bidmad-Android/blob/master/README-EN.md#using-gma-nextgen).
 
 > [!IMPORTANT]
+> **This sample uses the Google Mobile Ads NextGen SDK.**<br>
+> If you are moving an existing legacy GMA (`play-services-ads`) project across, please review the following changes.
+> - **minSdkVersion 24 or higher** is required. Apps that must keep minSdkVersion 23 cannot migrate to NextGen.
+> - Replace the AdMob adapter `com.adop.sdk.adapter:admob` with **`admob-nextgen`**. The two adapters use the same class names and cannot be declared together. The same applies to `premiumads` → **`premiumads-nextgen`** if you use PremiumAds.
+> - Excluding the legacy `play-services-ads` SDK is **mandatory**. Without it the build fails with `Duplicate class com.google.android.gms.ads.*`. (See [Gradle](#Gradle) step 4.)
+
+> [!IMPORTANT]
 > Starting with version 3.18.0, the previously used Appkey has been changed to AppDomain.<br>
 > **AppDomain is not compatible with existing Appkeys, so a new AppDomain must be issued to initiaize.**<br>
 > If you are updating to version 3.18.0, please contact **Techlabs Platform Operations Team.**<br>

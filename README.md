@@ -4,6 +4,13 @@
 > 레거시에서 NextGen으로 전환하는 방법은 [master 브랜치 README의 GMA NextGen 사용하기](https://github.com/bidmad/Bidmad-Android/blob/master/README.md#gma-nextgen-사용하기)를 확인 바랍니다.
 
 > [!IMPORTANT]
+> **본 샘플은 Google Mobile Ads NextGen SDK를 사용합니다.**<br>
+> 레거시 GMA(`play-services-ads`) 기반 프로젝트에서 전환하시는 경우, 아래 변경 사항을 반드시 확인 바랍니다.
+> - **minSdkVersion 24 이상**이 필요합니다. minSdkVersion 23을 유지해야 하는 앱은 NextGen으로 전환할 수 없습니다.
+> - AdMob 어댑터를 `com.adop.sdk.adapter:admob` → **`admob-nextgen`** 으로 교체해야 합니다. 두 어댑터는 동일한 클래스명을 사용하므로 함께 선언할 수 없습니다. PremiumAds를 사용하시는 경우 `premiumads` → **`premiumads-nextgen`** 도 동일합니다.
+> - 레거시 `play-services-ads` **제외 설정이 필수**입니다. 누락 시 `Duplicate class com.google.android.gms.ads.*` 빌드 오류가 발생합니다. ([Gradle](#Gradle) 4번 항목)
+
+> [!IMPORTANT]
 > 3.18.0 버전부터는 기존에 사용하던 **Appkey가 AppDomain으로 변경**되었습니다.<br>
 > **AppDomain은 기존 Appkey와 호환이 되지 않아 initiaize를 위해서는 AppDomain을 새로 발급받으셔야 합니다.**<br>
 > 3.18.0 버전으로 업데이트 하시는 경우에는 **테크랩스 플랫폼 사업부 운영팀에 연락 부탁 드립니다.**<br>
