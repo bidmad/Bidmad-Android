@@ -4,7 +4,7 @@
 > 3.18.0 버전으로 업데이트 하시는 경우에는 **테크랩스 플랫폼 사업부 운영팀에 연락 부탁 드립니다.**<br>
 > AppDomain 변경 내용은 [AndroidManifest 설정](#AndroidManifest-설정)를 확인 바랍니다.
 
-# BidmadSDK(v3.28.2)
+# BidmadSDK(v3.28.4)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
    - [Gradle](#Gradle)
@@ -52,8 +52,8 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'ad.helper.openbidding:admob-obh:3.28.1'
-    implementation 'com.adop.sdk:bidmad-androidx:3.28.2'
+    implementation 'ad.helper.openbidding:admob-obh:3.28.2'
+    implementation 'com.adop.sdk:bidmad-androidx:3.28.4'
     implementation 'com.adop.sdk.adapter:adfit:3.21.17.1'
     implementation 'com.adop.sdk.adapter:admob:25.4.0.0'
     implementation 'com.adop.sdk.adapter:applovin:13.6.2.1'
