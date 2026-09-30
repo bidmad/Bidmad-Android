@@ -1,4 +1,20 @@
 > [!IMPORTANT]
+> **AppLovin MAX mediation setup**
+>
+> This branch shows the configuration in which AppLovin MAX mediates the ad networks. Two dependencies carry it:
+> - `com.adop.sdk.adapter:applovinmax` — the adapter that connects Bidmad to AppLovin MAX
+> - `com.adop.sdk.partners:applovinmax` — the bundle of network adapters mediated by MAX (Google AdMob, DT Exchange, InMobi, Liftoff Monetize, Mintegral, Moloco, Pangle, Unity Ads)
+>
+> **Two rules that must be followed**
+> 1. **Exclude the AppLovin adapter that is not MAX (`com.adop.sdk.adapter:applovin`).** Both adapters initialize the same AppLovin SDK instance and only the first configuration applies, so integrating both breaks MAX mediation.
+> 2. **Do not use the AdMob bidding partner bundle (`com.adop.sdk.partners:admobbidding`).** Do not integrate the network adapters mediated by AdMob together with the network adapters mediated by MAX in one app.
+>
+> Notes
+> - The MAX SDK key and MAX ad unit IDs are registered in the AppLovin MAX network settings of the Bidmad console. The app does not initialize the AppLovin SDK itself.
+> - Meta (Facebook) is not part of the Android MAX bundle: its MAX adapter requires minSdkVersion 24, while this setup runs at minSdkVersion 23.
+> - The Mintegral and Pangle repositories are already part of the repositories declaration below.
+
+> [!IMPORTANT]
 > Starting with version 3.18.0, the previously used Appkey has been changed to AppDomain.<br>
 > **AppDomain is not compatible with existing Appkeys, so a new AppDomain must be issued to initiaize.**<br>
 > If you are updating to version 3.18.0, please contact **Techlabs Platform Operations Team.**<br>
@@ -58,7 +74,7 @@ dependencies {
     implementation 'com.adop.sdk:bidmad-androidx:3.28.4'
     implementation 'com.adop.sdk.adapter:adfit:3.21.17.1'
     implementation 'com.adop.sdk.adapter:admob:25.4.0.0'
-    implementation 'com.adop.sdk.adapter:applovin:13.6.2.1'
+    implementation 'com.adop.sdk.adapter:applovinmax:13.6.2.1'
     implementation 'com.adop.sdk.adapter:coupang:1.0.0.7'
     implementation 'com.adop.sdk.adapter:fyber:8.4.6.0'
     implementation 'com.adop.sdk.adapter:ortb:1.0.3'
@@ -67,9 +83,10 @@ dependencies {
     implementation 'com.adop.sdk.adapter:taboola:4.0.38.0'
     implementation 'com.adop.sdk.adapter:unityads:4.19.0.0'
     implementation 'com.adop.sdk.adapter:vungle:7.7.7.0'
-    implementation 'com.adop.sdk.partners:admobbidding:1.1.6'
+    implementation 'com.adop.sdk.partners:applovinmax:1.1.0'
 }
 ```
+
 3. Declare the option below in the android tag of the build.gradle file located in the project App-Level.
 
 ```java

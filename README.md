@@ -1,4 +1,20 @@
 > [!IMPORTANT]
+> **AppLovin MAX 미디에이션 구성**
+>
+> 이 브랜치는 AppLovin MAX 가 광고 네트워크를 미디에이션하는 구성을 보여줍니다. 다음 두 의존성이 핵심입니다.
+> - `com.adop.sdk.adapter:applovinmax` — Bidmad 와 AppLovin MAX 를 연결하는 어댑터
+> - `com.adop.sdk.partners:applovinmax` — MAX 가 미디에이션하는 네트워크 어댑터 번들 (Google AdMob, DT Exchange, InMobi, Liftoff Monetize, Mintegral, Moloco, Pangle, Unity Ads)
+>
+> **반드시 지켜야 하는 두 가지**
+> 1. **MAX 가 아닌 AppLovin 어댑터(`com.adop.sdk.adapter:applovin`)는 제외해야 합니다.** 두 어댑터는 동일한 AppLovin SDK 인스턴스를 초기화하며 먼저 초기화한 쪽의 설정만 적용되므로, 함께 통합하면 MAX 미디에이션이 동작하지 않습니다.
+> 2. **AdMob 비딩 파트너 번들(`com.adop.sdk.partners:admobbidding`)은 사용하지 않아야 합니다.** AdMob 이 미디에이션하는 네트워크 어댑터와 MAX 가 미디에이션하는 네트워크 어댑터를 한 앱에 함께 통합하지 마십시오.
+>
+> 참고
+> - MAX SDK Key 와 MAX 광고 단위 ID 는 Bidmad 콘솔의 AppLovin MAX 네트워크 설정에 등록합니다. 앱 코드에서 AppLovin SDK 를 직접 초기화하지 않습니다.
+> - Meta(Facebook)는 Android MAX 번들에 포함되지 않습니다. 해당 MAX 어댑터가 minSdkVersion 24 를 요구하기 때문이며, 본 구성은 minSdkVersion 23 에서 동작합니다.
+> - Mintegral / Pangle 저장소는 아래 repositories 선언에 이미 포함되어 있습니다.
+
+> [!IMPORTANT]
 > 3.18.0 버전부터는 기존에 사용하던 **Appkey가 AppDomain으로 변경**되었습니다.<br>
 > **AppDomain은 기존 Appkey와 호환이 되지 않아 initiaize를 위해서는 AppDomain을 새로 발급받으셔야 합니다.**<br>
 > 3.18.0 버전으로 업데이트 하시는 경우에는 **테크랩스 플랫폼 사업부 운영팀에 연락 부탁 드립니다.**<br>
@@ -58,7 +74,7 @@ dependencies {
     implementation 'com.adop.sdk:bidmad-androidx:3.28.4'
     implementation 'com.adop.sdk.adapter:adfit:3.21.17.1'
     implementation 'com.adop.sdk.adapter:admob:25.4.0.0'
-    implementation 'com.adop.sdk.adapter:applovin:13.6.2.1'
+    implementation 'com.adop.sdk.adapter:applovinmax:13.6.2.1'
     implementation 'com.adop.sdk.adapter:coupang:1.0.0.7'
     implementation 'com.adop.sdk.adapter:fyber:8.4.6.0'
     implementation 'com.adop.sdk.adapter:ortb:1.0.3'
@@ -67,9 +83,10 @@ dependencies {
     implementation 'com.adop.sdk.adapter:taboola:4.0.38.0'
     implementation 'com.adop.sdk.adapter:unityads:4.19.0.0'
     implementation 'com.adop.sdk.adapter:vungle:7.7.7.0'
-    implementation 'com.adop.sdk.partners:admobbidding:1.1.6'
+    implementation 'com.adop.sdk.partners:applovinmax:1.1.0'
 }
 ```
+
 3. 프로젝트 App-Level에 위치한 build.gradle 파일의 android 태그에 아래 옵션을 선언합니다.
 
 ```java
