@@ -47,6 +47,7 @@ allprojects {
         maven { url 'https://artifact.bytedance.com/repository/pangle/' } //Pangle
         maven { url "https://teads.jfrog.io/artifactory/SDKAndroid-maven-prod" } //Teads
         maven { url 'https://taboolapublic.jfrog.io/artifactory/mobile-release'} //Taboola
+        maven { url 'https://repo.premiumads.net/artifactory/mobile-ads-sdk/' } // PremiumAds
 }
 ```
 2. Declares SDK in the build.gradle file located in the project App-Level.
@@ -64,7 +65,9 @@ dependencies {
     implementation 'com.adop.sdk.adapter:ortb:1.0.3'
     implementation 'com.adop.sdk.adapter:mobwith:2.0.3'
     implementation 'com.adop.sdk.adapter:pangle:8.1.0.3.0'
+    implementation 'com.adop.sdk.adapter:premiumads:1.0.10.0'
     implementation 'com.adop.sdk.adapter:taboola:4.0.38.0'
+    implementation 'com.adop.sdk.adapter:teads:6.2.0.0'
     implementation 'com.adop.sdk.adapter:unityads:4.19.0.0'
     implementation 'com.adop.sdk.adapter:vungle:7.7.7.0'
     implementation 'com.adop.sdk.partners:admobbidding:1.1.6'
