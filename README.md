@@ -4,7 +4,7 @@
 > 3.18.0 버전으로 업데이트 하시는 경우에는 **테크랩스 플랫폼 사업부 운영팀에 연락 부탁 드립니다.**<br>
 > AppDomain 변경 내용은 [AndroidManifest 설정](#AndroidManifest-설정)를 확인 바랍니다.
 
-# BidmadSDK(v3.28.4)
+# BidmadSDK(v3.28.5)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
    - [Gradle](#Gradle)
@@ -55,20 +55,21 @@ allprojects {
 dependencies {
     ...
     implementation 'ad.helper.openbidding:admob-obh:3.28.2'
-    implementation 'com.adop.sdk:bidmad-androidx:3.28.4'
+    implementation 'com.adop.sdk:bidmad-androidx:3.28.5'
     implementation 'com.adop.sdk.adapter:adfit:3.21.17.1'
     implementation 'com.adop.sdk.adapter:admob:25.4.0.0'
     implementation 'com.adop.sdk.adapter:applovin:13.6.2.1'
     implementation 'com.adop.sdk.adapter:coupang:1.0.0.7'
     implementation 'com.adop.sdk.adapter:fyber:8.4.6.0'
     implementation 'com.adop.sdk.adapter:ortb:1.0.3'
-    implementation 'com.adop.sdk.adapter:mobwith:2.0.3'
+    implementation 'com.adop.sdk.adapter:mobwith:2.0.4'
     implementation 'com.adop.sdk.adapter:pangle:8.1.0.3.0'
     implementation 'com.adop.sdk.adapter:premiumads:1.0.10.0'
     implementation 'com.adop.sdk.adapter:taboola:4.0.38.0'
     implementation 'com.adop.sdk.adapter:teads:6.2.0.0'
     implementation 'com.adop.sdk.adapter:unityads:4.19.0.0'
-    implementation 'com.adop.sdk.adapter:vungle:7.7.7.0'
+    implementation 'com.adop.sdk.adapter:vungle:7.7.7.1'
+    implementation 'com.adop.sdk.adapter:inspector:1.0.0'
     implementation 'com.adop.sdk.partners:admobbidding:1.1.6'
 }
 ```
@@ -751,3 +752,4 @@ interface AdFreeEventListener |AdFreeEventListener를 통해 광고 상태 정�
 - [GDPR 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Android-GDPR-Guide-%5BKOR%5D)
 - [v3.0.0 API 변경 내역](https://github.com/bidmad/Bidmad-Android/wiki/BidmadSDK-3.0.0-API-Migration-Guide)
 - [쿠팡 네트워크 광고 차단 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Android-Coupang-Network-Ad-Block-Guide%5BKOR%5D)
+- [난독화 점검 보고서 전송 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Android-Obfuscation-Inspection-Report-Guide%5BKOR%5D)

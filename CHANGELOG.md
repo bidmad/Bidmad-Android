@@ -1,3 +1,211 @@
+# Version 3.28.5
+#### Changes
+- Fix interstitial / rewarded ad show handling
+- Inspector Adapter added
+- Mobwith / Vungle Adapter update
+- Fix bugs
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.28.2</li>
+<li>Adfit Adapter - 3.21.17.1</li>
+<li>Admob Adapter - 25.4.0.0</li>
+<li>Applovin Adapter - 13.6.2.1</li>
+<li>Coupang Adapter - 1.0.0.7</li>
+<li>Fyber Adapter - 8.4.6.0</li>
+<li>Mobwith Adapter - 2.0.4</li>
+<li>ORTB Adapter - 1.0.3</li>
+<li>Pangle Adapter - 8.1.0.3.0</li>
+<li>PremiumAds Adapter - 1.0.10.0</li>
+<li>Taboola Adapter - 4.0.38.0</li>
+<li>Teads Adapter - 6.2.0.0</li>
+<li>UnityAds Adapter - 4.19.0.0</li>
+<li>Vungle Adapter - 7.7.7.1</li>
+<li>Inspector Adapter - 1.0.0</li>
+<li>AdmobBidding Partner - 1.1.6</li>
+</div>
+</details>
+
+# Version 3.28.4
+#### Changes
+- Banner ads can be loaded without an Activity
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.28.2</li>
+<li>Adfit Adapter - 3.21.17.1</li>
+<li>Admob Adapter - 25.4.0.0</li>
+<li>Applovin Adapter - 13.6.2.1</li>
+<li>Coupang Adapter - 1.0.0.7</li>
+<li>Fyber Adapter - 8.4.6.0</li>
+<li>Mobwith Adapter - 2.0.3</li>
+<li>ORTB Adapter - 1.0.3</li>
+<li>Pangle Adapter - 8.1.0.3.0</li>
+<li>PremiumAds Adapter - 1.0.10.0</li>
+<li>Taboola Adapter - 4.0.38.0</li>
+<li>Teads Adapter - 6.2.0.0</li>
+<li>UnityAds Adapter - 4.19.0.0</li>
+<li>Vungle Adapter - 7.7.7.0</li>
+<li>AdmobBidding Partner - 1.1.6</li>
+</div>
+</details>
+
+# Version 3.28.3
+#### Changes
+- Fix interstitial / rewarded ads not showing after a show failure
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.28.2</li>
+<li>Adfit Adapter - 3.21.17.1</li>
+<li>Admob Adapter - 25.4.0.0</li>
+<li>Applovin Adapter - 13.6.2.1</li>
+<li>Coupang Adapter - 1.0.0.7</li>
+<li>Fyber Adapter - 8.4.6.0</li>
+<li>Mobwith Adapter - 2.0.3</li>
+<li>ORTB Adapter - 1.0.3</li>
+<li>Pangle Adapter - 8.1.0.3.0</li>
+<li>PremiumAds Adapter - 1.0.10.0</li>
+<li>Taboola Adapter - 4.0.38.0</li>
+<li>Teads Adapter - 6.2.0.0</li>
+<li>UnityAds Adapter - 4.19.0.0</li>
+<li>Vungle Adapter - 7.7.7.0</li>
+<li>AdmobBidding Partner - 1.1.6</li>
+</div>
+</details>
+
+# Version 3.28.2
+#### Changes
+- Adlib, Admixer, AdPopcorn Ad Network support ended
+- Fix Google UMP dependency version
+- Ad Network SDK Update
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.28.1</li>
+<li>Adfit Adapter - 3.21.17.1</li>
+<li>Admob Adapter - 25.4.0.0</li>
+<li>Applovin Adapter - 13.6.2.1</li>
+<li>Coupang Adapter - 1.0.0.7</li>
+<li>Fyber Adapter - 8.4.6.0</li>
+<li>Mobwith Adapter - 2.0.3</li>
+<li>ORTB Adapter - 1.0.3</li>
+<li>Pangle Adapter - 8.1.0.3.0</li>
+<li>PremiumAds Adapter - 1.0.10.0</li>
+<li>Taboola Adapter - 4.0.38.0</li>
+<li>Teads Adapter - 6.2.0.0</li>
+<li>UnityAds Adapter - 4.19.0.0</li>
+<li>Vungle Adapter - 7.7.7.0</li>
+<li>AdmobBidding Partner - 1.1.6</li>
+</div>
+</details>
+
+# Version 3.28.1
+#### Changes
+- Ad Network SDK Update
+- Google UMP SDK 4.0.0 update
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.28.0</li>
+<li>Adfit Adapter - 3.21.17.0</li>
+<li>Adlib Adapter - 6.0.7.1.1</li>
+<li>AdMixer Adapter - 1.0.9.1</li>
+<li>Admob Adapter - 25.2.0.0</li>
+<li>AdPopcorn Adapter - 3.8.2.1</li>
+<li>Applovin Adapter - 13.6.2.0</li>
+<li>Coupang Adapter - 1.0.0.6</li>
+<li>Fyber Adapter - 8.4.4.0</li>
+<li>Mobwith Adapter - 2.0.2</li>
+<li>ORTB Adapter - 1.0.2</li>
+<li>Pangle Adapter - 7.9.1.3.0</li>
+<li>Taboola Adapter - 4.0.8.1</li>
+<li>Teads Adapter - 5.1.12.3</li>
+<li>UnityAds Adapter - 4.17.0.0</li>
+<li>Vungle Adapter - 7.7.2.0</li>
+<li>AdmobBidding Partner - 1.1.4</li>
+</div>
+</details>
+
+# Version 3.28.0
+#### Changes
+- Mediation engine improvement
+- Adapter interface changed — use adapter versions compatible with 3.28.x
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.28.0</li>
+<li>Adfit Adapter - 3.19.5.1</li>
+<li>Adlib Adapter - 6.0.7.1.1</li>
+<li>AdMixer Adapter - 1.0.9.1</li>
+<li>Admob Adapter - 24.4.0.2</li>
+<li>AdPopcorn Adapter - 3.8.2.1</li>
+<li>Applovin Adapter - 13.3.1.1</li>
+<li>Coupang Adapter - 1.0.0.6</li>
+<li>Fyber Adapter - 8.3.7.1</li>
+<li>Mobwith Adapter - 2.0.2</li>
+<li>ORTB Adapter - 1.0.2</li>
+<li>Pangle Adapter - 7.2.0.6.1</li>
+<li>Taboola Adapter - 4.0.8.1</li>
+<li>Teads Adapter - 5.1.12.3</li>
+<li>UnityAds Adapter - 4.15.0.1</li>
+<li>Vungle Adapter - 7.5.0.1</li>
+<li>AdmobBidding Partner - 1.1.3</li>
+</div>
+</details>
+
+# Version 3.27.0
+#### Changes
+- Add realBannerAdSize to BMAdInfo
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.27.0</li>
+<li>Adfit Adapter - 3.19.5.0</li>
+<li>Adlib Adapter - 6.0.7.1.0</li>
+<li>AdMixer Adapter - 1.0.9.0</li>
+<li>Admob Adapter - 24.4.0.1</li>
+<li>AdPopcorn Adapter - 3.8.2.0</li>
+<li>Applovin Adapter - 13.3.1.0</li>
+<li>Coupang Adapter - 1.0.0.5</li>
+<li>Fyber Adapter - 8.3.7.0</li>
+<li>Mobwith Adapter - 1.1.4</li>
+<li>ORTB Adapter - 1.0.1</li>
+<li>Pangle Adapter - 7.2.0.6.0</li>
+<li>Taboola Adapter - 4.0.8.0</li>
+<li>Teads Adapter - 5.1.12.2</li>
+<li>UnityAds Adapter - 4.15.0.0</li>
+<li>Vungle Adapter - 7.5.0.0</li>
+<li>AdmobBidding Partner - 1.1.1</li>
+</div>
+</details>
+
+# Version 3.26.0
+#### Changes
+- Adlib Ad Network support added
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.26.0</li>
+<li>Adfit Adapter - 3.19.5.0</li>
+<li>Adlib Adapter - 6.0.7.1.0</li>
+<li>AdMixer Adapter - 1.0.9.0</li>
+<li>Admob Adapter - 24.4.0.1</li>
+<li>AdPopcorn Adapter - 3.8.2.0</li>
+<li>Applovin Adapter - 13.3.1.0</li>
+<li>Coupang Adapter - 1.0.0.5</li>
+<li>Fyber Adapter - 8.3.7.0</li>
+<li>Mobwith Adapter - 1.1.3</li>
+<li>ORTB Adapter - 1.0.1</li>
+<li>Pangle Adapter - 7.2.0.6.0</li>
+<li>Taboola Adapter - 4.0.8.0</li>
+<li>Teads Adapter - 5.1.12.2</li>
+<li>UnityAds Adapter - 4.15.0.0</li>
+<li>Vungle Adapter - 7.5.0.0</li>
+<li>AdmobBidding Partner - 1.1.1</li>
+</div>
+</details>
+
 # Version 3.25.0
 #### Changes
 - Change appopen ad interface

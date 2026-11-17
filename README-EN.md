@@ -4,7 +4,7 @@
 > If you are updating to version 3.18.0, please contact **Techlabs Platform Operations Team.**<br>
 > For AppDomain changes, please check  [AndroidManifest Settings](#AndroidManifest-Settings).
 
-# BidmadSDK(v3.28.4)
+# BidmadSDK(v3.28.5)
 ### Shortcuts
 
 1. [SDK Settings](#1-SDK-Settings)
@@ -56,20 +56,21 @@ allprojects {
 dependencies {
     ...
     implementation 'ad.helper.openbidding:admob-obh:3.28.2'
-    implementation 'com.adop.sdk:bidmad-androidx:3.28.4'
+    implementation 'com.adop.sdk:bidmad-androidx:3.28.5'
     implementation 'com.adop.sdk.adapter:adfit:3.21.17.1'
     implementation 'com.adop.sdk.adapter:admob:25.4.0.0'
     implementation 'com.adop.sdk.adapter:applovin:13.6.2.1'
     implementation 'com.adop.sdk.adapter:coupang:1.0.0.7'
     implementation 'com.adop.sdk.adapter:fyber:8.4.6.0'
     implementation 'com.adop.sdk.adapter:ortb:1.0.3'
-    implementation 'com.adop.sdk.adapter:mobwith:2.0.3'
+    implementation 'com.adop.sdk.adapter:mobwith:2.0.4'
     implementation 'com.adop.sdk.adapter:pangle:8.1.0.3.0'
     implementation 'com.adop.sdk.adapter:premiumads:1.0.10.0'
     implementation 'com.adop.sdk.adapter:taboola:4.0.38.0'
     implementation 'com.adop.sdk.adapter:teads:6.2.0.0'
     implementation 'com.adop.sdk.adapter:unityads:4.19.0.0'
-    implementation 'com.adop.sdk.adapter:vungle:7.7.7.0'
+    implementation 'com.adop.sdk.adapter:vungle:7.7.7.1'
+    implementation 'com.adop.sdk.adapter:inspector:1.0.0'
     implementation 'com.adop.sdk.partners:admobbidding:1.1.6'
 }
 ```
@@ -756,3 +757,4 @@ interface AdFreeEventListener |AdFreeEventListener receives advertisement status
 - [GDPR Guide](https://github.com/bidmad/Bidmad-Android/wiki/Android-GDPR-Guide-%5BENG%5D)
 - [v3.0.0 API Changes](https://github.com/bidmad/Bidmad-Android/wiki/BidmadSDK-3.0.0-API-Migration-Guide-(ENG))
 - [Coupang Network Ad Block Guide] (https://github.com/bidmad/Bidmad-Android/wiki/Android-Coupang-Network-Ad-Block-Guide%5BENG%5D)
+- [Obfuscation Inspection Report Guide](https://github.com/bidmad/Bidmad-Android/wiki/Android-Obfuscation-Inspection-Report-Guide%5BENG%5D)
