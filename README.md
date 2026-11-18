@@ -1,7 +1,7 @@
 > [!NOTE]
 > **이 브랜치(`GmaNextGen`)는 Google Mobile Ads NextGen SDK 기반 샘플입니다.**<br>
 > 기존 GMA(레거시 `play-services-ads`) 기반 샘플은 [`master` 브랜치](https://github.com/bidmad/Bidmad-Android/tree/master)를 확인 바랍니다.<br>
-> 레거시에서 NextGen으로 전환하는 방법은 [master 브랜치 README의 GMA NextGen 사용하기](https://github.com/bidmad/Bidmad-Android/blob/master/README.md#gma-nextgen-사용하기)를 확인 바랍니다.
+> 레거시에서 NextGen으로 전환하는 방법은 아래 변경 사항과 [Gradle](#Gradle) 설정을 확인 바랍니다.
 
 > [!IMPORTANT]
 > **본 샘플은 Google Mobile Ads NextGen SDK를 사용합니다.**<br>
@@ -37,7 +37,7 @@
    - [네이티브광고 Class Reference](#네이티브광고-Class-Reference)
    - [앱오픈광고 Class Reference](#앱오픈광고-Class-Reference)
 4. [참고사항](#4-참고사항)
-5. [최신 샘플 프로젝트 다운로드](https://github.com/bidmad/Bidmad-Android/archive/master.zip)
+5. [최신 샘플 프로젝트 다운로드](https://github.com/bidmad/Bidmad-Android/archive/GmaNextGen.zip)
 ---
 ### 1. SDK 세팅
 #### *SDK 사용을 위한 기본 요건

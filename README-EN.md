@@ -1,7 +1,7 @@
 > [!NOTE]
 > **This branch (`GmaNextGen`) is the Google Mobile Ads NextGen SDK sample.**<br>
 > For the legacy GMA (`play-services-ads`) sample, see the [`master` branch](https://github.com/bidmad/Bidmad-Android/tree/master).<br>
-> To move an existing integration from legacy to NextGen, see [Using GMA NextGen in the master branch README](https://github.com/bidmad/Bidmad-Android/blob/master/README-EN.md#using-gma-nextgen).
+> To move an existing integration from legacy to NextGen, see the changes below and the [Gradle](#Gradle) setup.
 
 > [!IMPORTANT]
 > **This sample uses the Google Mobile Ads NextGen SDK.**<br>
@@ -37,7 +37,7 @@
    - [NativeAd Class Reference](#NativeAd-Class-Reference)
    - [AppOpen Class Reference](#AppOpen-Class-Reference)
 4. [Note](#4-Note)
-5. [Download the latest sample project](https://github.com/bidmad/Bidmad-Android/archive/master.zip)
+5. [Download the latest sample project](https://github.com/bidmad/Bidmad-Android/archive/GmaNextGen.zip)
 ---
 ### 1. SDK Settings
 #### *Minimum requirements for using the SDK
