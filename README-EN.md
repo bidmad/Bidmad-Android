@@ -16,7 +16,7 @@
 > If you are updating to version 3.18.0, please contact **Techlabs Platform Operations Team.**<br>
 > For AppDomain changes, please check  [AndroidManifest Settings](#AndroidManifest-Settings).
 
-# BidmadSDK(v3.28.2)
+# BidmadSDK(v3.28.5)
 ### Shortcuts
 
 1. [SDK Settings](#1-SDK-Settings)
@@ -26,12 +26,14 @@
    - [Banner Ads](#Banner-Ads)
    - [Interstitial Ads](#Interstitial-Ads)
    - [Reward Ads](#Reward-Ads)
+   - [Fullscreen Ads](#Fullscreen-Ads)
    - [Native Ads](#Native-Ads)
    - [AppOpen Ads](#AppOpen-Ads)
 3. [Class Reference](#3-Class-Reference)
    - [Banner Class Reference](#Banner-Class-Reference)
    - [Interstitial Class Reference](#Interstitial-Class-Reference)
    - [Reward Class Reference](#Reward-Class-Reference)
+   - [Fullscreen Class Reference](#Fullscreen-Class-Reference)
    - [NativeAd Class Reference](#NativeAd-Class-Reference)
    - [AppOpen Class Reference](#AppOpen-Class-Reference)
 4. [Note](#4-Note)
@@ -57,6 +59,7 @@ allprojects {
         maven { url 'https://artifact.bytedance.com/repository/pangle/' } //Pangle
         maven { url "https://teads.jfrog.io/artifactory/SDKAndroid-maven-prod" } //Teads
         maven { url 'https://taboolapublic.jfrog.io/artifactory/mobile-release'} //Taboola
+        maven { url 'https://repo.premiumads.net/artifactory/mobile-ads-sdk/' } // PremiumAds
 }
 ```
 2. Declares SDK in the build.gradle file located in the project App-Level.
@@ -64,19 +67,22 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'ad.helper.openbidding:admob-obh:3.28.1'
-    implementation 'com.adop.sdk:bidmad-androidx:3.28.2'
+    implementation 'ad.helper.openbidding:admob-obh:3.28.2'
+    implementation 'com.adop.sdk:bidmad-androidx:3.28.5'
     implementation 'com.adop.sdk.adapter:adfit:3.21.17.1'
     implementation 'com.adop.sdk.adapter:admob-nextgen:1.2.1.1'
     implementation 'com.adop.sdk.adapter:applovin:13.6.2.1'
     implementation 'com.adop.sdk.adapter:coupang:1.0.0.7'
     implementation 'com.adop.sdk.adapter:fyber:8.4.6.0'
     implementation 'com.adop.sdk.adapter:ortb:1.0.3'
-    implementation 'com.adop.sdk.adapter:mobwith:2.0.3'
+    implementation 'com.adop.sdk.adapter:mobwith:2.0.4'
     implementation 'com.adop.sdk.adapter:pangle:8.1.0.3.0'
+    implementation 'com.adop.sdk.adapter:premiumads-nextgen:1.0.0.0'
     implementation 'com.adop.sdk.adapter:taboola:4.0.38.0'
+    implementation 'com.adop.sdk.adapter:teads:6.2.0.0'
     implementation 'com.adop.sdk.adapter:unityads:4.19.0.0'
-    implementation 'com.adop.sdk.adapter:vungle:7.7.7.0'
+    implementation 'com.adop.sdk.adapter:vungle:7.7.7.1'
+    implementation 'com.adop.sdk.adapter:inspector:1.0.0'
     implementation 'com.adop.sdk.partners:admobbidding:1.1.6'
 }
 ```
@@ -384,6 +390,71 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
+#### *Fullscreen Ads
+
+1. To request a fullscreen advertisement, create a BidmadFullScreenAd, set the ZoneId, and call the load function.
+2. Call show to expose fullscreen advertisement. At this time, you need to check whether you have received an advertisement through isLoaded.
+```java
+BidmadFullScreenAd mFullScreenAd;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_fullscreen);
+
+    //Require
+    mFullScreenAd = new BidmadFullScreenAd(this,"YOUR ZONE ID");
+    mFullScreenAd.setListener(new FullScreenAdListener() {
+        @Override
+        public void onLoadAd(@NonNull BMAdInfo) {
+            //onLoadAd Callback
+        }
+
+        @Override
+        public void onShowAd(@NonNull BMAdInfo) {
+            //onShowAd Callback
+        }
+
+        @Override
+        public void onLoadFailAd(BMAdError error) {
+            //onLoadFailAd Callback
+        }
+
+        @Override
+        public void onShowFailAd(BMAdError error, @NonNull BMAdInfo) {
+           //onShowFailAd Callback
+        }
+
+        @Override
+        public void onCompleteAd(@NonNull BMAdInfo) {
+            //onCompleteAd Callback
+        }
+
+        @Override
+        public void onCloseAd(@NonNull BMAdInfo) {
+            //onCloseAd Callback
+        }
+
+        @Override
+        public void onClickAd(@NonNull BMAdInfo) {
+            //onClickAd Callback
+        }
+
+        @Override
+        public void onSkipAd(@NonNull BMAdInfo) {
+            //onSkipAd Callback
+        }
+    });
+
+    mFullScreenAd.load();
+
+    //Ad Show Event Setting
+    findViewById(R.id.showFullScreenAd).setOnClickListener(v -> {
+         mFullScreenAd.show();
+    });
+}
+```
+
 #### *Native Ads
 
 1. Configure the layout according to the [Native Ad Layout Setting Guide] (https://github.com/bidmad/Bidmad-Android/wiki/Native-Ad-Layout-Setting-Guide%5BENG%5D).
@@ -574,6 +645,33 @@ void onCloseAd(@NonNull BMAdInfo)|An event occurs when the reward ad ends.
 void onClickAd(@NonNull BMAdInfo)|An event occurs when a reward ad is clicked
 ---
 
+#### *Fullscreen Class Reference
+
+- BidmadFullScreenAd
+
+Function|Description
+---|---
+BidmadFullScreenAd(Activity, String)|BidmadFullScreenAd constructor. Set ZoneId together.
+void setListener(FullScreenAdListener)|Set listener to receive event callbacks for fullscreen ad.
+void load()|Request a fullscreen ad.
+void show()|The loaded fullscreen ad is displayed on the screen.
+boolean isLoaded()|Checks whether the fullscreen ad is loaded or not.
+static void setAutoReload(boolean)|Automatically request the next ad when an ad is Show. This feature will be discontinued when an ad Fail occurs. Default value is True.
+
+- FullScreenAdListener
+
+Function|Description
+---|---
+void onLoadAd(@NonNull BMAdInfo)|An event occurs when a fullscreen ad is loaded.
+void onShowAd(@NonNull BMAdInfo)|An event occurs when a fullscreen ad is shown.
+void onLoadFailAd(BMAdError error)|An event occurs when fullscreen ad load fails, You can check the error code and message with BMAError.
+void onShowFailAd(BMAdError error, @NonNull BMAdInfo)|An event occurs when fullscreen ad show fails, You can check the error code and message with BMAError.
+void onCompleteAd(@NonNull BMAdInfo)|An event occurs when the reward condition is satisfied on an ad shown as rewarded.
+void onSkipAd(@NonNull BMAdInfo)|An event occurs when an ad shown as rewarded ends while the reward condition is not satisfied.
+void onCloseAd(@NonNull BMAdInfo)|An event occurs when the fullscreen ad ends.
+void onClickAd(@NonNull BMAdInfo)|An event occurs when a fullscreen ad is clicked
+---
+
 #### *NativeAd Class Reference
 
 - BidmadNativeAd
@@ -685,3 +783,4 @@ interface AdFreeEventListener |AdFreeEventListener receives advertisement status
 - [GDPR Guide](https://github.com/bidmad/Bidmad-Android/wiki/Android-GDPR-Guide-%5BENG%5D)
 - [v3.0.0 API Changes](https://github.com/bidmad/Bidmad-Android/wiki/BidmadSDK-3.0.0-API-Migration-Guide-(ENG))
 - [Coupang Network Ad Block Guide] (https://github.com/bidmad/Bidmad-Android/wiki/Android-Coupang-Network-Ad-Block-Guide%5BENG%5D)
+- [Obfuscation Inspection Report Guide](https://github.com/bidmad/Bidmad-Android/wiki/Android-Obfuscation-Inspection-Report-Guide%5BENG%5D)

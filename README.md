@@ -16,7 +16,7 @@
 > 3.18.0 버전으로 업데이트 하시는 경우에는 **테크랩스 플랫폼 사업부 운영팀에 연락 부탁 드립니다.**<br>
 > AppDomain 변경 내용은 [AndroidManifest 설정](#AndroidManifest-설정)를 확인 바랍니다.
 
-# BidmadSDK(v3.28.2)
+# BidmadSDK(v3.28.5)
 ### 바로가기
 1. [SDK 세팅](#1-SDK-세팅)
    - [Gradle](#Gradle)
@@ -26,12 +26,14 @@
    - [배너광고 추가하기](#배너광고-추가하기)
    - [전면광고 추가하기](#전면광고-추가하기)
    - [보상형광고 추가하기](#보상형광고-추가하기)
+   - [전체화면광고 추가하기](#전체화면광고-추가하기)
    - [네이티브광고 추가하기](#네이티브광고-추가하기)
    - [앱오픈광고 추가하기](#앱오픈광고-추가하기)
 3. [Class Reference](#3-Class-Reference)
    - [배너광고 Class Reference](#배너광고-Class-Reference)
    - [전면광고 Class Reference](#전면광고-Class-Reference)
    - [보상형광고 Class Reference](#보상형광고-Class-Reference)
+   - [전체화면광고 Class Reference](#전체화면광고-Class-Reference)
    - [네이티브광고 Class Reference](#네이티브광고-Class-Reference)
    - [앱오픈광고 Class Reference](#앱오픈광고-Class-Reference)
 4. [참고사항](#4-참고사항)
@@ -64,19 +66,22 @@ allprojects {
 ```java
 dependencies {
     ...
-    implementation 'ad.helper.openbidding:admob-obh:3.28.1'
-    implementation 'com.adop.sdk:bidmad-androidx:3.28.2'
+    implementation 'ad.helper.openbidding:admob-obh:3.28.2'
+    implementation 'com.adop.sdk:bidmad-androidx:3.28.5'
     implementation 'com.adop.sdk.adapter:adfit:3.21.17.1'
     implementation 'com.adop.sdk.adapter:admob-nextgen:1.2.1.1'
     implementation 'com.adop.sdk.adapter:applovin:13.6.2.1'
     implementation 'com.adop.sdk.adapter:coupang:1.0.0.7'
     implementation 'com.adop.sdk.adapter:fyber:8.4.6.0'
     implementation 'com.adop.sdk.adapter:ortb:1.0.3'
-    implementation 'com.adop.sdk.adapter:mobwith:2.0.3'
+    implementation 'com.adop.sdk.adapter:mobwith:2.0.4'
     implementation 'com.adop.sdk.adapter:pangle:8.1.0.3.0'
+    implementation 'com.adop.sdk.adapter:premiumads-nextgen:1.0.0.0'
     implementation 'com.adop.sdk.adapter:taboola:4.0.38.0'
+    implementation 'com.adop.sdk.adapter:teads:6.2.0.0'
     implementation 'com.adop.sdk.adapter:unityads:4.19.0.0'
-    implementation 'com.adop.sdk.adapter:vungle:7.7.7.0'
+    implementation 'com.adop.sdk.adapter:vungle:7.7.7.1'
+    implementation 'com.adop.sdk.adapter:inspector:1.0.0'
     implementation 'com.adop.sdk.partners:admobbidding:1.1.6'
 }
 ```
@@ -383,6 +388,71 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
+#### *전체화면광고 추가하기
+
+1. 전체화면광고를 요청하기 위해 BidmadFullScreenAd를 생성, ZoneId 세팅 후 load 함수를 호출합니다.
+2. 전체화면광고를 노출하기 위해 show를 호출합니다. 로드가 되지 않은 상태에서 show를 호출하면 load 함수를 내부적으로 호출합니다.
+```java
+BidmadFullScreenAd mFullScreenAd;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_fullscreen);
+
+    //Require
+    mFullScreenAd = new BidmadFullScreenAd(this,"YOUR ZONE ID");
+    mFullScreenAd.setListener(new FullScreenAdListener() {
+        @Override
+        public void onLoadAd(@NonNull BMAdInfo) {
+            //onLoadAd Callback
+        }
+
+        @Override
+        public void onShowAd(@NonNull BMAdInfo) {
+            //onShowAd Callback
+        }
+
+        @Override
+        public void onLoadFailAd(BMAdError error) {
+            //onLoadFailAd Callback
+        }
+
+        @Override
+        public void onShowFailAd(BMAdError error, @NonNull BMAdInfo) {
+           //onShowFailAd Callback
+        }
+
+        @Override
+        public void onCompleteAd(@NonNull BMAdInfo) {
+            //onCompleteAd Callback
+        }
+
+        @Override
+        public void onCloseAd(@NonNull BMAdInfo) {
+            //onCloseAd Callback
+        }
+
+        @Override
+        public void onClickAd(@NonNull BMAdInfo) {
+            //onClickAd Callback
+        }
+
+        @Override
+        public void onSkipAd(@NonNull BMAdInfo) {
+            //onSkipAd Callback
+        }
+    });
+
+    mFullScreenAd.load();
+
+    //Ad Show Event Setting
+    findViewById(R.id.showFullScreenAd).setOnClickListener(v -> {
+         mFullScreenAd.show();
+    });
+}
+```
+
 #### *네이티브광고 추가하기
 
 1. [네이티브 광고 레이아웃 구성 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Native-Ad-Layout-Setting-Guide%5BKOR%5D)에 따라 레이아웃을 구성합니다.
@@ -570,6 +640,32 @@ void onSkipAd(@NonNull BMAdInfo)|Reward 광고에서 Reward가 지급조건이 �
 void onCloseAd(@NonNull BMAdInfo)|Reward 광고가 종료될 때 이벤트가 발생합니다.
 void onClickAd(@NonNull BMAdInfo)|Reward 광고 Click시 이벤트가 발생합니다.
 ---
+#### *전체화면광고 Class Reference
+
+- BidmadFullScreenAd
+
+Function|Description
+---|---
+BidmadFullScreenAd(Activity, String)|BidmadFullScreenAd 생성자입니다. ZoneId를 같이 세팅합니다.
+void setListener(FullScreenAdListener)|FullScreenAd 광고에 대한 이벤트 콜백을 받을 수 있도록 listener를 설정합니다.
+void load()|FullScreenAd 광고를 요청합니다.
+void show()|Load된 FullScreenAd 광고를 화면에 노출합니다.
+boolean isLoaded()|FullScreenAd 광고의 Load 여부를 확인합니다.
+static void setAutoReload(boolean)|광고 노출 시 자동으로 다음 광고를 요청합니다. 이 기능은 광고 Fail이 발생하면 중단됩니다. Default 값은 True입니다.
+
+- FullScreenAdListener
+
+Function|Description
+---|---
+void onLoadAd(@NonNull BMAdInfo)|FullScreenAd 광고가 Load 될 떄 이벤트가 발생합니다.
+void onShowAd(@NonNull BMAdInfo)|FullScreenAd 광고가 Show 될 때 이벤트가 발생합니다.
+void onLoadFailAd(BMAdError error)|FullScreenAd 광고 Load에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
+void onShowFailAd(BMAdError error, @NonNull BMAdInfo)|FullScreenAd 광고 Show에 실패할 때 이벤트가 발생합니다. BMAError로 에러코드와 메시지를 확인 할 수 있습니다.
+void onCompleteAd(@NonNull BMAdInfo)|보상형으로 노출된 광고에서 Reward 지급조건이 충족되면 이벤트가 발생합니다.
+void onSkipAd(@NonNull BMAdInfo)|보상형으로 노출된 광고에서 Reward 지급조건이 충족되지 않은 상태로 광고 종료 시 이벤트가 발생합니다.
+void onCloseAd(@NonNull BMAdInfo)|FullScreenAd 광고가 종료될 때 이벤트가 발생합니다.
+void onClickAd(@NonNull BMAdInfo)|FullScreenAd 광고 Click시 이벤트가 발생합니다.
+---
 #### *네이티브광고 Class Reference
 
 - BidmadNativeAd
@@ -682,3 +778,4 @@ interface AdFreeEventListener |AdFreeEventListener를 통해 광고 상태 정�
 - [GDPR 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Android-GDPR-Guide-%5BKOR%5D)
 - [v3.0.0 API 변경 내역](https://github.com/bidmad/Bidmad-Android/wiki/BidmadSDK-3.0.0-API-Migration-Guide)
 - [쿠팡 네트워크 광고 차단 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Android-Coupang-Network-Ad-Block-Guide%5BKOR%5D)
+- [난독화 점검 보고서 전송 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Android-Obfuscation-Inspection-Report-Guide%5BKOR%5D)

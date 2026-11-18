@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import com.techlabs.example.sample.AppOpen.AppOpenActivity;
 import com.techlabs.example.sample.Banner.BannerActivity;
+import com.techlabs.example.sample.FullScreenAd.FullScreenAdActivity;
 import com.techlabs.example.sample.Interstitial.InterstitialActivity;
 import com.techlabs.example.sample.Native.NativeActivity;
 import com.techlabs.example.sample.Native.NativeCardListActivity;
@@ -68,6 +69,14 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, RewardActivity.class);
+                startActivity(i);
+            }
+        });
+
+        findViewById(R.id.goFullScreenAdSample).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, FullScreenAdActivity.class);
                 startActivity(i);
             }
         });

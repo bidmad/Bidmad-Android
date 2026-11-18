@@ -25,6 +25,7 @@
         <activity android:name="com.techlabs.example.sample.Native.NativeSmallCardListActivity"/>
         <activity android:name="com.techlabs.example.sample.Interstitial.InterstitialActivity"/>
         <activity android:name="com.techlabs.example.sample.Reward.RewardActivity"/>
+        <activity android:name="com.techlabs.example.sample.FullScreenAd.FullScreenAdActivity"/>
         <activity android:name="com.techlabs.example.sample.AppOpen.AppOpenActivity"/>
         <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing"
             android:value="false" />
