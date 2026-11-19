@@ -1,3 +1,28 @@
+# Version 3.28.6
+#### Changes
+- Inspector Adapter hotfix
+<details>
+<summary>Check Available Support libraries</summary>
+<div markdown="1">
+<li>Admob OBH - 3.28.2</li>
+<li>Adfit Adapter - 3.21.17.1</li>
+<li>Admob Adapter - 25.4.0.0</li>
+<li>Applovin Adapter - 13.6.2.1</li>
+<li>Coupang Adapter - 1.0.0.7</li>
+<li>Fyber Adapter - 8.4.6.0</li>
+<li>Mobwith Adapter - 2.0.4</li>
+<li>ORTB Adapter - 1.0.3</li>
+<li>Pangle Adapter - 8.1.0.3.0</li>
+<li>PremiumAds Adapter - 1.0.10.0</li>
+<li>Taboola Adapter - 4.0.38.0</li>
+<li>Teads Adapter - 6.2.0.0</li>
+<li>UnityAds Adapter - 4.19.0.0</li>
+<li>Vungle Adapter - 7.7.7.1</li>
+<li>Inspector Adapter - 1.0.0</li>
+<li>AdmobBidding Partner - 1.1.6</li>
+</div>
+</details>
+
 # Version 3.28.5
 #### Changes
 - Fix interstitial / rewarded ad show handling
