@@ -16,7 +16,7 @@
 > If you are updating to version 3.18.0, please contact **Techlabs Platform Operations Team.**<br>
 > For AppDomain changes, please check  [AndroidManifest Settings](#AndroidManifest-Settings).
 
-# BidmadSDK(v3.28.5)
+# BidmadSDK(v3.28.6)
 ### Shortcuts
 
 1. [SDK Settings](#1-SDK-Settings)
@@ -68,7 +68,7 @@ allprojects {
 dependencies {
     ...
     implementation 'ad.helper.openbidding:admob-obh:3.28.2'
-    implementation 'com.adop.sdk:bidmad-androidx:3.28.5'
+    implementation 'com.adop.sdk:bidmad-androidx:3.28.6'
     implementation 'com.adop.sdk.adapter:adfit:3.21.17.1'
     implementation 'com.adop.sdk.adapter:admob-nextgen:1.2.1.1'
     implementation 'com.adop.sdk.adapter:applovin:13.6.2.1'
@@ -82,7 +82,6 @@ dependencies {
     implementation 'com.adop.sdk.adapter:teads:6.2.0.0'
     implementation 'com.adop.sdk.adapter:unityads:4.19.0.0'
     implementation 'com.adop.sdk.adapter:vungle:7.7.7.1'
-    implementation 'com.adop.sdk.adapter:inspector:1.0.0'
     implementation 'com.adop.sdk.partners:admobbidding:1.1.6'
 }
 ```
